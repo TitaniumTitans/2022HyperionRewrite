@@ -15,9 +15,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Indexer extends SubsystemBase {
 
-  private static final double intakeSpeed = 1;
-  private static final double magazineSpeed = 0.75;
-  private static final double kickerReverseSpeed = -0.5;
+  public static final double intakeSpeed = 1;
+  public static final double magazineSpeed = 0.75;
+  public static final double kickerReverseSpeed = -0.5;
 
   //Drive motors for magazine and intake
   private final TalonSRX m_intake;
@@ -76,7 +76,7 @@ public class Indexer extends SubsystemBase {
     m_solenoids.set(Value.kForward);
   }
 
-  public void rectractIntake(){
+  public void retractIntake(){
     m_solenoids.set(Value.kReverse);
   }
 
