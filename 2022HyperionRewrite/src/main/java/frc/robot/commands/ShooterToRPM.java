@@ -19,5 +19,13 @@ public class ShooterToRPM extends CommandBase{
     public void execute(){
         m_shooter.shootAtVelocity(rpm);
     }
+
+    @Override
+    public void end(boolean interrupted){}
+
+    @Override
+    public boolean isFinished(){
+        return m_shooter.atRPM(rpm);
+    }
     
 }

@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.CargoShoot;
 import frc.robot.commands.IntakeExtend;
 import frc.robot.commands.IntakeRetract;
 import frc.robot.commands.ShooterToRPM;
@@ -13,6 +14,7 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -46,9 +48,11 @@ public class RobotContainer {
     JoystickButton activateIntake = new JoystickButton(m_controller, XboxController.Button.kX.value);
     JoystickButton toggleHighGoal = new JoystickButton(m_controller, XboxController.Button.kA.value);
     JoystickButton shooterActivate = new JoystickButton(m_controller, XboxController.Button.kY.value);
+    Trigger cargoShoot = new JoystickButton(m_controller, XboxController.Button.kX.value).and(new JoystickButton(m_controller, XboxController.Button.kY.value));
 
     activateIntake.whenHeld(new IntakeExtend(m_indexer));
     shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1500.0));
+    cargoShoot.whenActive(new CargoShoot(m_shooter, m_indexer, 1500.0));
   }
 
   /**
