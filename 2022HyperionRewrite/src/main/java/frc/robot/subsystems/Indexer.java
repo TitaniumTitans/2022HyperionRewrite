@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -23,6 +24,7 @@ public class Indexer extends SubsystemBase {
   private final TalonSRX m_intake;
   private final TalonFX m_magazine;
   private final TalonFX m_kicker;
+  private final Compressor m_compressor;
 
   //Pnuematics for intake
   private final DoubleSolenoid m_solenoids;
@@ -45,6 +47,8 @@ public class Indexer extends SubsystemBase {
 
     m_lowIR = new DigitalInput(1);
     m_highIR = new DigitalInput(2);
+
+    m_compressor = new Compressor(PneumaticsModuleType.REVPH);
 
   }
 
