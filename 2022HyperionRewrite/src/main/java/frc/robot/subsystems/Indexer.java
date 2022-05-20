@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Compressor;
+//import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import frc.robot.Constants.IndexerConstants;;
 
 public class Indexer extends SubsystemBase {
 
@@ -24,7 +25,7 @@ public class Indexer extends SubsystemBase {
   private final TalonSRX m_intake;
   private final TalonFX m_magazine;
   private final TalonFX m_kicker;
-  private final Compressor m_compressor;
+  //private final Compressor m_compressor;
 
   //Pnuematics for intake
   private final DoubleSolenoid m_solenoids;
@@ -37,18 +38,18 @@ public class Indexer extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public Indexer() {
     //Create motor controller objects
-    m_intake = new TalonSRX(16);
-    m_magazine = new TalonFX(17);
-    m_kicker = new TalonFX(18);
+    m_intake = new TalonSRX(IndexerConstants.intakeDriveID);
+    m_magazine = new TalonFX(IndexerConstants.magazineDriveID);
+    m_kicker = new TalonFX(IndexerConstants.kickerDriveID);
 
     //Create Solenoid Objects
-    m_solenoids = new DoubleSolenoid(PneumaticsModuleType.REVPH, 4, 5);
+    m_solenoids = new DoubleSolenoid(PneumaticsModuleType.REVPH, IndexerConstants.intakeClosePort, IndexerConstants.intakeOpenPort);
     m_solenoids.set(Value.kOff);
 
-    m_lowIR = new DigitalInput(1);
-    m_highIR = new DigitalInput(2);
+    m_lowIR = new DigitalInput(IndexerConstants.lowSensorDIOPort);
+    m_highIR = new DigitalInput(IndexerConstants.highSensorDIOPort);
 
-    m_compressor = new Compressor(PneumaticsModuleType.REVPH);
+    //m_compressor = new Compressor(1, PneumaticsModuleType.REVPH);
 
   }
 
