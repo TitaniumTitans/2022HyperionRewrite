@@ -17,7 +17,7 @@ import frc.robot.Constants.IndexerConstants;;
 
 public class Indexer extends SubsystemBase {
 
-  public static final double intakeSpeed = 1;
+  public static final double intakeSpeed = 0.5;
   public static final double magazineSpeed = 0.75;
   public static final double kickerReverseSpeed = -0.5;
 
@@ -28,6 +28,7 @@ public class Indexer extends SubsystemBase {
   //private final Compressor m_compressor;
 
   //Pnuematics for intake
+  //private final Compressor m_compressor;
   private final DoubleSolenoid m_solenoids;
 
   //IR sensors for ball detection
@@ -43,7 +44,7 @@ public class Indexer extends SubsystemBase {
     m_kicker = new TalonFX(IndexerConstants.kickerDriveID);
 
     //Create Solenoid Objects
-    m_solenoids = new DoubleSolenoid(PneumaticsModuleType.REVPH, IndexerConstants.intakeClosePort, IndexerConstants.intakeOpenPort);
+    m_solenoids = new DoubleSolenoid(2, PneumaticsModuleType.REVPH, IndexerConstants.intakeOpenPort, IndexerConstants.intakeClosePort);
     m_solenoids.set(Value.kOff);
 
     m_lowIR = new DigitalInput(IndexerConstants.lowSensorDIOPort);

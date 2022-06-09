@@ -31,7 +31,8 @@ public class IntakeExtend extends CommandBase {
   @Override
   public void execute() {
     if(m_indexer.magazineFull()){
-      m_indexer.driveMagazine(Indexer.magazineSpeed);
+
+      //m_indexer.driveMagazine(Indexer.magazineSpeed);
     }else{
       m_indexer.extendIntake();
       m_indexer.driveIntake(Indexer.intakeSpeed);

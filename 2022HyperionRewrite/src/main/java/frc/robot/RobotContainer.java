@@ -45,13 +45,15 @@ public class RobotContainer {
   private void configureButtonBindings() {
     //m_indexer.setDefaultCommand(new IntakeRetract(m_indexer));
 
+
     JoystickButton activateIntake = new JoystickButton(m_controller, XboxController.Button.kX.value);
     JoystickButton toggleHighGoal = new JoystickButton(m_controller, XboxController.Button.kA.value);
     JoystickButton shooterActivate = new JoystickButton(m_controller, XboxController.Button.kY.value);
     Trigger cargoShoot = new JoystickButton(m_controller, XboxController.Button.kX.value).and(new JoystickButton(m_controller, XboxController.Button.kY.value));
 
     activateIntake.whenHeld(new IntakeExtend(m_indexer)).whenReleased(new IntakeRetract(m_indexer));
-    shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1500.0));
+    shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1500.0)).whenReleased(new ShooterToRPM(m_shooter, 0.0
+    ));
     cargoShoot.whenActive(new CargoShoot(m_shooter, m_indexer, 1500.0));
   }
 

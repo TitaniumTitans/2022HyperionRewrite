@@ -27,6 +27,7 @@ public class Shooter extends SubsystemBase{
         m_shooterL.setNeutralMode(NeutralMode.Coast);
         m_shooterL.configVoltageCompSaturation(10);
         m_shooterL.enableVoltageCompensation(true);
+        m_shooterL.setInverted(true);
 
         m_shooterController = new SimpleMotorFeedforward(0.1309, 0.114, 0);
     }

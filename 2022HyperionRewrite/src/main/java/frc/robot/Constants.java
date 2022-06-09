@@ -37,10 +37,21 @@ public final class Constants {
         public static final int kTurningEncoderCPR = 4096;
         public static final int kDriveEncoderCPR = 2048;
 
+        public static final double kMaxModuleAngularSpeedDegreesPerSecond = 2 * Math.PI;
+        public static final double kMaxModuleAccelerationSpeedDegreesPerSecond = 2 * Math.PI;
+
+
         public static final double kWheelDiameterMeter = 0.0381;
 
         public static final double kTurningDistancePerPulse = (2 * Math.PI) / (double) kTurningEncoderCPR;
         public static final double kDriveDistancePerPulse = (kWheelDiameterMeter * Math.PI) / 8.14 / (double) kDriveEncoderCPR;
+
+        public static final double kPDrive = 1;
+        
+        public static final double kPTurn = 0.35;
+        public static final double kITurn = 0.01;
+        public static final double kDTurn = 0.1;
+        public static final double kIzone = 10;
     }
 
     public static class AutoConstants{}
@@ -56,8 +67,9 @@ public final class Constants {
         public static final int magazineDriveID = 17;
         public static final int kickerDriveID = 18;
 
-        public static final int lowSensorDIOPort = 1;
-        public static final int highSensorDIOPort = 2;
+        public static final int lowSensorDIOPort = 0;
+
+        public static final int highSensorDIOPort = 1;
     }
 
     public static class ClimberConstants{}
