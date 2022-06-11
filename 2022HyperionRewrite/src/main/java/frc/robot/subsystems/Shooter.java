@@ -22,6 +22,7 @@ public class Shooter extends SubsystemBase{
         m_shooterR.setNeutralMode(NeutralMode.Coast);
         m_shooterR.configVoltageCompSaturation(10);
         m_shooterR.enableVoltageCompensation(true);
+        m_shooterR.setInverted(true);
 
         m_shooterL = new TalonFX(21);
         m_shooterL.setNeutralMode(NeutralMode.Coast);
@@ -32,8 +33,13 @@ public class Shooter extends SubsystemBase{
     }
 
     public void shootAtVelocity(double velocity){
-        m_shooterR.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity));
-        m_shooterL.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity));
+        velocity = velocity / 60.0;
+        m_shooterR.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
+        m_shooterL.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
+    }
+
+    public boolean atRPM(double velocity){
+        return velocity <= (m_shooterR.getSelectedSensorVelocity() + m_shooterL.getSelectedSensorVelocity() / 2);
     }
     
 }

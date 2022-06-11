@@ -30,9 +30,14 @@ public class IntakeExtend extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_indexer.extendIntake();
-    m_indexer.driveIntake(Indexer.intakeSpeed);
-    m_indexer.driveMagazine(Indexer.magazineSpeed);
+    if(m_indexer.magazineFull()){
+
+      //m_indexer.driveMagazine(Indexer.magazineSpeed);
+    }else{
+      m_indexer.extendIntake();
+      m_indexer.driveIntake(Indexer.intakeSpeed);
+      m_indexer.driveMagazine(Indexer.magazineSpeed);
+    }
   }
 
   // Called once the command ends or is interrupted.
