@@ -13,6 +13,7 @@ public class CargoShoot extends CommandBase{
         m_shooter = shooter;
         m_indexer = indexer;
         this.rpm = rpm;
+        addRequirements(shooter, indexer);
     }
 
     @Override
@@ -22,14 +23,13 @@ public class CargoShoot extends CommandBase{
     public void execute(){
         m_shooter.shootAtVelocity(rpm);
         if (m_shooter.atRPM(rpm)){
-            m_indexer.driveKicker(1);
+            m_indexer.driveKicker(0.75);
+            m_indexer.driveMagazine(0.75);
         }
     }
 
     @Override
     public void end(boolean interrupted){
-        m_indexer.driveKicker(0.0);
-        m_shooter.shootAtVelocity(0);
     }
     
     @Override

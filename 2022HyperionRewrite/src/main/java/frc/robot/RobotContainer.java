@@ -51,10 +51,9 @@ public class RobotContainer {
     JoystickButton shooterActivate = new JoystickButton(m_controller, XboxController.Button.kY.value);
     Trigger cargoShoot = new JoystickButton(m_controller, XboxController.Button.kX.value).and(new JoystickButton(m_controller, XboxController.Button.kY.value));
 
+    cargoShoot.whenActive(new CargoShoot(m_shooter, m_indexer, 1000.0)).whenInactive(new ShooterToRPM(m_shooter, 0.0));
     activateIntake.whenHeld(new IntakeExtend(m_indexer)).whenReleased(new IntakeRetract(m_indexer));
-    shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1500.0)).whenReleased(new ShooterToRPM(m_shooter, 0.0
-    ));
-    cargoShoot.whenActive(new CargoShoot(m_shooter, m_indexer, 1500.0));
+    shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1000.0)).whenReleased(new ShooterToRPM(m_shooter, 0.0));
   }
 
   /**

@@ -37,8 +37,8 @@ public final class Constants {
         public static final int kTurningEncoderCPR = 4096;
         public static final int kDriveEncoderCPR = 2048;
 
-        public static final double kMaxModuleAngularSpeedDegreesPerSecond = 2 * Math.PI;
-        public static final double kMaxModuleAccelerationSpeedDegreesPerSecond = 2 * Math.PI;
+        public static final double kMaxModuleAngularSpeedDegreesPerSecond = 5000;
+        public static final double kMaxModuleAccelerationSpeedDegreesPerSecond = 5000;
 
 
         public static final double kWheelDiameterMeter = 0.0381;
@@ -48,10 +48,10 @@ public final class Constants {
 
         public static final double kPDrive = 1;
         
-        public static final double kPTurn = 0.35;
-        public static final double kITurn = 0.01;
-        public static final double kDTurn = 0.1;
-        public static final double kIzone = 10;
+        public static final double kPTurn = 0.8;
+        public static final double kITurn = 0.001;
+        public static final double kDTurn = 20;
+        public static final double kIzone = 20;
     }
 
     public static class AutoConstants{}
