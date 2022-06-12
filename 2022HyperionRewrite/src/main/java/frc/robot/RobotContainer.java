@@ -6,12 +6,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.commands.CargoShoot;
+import frc.robot.commands.Drive;
 import frc.robot.commands.IntakeExtend;
 import frc.robot.commands.IntakeRetract;
 import frc.robot.commands.ShooterToRPM;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.SwerveDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -26,6 +30,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Indexer m_indexer = new Indexer();
   private final Shooter m_shooter = new Shooter();
+  private final SwerveDrive m_drive = new SwerveDrive();
 
   //Creates Xbox controller on port 0
   private XboxController m_controller = new XboxController(0);
@@ -54,6 +59,8 @@ public class RobotContainer {
     cargoShoot.whenActive(new CargoShoot(m_shooter, m_indexer, 1000.0)).whenInactive(new ShooterToRPM(m_shooter, 0.0));
     activateIntake.whenHeld(new IntakeExtend(m_indexer)).whenReleased(new IntakeRetract(m_indexer));
     shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1000.0)).whenReleased(new ShooterToRPM(m_shooter, 0.0));
+
+    m_drive.setDefaultCommand(new Drive(m_drive, m_controller.getLeftX(), m_controller.getLeftY(), m_controller.getRightX(), false));
   }
 
   /**
