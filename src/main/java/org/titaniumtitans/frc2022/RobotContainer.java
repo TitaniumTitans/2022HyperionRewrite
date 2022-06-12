@@ -27,49 +27,49 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final Indexer m_indexer = new Indexer();
-  private final Shooter m_shooter = new Shooter();
-  private final SwerveDrive m_drive = new SwerveDrive();
+    // The robot's subsystems and commands are defined here...
+    private final Indexer m_indexer = new Indexer();
+    private final Shooter m_shooter = new Shooter();
+    private final SwerveDrive m_drive = new SwerveDrive();
 
-  //Creates Xbox controller on port 0
-  private XboxController m_controller = new XboxController(0);
+    //Creates Xbox controller on port 0
+    private XboxController m_controller = new XboxController(0);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-  }
+    /** The container for the robot. Contains subsystems, OI devices, and commands. */
+    public RobotContainer() {
+        // Configure the button bindings
+        configureButtonBindings();
+    }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-    //m_indexer.setDefaultCommand(new IntakeRetract(m_indexer));
+    /**
+     * Use this method to define your button->command mappings. Buttons can be created by
+     * instantiating a {@link GenericHID} or one of its subclasses ({@link
+     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+     */
+    private void configureButtonBindings() {
+        //m_indexer.setDefaultCommand(new IntakeRetract(m_indexer));
 
 
-    JoystickButton activateIntake = new JoystickButton(m_controller, XboxController.Button.kX.value);
-    JoystickButton toggleHighGoal = new JoystickButton(m_controller, XboxController.Button.kA.value);
-    JoystickButton shooterActivate = new JoystickButton(m_controller, XboxController.Button.kY.value);
-    Trigger cargoShoot = new JoystickButton(m_controller, XboxController.Button.kX.value).and(new JoystickButton(m_controller, XboxController.Button.kY.value));
+        JoystickButton activateIntake = new JoystickButton(m_controller, XboxController.Button.kX.value);
+        JoystickButton toggleHighGoal = new JoystickButton(m_controller, XboxController.Button.kA.value);
+        JoystickButton shooterActivate = new JoystickButton(m_controller, XboxController.Button.kY.value);
+        Trigger cargoShoot = new JoystickButton(m_controller, XboxController.Button.kX.value).and(new JoystickButton(m_controller, XboxController.Button.kY.value));
 
-    cargoShoot.whenActive(new CargoShoot(m_shooter, m_indexer, 1000.0)).whenInactive(new ShooterToRPM(m_shooter, 0.0));
-    activateIntake.whenHeld(new IntakeExtend(m_indexer)).whenReleased(new IntakeRetract(m_indexer));
-    shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1000.0)).whenReleased(new ShooterToRPM(m_shooter, 0.0));
+        cargoShoot.whenActive(new CargoShoot(m_shooter, m_indexer, 1000.0)).whenInactive(new ShooterToRPM(m_shooter, 0.0));
+        activateIntake.whenHeld(new IntakeExtend(m_indexer)).whenReleased(new IntakeRetract(m_indexer));
+        shooterActivate.whenHeld(new ShooterToRPM(m_shooter, 1000.0)).whenReleased(new ShooterToRPM(m_shooter, 0.0));
 
-    m_drive.setDefaultCommand(new Drive(m_drive, m_controller.getLeftX(), m_controller.getLeftY(), m_controller.getRightX(), false));
-  }
+        m_drive.setDefaultCommand(new Drive(m_drive, m_controller.getLeftX(), m_controller.getLeftY(), m_controller.getRightX(), false));
+    }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return null;
-  }
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        // An ExampleCommand will run in autonomous
+        return null;
+    }
 }

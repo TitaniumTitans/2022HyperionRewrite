@@ -20,7 +20,10 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
+    /**
+     * Constants for the SwerveDrive subsystem. This includes CAN IDs, track
+     * width/length, maximum velocity, and kinematics.
+     */
     public static class SwerveConstants {
         public static final int frontLeftDrive = 3;
         public static final int frontRightDrive = 6;
@@ -54,6 +57,10 @@ public final class Constants {
         public static final int kMaxSpeedMetersPerSecond = 3;
     }
 
+    /**
+     * Constants for each swerve module. This includes encoder CPRs, maximum
+     * speed/accelerations, and PID constants.
+     */
     public static class ModuleConstants {
         public static final int kTurningEncoderCPR = 4096;
         public static final int kDriveEncoderCPR = 2048;
@@ -75,12 +82,22 @@ public final class Constants {
         public static final double kIzone = 20;
     }
 
+    /**
+     * Currently unused, but will eventually contain any constants relative to the
+     * autonomous period.
+     */
     public static class AutoConstants {
     }
 
+    /**
+     * Currently unused, but will eventually contain constants used by the Shooter subsystem.
+     */
     public static class ShooterConstants {
     }
 
+    /**
+     * CAN IDs and sensor DIO ports for the indexer subsystem.
+     */
     public static class IndexerConstants {
         public static final int compressorPort = 1;
         public static final int intakeOpenPort = 4;
@@ -95,9 +112,15 @@ public final class Constants {
         public static final int highSensorDIOPort = 1;
     }
 
+    /** 
+     * Currently unused, but will eventually contain constants for the Climber subsystem.
+     */
     public static class ClimberConstants {
     }
 
+    /** 
+     * Currently unused, but will eventually contain constants for the Turret subsystem.
+     */
     public static class TurretConstants {
     }
 }
