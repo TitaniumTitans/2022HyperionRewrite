@@ -1,12 +1,15 @@
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2022.4.1"
+    id "org.ysb33r.doxygen" version "0.7.0"
 }
+
+version = '0.1.0'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
-def ROBOT_MAIN_CLASS = "frc.robot.Main"
+def ROBOT_MAIN_CLASS = "org.titaniumtitans.frc2022.Main"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project DeployUtils.
@@ -35,6 +38,28 @@ deploy {
             }
         }
     }
+}
+
+doxygen {
+    executables {
+        doxygen version : '1.8.14'
+    }
+
+    generate_html true
+    generate_latex false
+    optimize_output_java true
+
+    project_logo new File(projectDir, 'docs/favicon.ico')
+    
+    source new File(projectDir, 'src')
+    source new File(projectDir, 'docs/mainpage.md')
+    outputDir new File(projectDir, 'docs')
+
+    html_extra_stylesheet new File(projectDir, 'docs/doxygen-awesome-css/doxygen-awesome.css')
+
+    use_mdfile_as_mainpage new File(projectDir, 'docs/mainpage.md')
+
+    generate_treeview true
 }
 
 def deployArtifact = deploy.targets.roborio.artifacts.frcJava

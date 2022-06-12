@@ -2,20 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package org.titaniumtitans.frc2022;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import frc.robot.commands.CargoShoot;
-import frc.robot.commands.Drive;
-import frc.robot.commands.IntakeExtend;
-import frc.robot.commands.IntakeRetract;
-import frc.robot.commands.ShooterToRPM;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.SwerveDrive;
+import org.titaniumtitans.frc2022.commands.CargoShoot;
+import org.titaniumtitans.frc2022.commands.Drive;
+import org.titaniumtitans.frc2022.commands.IntakeExtend;
+import org.titaniumtitans.frc2022.commands.IntakeRetract;
+import org.titaniumtitans.frc2022.commands.ShooterToRPM;
+import org.titaniumtitans.frc2022.subsystems.Indexer;
+import org.titaniumtitans.frc2022.subsystems.Shooter;
+import org.titaniumtitans.frc2022.subsystems.SwerveDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;

@@ -2,13 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package org.titaniumtitans.frc2022.commands;
 
-import frc.robot.subsystems.Indexer;
+import org.titaniumtitans.frc2022.subsystems.Indexer;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class IntakeExtend extends CommandBase {
+public class IntakeRetract extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Indexer m_indexer;
 
@@ -17,10 +18,10 @@ public class IntakeExtend extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public IntakeExtend(Indexer indexer) {
+  public IntakeRetract(Indexer indexer) {
     m_indexer = indexer;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(indexer);
+    addRequirements();
   }
 
   // Called when the command is initially scheduled.
@@ -30,14 +31,9 @@ public class IntakeExtend extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_indexer.magazineFull()){
-
-      //m_indexer.driveMagazine(Indexer.magazineSpeed);
-    }else{
-      m_indexer.extendIntake();
-      m_indexer.driveIntake(Indexer.intakeSpeed);
-      m_indexer.driveMagazine(Indexer.magazineSpeed);
-    }
+    m_indexer.retractIntake();
+    m_indexer.driveIntake(0);
+    m_indexer.driveMagazine(0);
   }
 
   // Called once the command ends or is interrupted.

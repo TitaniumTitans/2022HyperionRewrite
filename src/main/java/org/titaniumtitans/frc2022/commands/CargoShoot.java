@@ -1,8 +1,9 @@
-package frc.robot.commands;
+package org.titaniumtitans.frc2022.commands;
+
+import org.titaniumtitans.frc2022.subsystems.Indexer;
+import org.titaniumtitans.frc2022.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Shooter;
 
 public class CargoShoot extends CommandBase{
     private final Shooter m_shooter;
