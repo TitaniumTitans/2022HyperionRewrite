@@ -13,3 +13,4 @@ Doxygen will automatically run on a build, before code is compiled. To re-build 
 * Look into using github actions to generate doxygen
 * Use github pages to host docs on their own site
 * Look into readthedocs integration, or using readthedocs instead of doxygen
+* Set up continuous integration with github actions
