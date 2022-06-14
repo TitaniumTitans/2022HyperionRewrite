@@ -1,4 +1,9 @@
-- name: Doxygen Action
-  uses: mattnotmitt/doxygen-action@1.9.1
-with:
-  doxyfile-path: 'docs/Doxygen'
+name: Doxygen Action
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+        uses: mattnotmitt/doxygen-action@1.9.1
+        with:
+          doxyfile-path: 'docs/Doxygen'
