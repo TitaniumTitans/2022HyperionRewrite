@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import org.titaniumtitans.frc2022.Constants.IndexerConstants;;
+import org.titaniumtitans.frc2022.Constants.IndexerConstants;
 
 public class Indexer extends SubsystemBase {
 
