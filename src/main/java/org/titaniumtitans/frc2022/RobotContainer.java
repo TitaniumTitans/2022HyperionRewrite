@@ -4,25 +4,21 @@
 
 package org.titaniumtitans.frc2022;
 
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.XboxController;
+
+import org.titaniumtitans.frc2022.commands.CargoShoot;
+import org.titaniumtitans.frc2022.commands.IntakeExtend;
+import org.titaniumtitans.frc2022.commands.IntakeRetract;
+import org.titaniumtitans.frc2022.commands.ShooterToRPM;
 import org.titaniumtitans.frc2022.commands.TeleopSwerveDrive;
-import org.titaniumtitans.frc2022.Constants.AutoConstants;
-import org.titaniumtitans.frc2022.Constants.DriveConstants;
 import org.titaniumtitans.frc2022.Constants.OIConstants;
 import org.titaniumtitans.frc2022.subsystems.DriveSubsystem;
+import org.titaniumtitans.frc2022.subsystems.Indexer;
+import org.titaniumtitans.frc2022.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import java.util.List;
+
 
 /*
  * This class is where the bulk of the robot should be declared.    Since Command-based is a
@@ -33,6 +29,8 @@ import java.util.List;
 public class RobotContainer {
     // The robot's subsystems
     private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+    private final Indexer m_indexer = new Indexer();
+    private final Shooter m_shooter = new Shooter();
 
     // The driver's controller
     XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -60,6 +58,13 @@ public class RobotContainer {
      * {@link JoystickButton}.
      */
     private void configureButtonBindings() {
+        JoystickButton activateIntake = new JoystickButton(m_driverController, XboxController.Button.kX.value);
+        JoystickButton shooterActivate = new JoystickButton(m_driverController, XboxController.Button.kY.value);
+
+        activateIntake.and(shooterActivate.negate()).whenActive(new IntakeExtend(m_indexer)).whenInactive(new IntakeRetract(m_indexer));
+        shooterActivate.and(activateIntake.negate()).whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
+        shooterActivate.and(activateIntake).whenActive(new CargoShoot(m_shooter, m_indexer, 1500));
+        
     }
 
     /**

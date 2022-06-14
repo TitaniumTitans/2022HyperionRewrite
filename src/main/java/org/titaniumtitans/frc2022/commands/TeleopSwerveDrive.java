@@ -7,7 +7,7 @@ package org.titaniumtitans.frc2022.commands;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import org.titaniumtitans.frc2022.subsystems.DriveSubsystem;
-import org.titaniumtitans.frc2022.Utils;
+import org.titaniumtitans.lib.Utils;
 
 public class TeleopSwerveDrive extends CommandBase {
     DriveSubsystem m_drive;
@@ -30,7 +30,7 @@ public class TeleopSwerveDrive extends CommandBase {
         double xSpeed = Utils.deadBand(m_controller.getLeftX());
         double ySpeed = Utils.deadBand(m_controller.getLeftY());
         double rot = Utils.deadBand(m_controller.getRightX());
-        m_drive.drive(xSpeed, ySpeed, rot, false);
+        m_drive.drive(xSpeed, ySpeed, rot);
     }
 
     // Called once the command ends or is interrupted.

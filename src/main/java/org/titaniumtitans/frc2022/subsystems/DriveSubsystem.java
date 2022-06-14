@@ -4,16 +4,13 @@
 
 package org.titaniumtitans.frc2022.subsystems;
 
-import com.ctre.phoenix.sensors.PigeonIMU;
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import org.titaniumtitans.frc2022.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -55,6 +52,8 @@ public class DriveSubsystem extends SubsystemBase {
     private double lastY = 0;
     private double lastRot = 0;
 
+    private boolean fieldRelative;
+
     /** Creates a new DriveSubsystem. */
     public DriveSubsystem() {
     }
@@ -73,6 +72,7 @@ public class DriveSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("FL Angle", m_frontLeft.getState().angle.getDegrees());
         SmartDashboard.putNumber("BR Angle", m_rearRight.getState().angle.getDegrees());
         SmartDashboard.putNumber("BL Angle", m_rearLeft.getState().angle.getDegrees());
+        SmartDashboard.putBoolean("Field Oriented?", fieldRelative);
     }
 
     /**
@@ -104,7 +104,7 @@ public class DriveSubsystem extends SubsystemBase {
      * @param SwerveModuleState
      */
     @SuppressWarnings("ParameterName")
-    public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
+    public void drive(double xSpeed, double ySpeed, double rot) {
         SwerveModuleState[] swerveModuleStates = new SwerveModuleState[4];
         if (xSpeed != 0.0 && ySpeed != 0.0 && rot != 0.0) {
             swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
@@ -172,5 +172,9 @@ public class DriveSubsystem extends SubsystemBase {
      */
     public double getTurnRate() {
         return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    }
+
+    public void changeDriveMode(){
+        fieldRelative = !fieldRelative;
     }
 }
