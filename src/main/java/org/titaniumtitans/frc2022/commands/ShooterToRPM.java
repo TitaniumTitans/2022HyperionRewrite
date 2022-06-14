@@ -1,13 +1,14 @@
-package frc.robot.commands;
+package org.titaniumtitans.frc2022.commands;
+
+import org.titaniumtitans.frc2022.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
 
 public class ShooterToRPM extends CommandBase{
     private final Shooter m_shooter;
     private final double rpm;
 
-    public ShooterToRPM(Shooter shooter, Double rpm){
+    public ShooterToRPM(Shooter shooter, double rpm){
         m_shooter = shooter;
         this.rpm = rpm;
     }
