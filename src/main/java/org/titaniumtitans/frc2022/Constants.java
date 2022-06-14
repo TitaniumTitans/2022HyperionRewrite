@@ -11,11 +11,15 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
+ * The Constants class provides a convenient place for teams to hold robot-wide
+ * numerical or boolean
+ * constants. This class should not be used for any other purpose. All constants
+ * should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
+ * <p>
+ * It is advised to statically import this class (or one of its inner classes)
+ * wherever the
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
@@ -39,22 +43,23 @@ public final class Constants {
         // Distance between centers of right and left wheels on robot
         public static final double kWheelBase = Units.inchesToMeters(20.733);
         // Distance between front and back wheels on robot
-        public static final SwerveDriveKinematics kDriveKinematics =
-                new SwerveDriveKinematics(
-                        new Translation2d(kWheelBase / 2, kTrackWidth / 2),
-                        new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-                        new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
-                        new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+        public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
+                new Translation2d(kWheelBase / 2, kTrackWidth / 2),
+                new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
+                new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
+                new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
         public static final boolean kGyroReversed = false;
 
         // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
-        // These characterization values MUST be determined either experimentally or theoretically
+        // These characterization values MUST be determined either experimentally or
+        // theoretically
         // for *your* robot's drive.
-        // The SysId tool provides a convenient method for obtaining these values for your robot.
-        //public static final double ksVolts = 1;
-        //public static final double kvVoltSecondsPerMeter = 0.8;
-        //public static final double kaVoltSecondsSquaredPerMeter = 0.15;
+        // The SysId tool provides a convenient method for obtaining these values for
+        // your robot.
+        // public static final double ksVolts = 1;
+        // public static final double kvVoltSecondsPerMeter = 0.8;
+        // public static final double kaVoltSecondsSquaredPerMeter = 0.15;
 
         public static final double kMaxSpeedMetersPerSecond = 3;
     }
@@ -84,9 +89,9 @@ public final class Constants {
         public static final double kaModuleDriveController = 0.021264;
 
         public static final SimpleMotorFeedforward driveController = new SimpleMotorFeedforward(
-            ksModuleDriveController,
-            kvModuleDriveController, 
-            kaModuleDriveController);
+                ksModuleDriveController,
+                kvModuleDriveController,
+                kaModuleDriveController);
 
     }
 
@@ -100,21 +105,23 @@ public final class Constants {
     public static final class AutoConstants {
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-        public static final double kMaxAngularSpeedRadiansPerSecond = Units.radiansPerSecondToRotationsPerMinute(Math.PI) / 60;
-        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Units.radiansPerSecondToRotationsPerMinute(Math.PI) / 60;
+        public static final double kMaxAngularSpeedRadiansPerSecond = Units
+                .radiansPerSecondToRotationsPerMinute(Math.PI) / 60;
+        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Units
+                .radiansPerSecondToRotationsPerMinute(Math.PI) / 60;
 
         public static final double kPXController = 1;
         public static final double kPYController = 1;
         public static final double kPThetaController = 1;
 
         // Constraint for the motion profiled robot angle controller
-        public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
-                new TrapezoidProfile.Constraints(
-                        kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+        public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
+                kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
     }
-    
+
     /**
-     * Currently unused, but will eventually contain constants used by the Shooter subsystem.
+     * Currently unused, but will eventually contain constants used by the Shooter
+     * subsystem.
      */
     public static class ShooterConstants {
     }
@@ -136,14 +143,16 @@ public final class Constants {
         public static final int highSensorDIOPort = 1;
     }
 
-    /** 
-     * Currently unused, but will eventually contain constants for the Climber subsystem.
+    /**
+     * Currently unused, but will eventually contain constants for the Climber
+     * subsystem.
      */
     public static class ClimberConstants {
     }
 
-    /** 
-     * Currently unused, but will eventually contain constants for the Turret subsystem.
+    /**
+     * Currently unused, but will eventually contain constants for the Turret
+     * subsystem.
      */
     public static class TurretConstants {
     }
