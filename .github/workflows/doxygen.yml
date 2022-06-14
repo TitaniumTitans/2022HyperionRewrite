@@ -8,4 +8,4 @@ jobs:
       - name: Doxygen
         uses: mattnotmitt/doxygen-action@1.9.1
         with:
-          doxyfile-path: 'docs'
+          doxyfile-path: 'docs/Doxyfile'
