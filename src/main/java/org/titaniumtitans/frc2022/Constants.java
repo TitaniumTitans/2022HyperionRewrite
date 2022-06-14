@@ -4,93 +4,115 @@
 
 package org.titaniumtitans.frc2022;
 
-import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.math.util.Units;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide
- * numerical or boolean
- * constants. This class should not be used for any other purpose. All constants
- * should be declared
+ * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
+ * constants. This class should not be used for any other purpose. All constants should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
  *
- * <p>
- * It is advised to statically import this class (or one of its inner classes)
- * wherever the
+ * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    /**
-     * Constants for the SwerveDrive subsystem. This includes CAN IDs, track
-     * width/length, maximum velocity, and kinematics.
-     */
-    public static class SwerveConstants {
-        public static final int frontLeftDrive = 3;
-        public static final int frontRightDrive = 6;
-        public static final int backLeftDrive = 12;
-        public static final int backRightDrive = 9;
+    public static final class DriveConstants {
+        public static final int kFrontLeftDriveMotorPort = 3;
+        public static final int kRearLeftDriveMotorPort = 12;
+        public static final int kFrontRightDriveMotorPort = 6;
+        public static final int kRearRightDriveMotorPort = 9;
 
-        public static final int frontLeftTurning = 4;
-        public static final int frontRightTurning = 7;
-        public static final int backLeftTurning = 13;
-        public static final int backRightTurning = 10;
+        public static final int kFrontLeftTurningMotorPort = 4;
+        public static final int kRearLeftTurningMotorPort = 13;
+        public static final int kFrontRightTurningMotorPort = 7;
+        public static final int kRearRightTurningMotorPort = 10;
 
-        public static final int frontLeftEncoder = 5;
-        public static final int frontRightEncoder = 8;
-        public static final int backLeftEncoder = 14;
-        public static final int backRightEncoder = 11;
+        public static final int kFrontLeftTurningEncoderPorts = 5;
+        public static final int kRearLeftTurningEncoderPorts = 14;
+        public static final int kFrontRightTurningEncoderPorts = 8;
+        public static final int kRearRightTurningEncoderPorts = 11;
 
-        public static final int gyroPort = 15;
+        public static final double kTrackWidth = Units.inchesToMeters(20.733);
+        // Distance between centers of right and left wheels on robot
+        public static final double kWheelBase = Units.inchesToMeters(20.733);
+        // Distance between front and back wheels on robot
+        public static final SwerveDriveKinematics kDriveKinematics =
+                new SwerveDriveKinematics(
+                        new Translation2d(kWheelBase / 2, kTrackWidth / 2),
+                        new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
+                        new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
+                        new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
-        public static final double kTrackWidth = 20.733;
-        // Distance between the left and rigth wheels
-        public static final double kWheelBase = 20.733;
-        // Distance between the front and back wheels
-        // With a square robot, these numbers are the same
+        public static final boolean kGyroReversed = false;
 
-        public static final SwerveDriveKinematics kSwerveKinematics = new SwerveDriveKinematics(
-                new Translation2d(kWheelBase / 2, kTrackWidth / 2),
-                new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-                new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
-                new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+        // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
+        // These characterization values MUST be determined either experimentally or theoretically
+        // for *your* robot's drive.
+        // The SysId tool provides a convenient method for obtaining these values for your robot.
+        //public static final double ksVolts = 1;
+        //public static final double kvVoltSecondsPerMeter = 0.8;
+        //public static final double kaVoltSecondsSquaredPerMeter = 0.15;
 
-        public static final int kMaxSpeedMetersPerSecond = 3;
+        public static final double kMaxSpeedMetersPerSecond = 3;
+    }
+
+    public static final class ModuleConstants {
+        public static final double kMaxModuleAngularSpeedRadiansPerSecond = 12.20703125;
+        public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 12.20703125;
+
+        public static final int kEncoderCPR = 4096;
+        public static final double kWheelDiameterMeters = Units.inchesToMeters(4.0);
+        public static final double kDriveEncoderDistancePerPulse =
+                // Assumes the encoders are directly mounted on the wheel shafts
+                (kWheelDiameterMeters * Math.PI) / 8.14 / (double) 2048;
+
+        public static final double kTurningEncoderDistancePerPulse =
+                // Assumes the encoders are on a 1:1 reduction with the module shaft.
+                (2 * Math.PI) / (double) kEncoderCPR;
+
+        public static final double kCTREToWPILibPIDFConstants = 0.63661977237;
+        public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
+
+        public static final double kPModuleTurningController = 0.5;
+        public static final double kDModuleTurningController = 0;
+
+        public static final double ksModuleDriveController = 0.50545;
+        public static final double kvModuleDriveController = 0.85875;
+        public static final double kaModuleDriveController = 0.021264;
+
+        public static final SimpleMotorFeedforward driveController = new SimpleMotorFeedforward(
+            ksModuleDriveController,
+            kvModuleDriveController, 
+            kaModuleDriveController);
+
+    }
+
+    public static final class OIConstants {
+        public static final int kDriverControllerPort = 0;
     }
 
     /**
-     * Constants for each swerve module. This includes encoder CPRs, maximum
-     * speed/accelerations, and PID constants.
+     * Contains constants for the autonomous period.
      */
-    public static class ModuleConstants {
-        public static final int kTurningEncoderCPR = 4096;
-        public static final int kDriveEncoderCPR = 2048;
-        
-        public static final double kMaxModuleAngularSpeedDegreesPerSecond = 5000;
-        public static final double kMaxModuleAccelerationSpeedDegreesPerSecond = 5000;
-        
-        public static final double kWheelDiameterMeter = 0.0381;
-        
-        public static final double kTurningDistancePerPulse = (2 * Math.PI) / (double) kTurningEncoderCPR;
-        public static final double kDriveDistancePerPulse = (kWheelDiameterMeter * Math.PI) / 8.14
-        / (double) kDriveEncoderCPR;
-        
-        public static final double kPDrive = 1;
-        
-        public static final double kPTurn = 0.8;
-        public static final double kITurn = 0.001;
-        public static final double kDTurn = 20;
-        public static final double kIzone = 20;
-        public static final PIDController driveController = new PIDController(kPDrive, 0.0, 0.0);
-    }
+    public static final class AutoConstants {
+        public static final double kMaxSpeedMetersPerSecond = 3;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+        public static final double kMaxAngularSpeedRadiansPerSecond = Units.radiansPerSecondToRotationsPerMinute(Math.PI) / 60;
+        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Units.radiansPerSecondToRotationsPerMinute(Math.PI) / 60;
 
-    /**
-     * Currently unused, but will eventually contain any constants relative to the
-     * autonomous period.
-     */
-    public static class AutoConstants {
-    }
+        public static final double kPXController = 1;
+        public static final double kPYController = 1;
+        public static final double kPThetaController = 1;
 
+        // Constraint for the motion profiled robot angle controller
+        public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
+                new TrapezoidProfile.Constraints(
+                        kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+    }
+    
     /**
      * Currently unused, but will eventually contain constants used by the Shooter subsystem.
      */
