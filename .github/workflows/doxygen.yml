@@ -7,5 +7,5 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Doxygen
         uses: mattnotmitt/doxygen-action@1.9.1
-          with:
+        with:
           doxyfile-path: 'docs/Doxygen'
