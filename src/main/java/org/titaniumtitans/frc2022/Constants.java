@@ -4,6 +4,7 @@
 
 package org.titaniumtitans.frc2022;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 
@@ -64,22 +65,23 @@ public final class Constants {
     public static class ModuleConstants {
         public static final int kTurningEncoderCPR = 4096;
         public static final int kDriveEncoderCPR = 2048;
-
+        
         public static final double kMaxModuleAngularSpeedDegreesPerSecond = 5000;
         public static final double kMaxModuleAccelerationSpeedDegreesPerSecond = 5000;
-
+        
         public static final double kWheelDiameterMeter = 0.0381;
-
+        
         public static final double kTurningDistancePerPulse = (2 * Math.PI) / (double) kTurningEncoderCPR;
         public static final double kDriveDistancePerPulse = (kWheelDiameterMeter * Math.PI) / 8.14
-                / (double) kDriveEncoderCPR;
-
+        / (double) kDriveEncoderCPR;
+        
         public static final double kPDrive = 1;
-
+        
         public static final double kPTurn = 0.8;
         public static final double kITurn = 0.001;
         public static final double kDTurn = 20;
         public static final double kIzone = 20;
+        public static final PIDController driveController = new PIDController(kPDrive, 0.0, 0.0);
     }
 
     /**
