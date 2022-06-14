@@ -70,6 +70,7 @@ public class SwerveDrive extends SubsystemBase {
         m_rearLeft.getState(),
         m_rearRight.getState());
 
+        //Update encoder values on Shuffleboard
         SmartDashboard.putNumber("FR Angle", m_frontRight.getState().angle.getDegrees());
         SmartDashboard.putNumber("FL Angle", m_frontLeft.getState().angle.getDegrees());
         SmartDashboard.putNumber("BR Angle", m_rearRight.getState().angle.getDegrees());
