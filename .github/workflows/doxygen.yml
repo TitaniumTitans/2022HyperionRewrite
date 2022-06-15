@@ -1,11 +1,18 @@
-name: Doxygen Action
-on: [push]
+name: Doxygen GitHub Pages Deploy Action
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
 jobs:
-  Explore-GitHub-Actions:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - name: Doxygen
-        uses: mattnotmitt/doxygen-action@1.9.1
+      - uses: DenverCoder1/doxygen-github-pages-action@v1.1.0
         with:
-          doxyfile-path: 'docs/Doxyfile'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: docs/html
+          config_file: docs/Doxyfile
