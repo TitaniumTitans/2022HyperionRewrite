@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['resetencoders_18',['resetEncoders',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a0bbf0f914c62df3745458c2b9a4678ea',1,'org.titaniumtitans.frc2022.subsystems.DriveSubsystem.resetEncoders()'],['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#aee56a8b0f322f47c36e9b17b1678b35e',1,'org.titaniumtitans.frc2022.subsystems.SwerveModule.resetEncoders()']]],
-  ['resetodometry_19',['resetOdometry',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a7ed3a799506ea289dd4ea4841569ee65',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
-  ['robot_20',['Robot',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html',1,'org::titaniumtitans::frc2022']]],
-  ['robotcontainer_21',['RobotContainer',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html',1,'org.titaniumtitans.frc2022.RobotContainer'],['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html#acbcb165ffb73b95793e2191a800e00b1',1,'org.titaniumtitans.frc2022.RobotContainer.RobotContainer()']]],
-  ['robotinit_22',['robotInit',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html#af78609d4d3c8f1db1a2657e94e234c99',1,'org::titaniumtitans::frc2022::Robot']]],
-  ['robotperiodic_23',['robotPeriodic',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html#a2dc11dd8bf4029e56df9337a4a0b94c2',1,'org::titaniumtitans::frc2022::Robot']]]
+  ['getautonomouscommand_16',['getAutonomousCommand',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html#aee9fa101226bd8cf2b3c1fc16a9c806b',1,'org::titaniumtitans::frc2022::RobotContainer']]],
+  ['getheading_17',['getHeading',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ad97c909034214672fd90131f596ec57e',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
+  ['getpose_18',['getPose',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ae8f4cfc8f9de9f032063da2595ef3813',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
+  ['getstate_19',['getState',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#aaaa44d468bd20b593883eebf2d5ed0b8',1,'org::titaniumtitans::frc2022::subsystems::SwerveModule']]],
+  ['getturnrate_20',['getTurnRate',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a5ed268f2b8aab9a11f3c8b8ad6b1a2ce',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]]
 ];
