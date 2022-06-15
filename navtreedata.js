@@ -22,22 +22,14 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "2022 Hyperion Rewrite", "index.html", [
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ]
-      ] ]
-    ] ]
+  [ "2022HyperionRewrite", "index.html", [
+    [ "Main Page", "index.html", null ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-".html"
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
