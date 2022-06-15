@@ -2,6 +2,9 @@ var hierarchy =
 [
     [ "org.titaniumtitans.frc2022.Constants", "classorg_1_1titaniumtitans_1_1frc2022_1_1_constants.html", null ],
     [ "org.titaniumtitans.lib.drivers.CTREUtil", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util.html", null ],
+    [ "MyLibrary::Example", "class_my_library_1_1_example.html", [
+      [ "MyLibrary::SubclassExample", "class_my_library_1_1_subclass_example.html", null ]
+    ] ],
     [ "org.titaniumtitans.frc2022.Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
     [ "org.titaniumtitans.frc2022.RobotContainer", "classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html", null ],
     [ "org.titaniumtitans.frc2022.subsystems.SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", null ],

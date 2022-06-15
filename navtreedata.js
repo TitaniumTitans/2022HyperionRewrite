@@ -24,6 +24,15 @@ var NAVTREE =
 [
   [ "2022HyperionRewrite", "index.html", [
     [ "Main Page", "index.html", null ],
+    [ "Customization", "md_docs_doxygen-awesome-css_docs_customization.html", null ],
+    [ "Extensions", "md_docs_doxygen-awesome-css_docs_extensions.html", null ],
+    [ "Tips & Tricks", "md_docs_doxygen-awesome-css_docs_tricks.html", null ],
+    [ "Doxygen Awesome", "md_docs_doxygen-awesome-css__r_e_a_d_m_e.html", null ],
+    [ "2022HyperionRewrite", "md__r_e_a_d_m_e.html", null ],
+    [ "WPILib-License", "md__w_p_i_lib-_license.html", null ],
+    [ "Todo List", "todo.html", null ],
+    [ "Deprecated List", "deprecated.html", null ],
+    [ "Bug List", "bug.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -32,6 +41,9 @@ var NAVTREE =
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ]
       ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
