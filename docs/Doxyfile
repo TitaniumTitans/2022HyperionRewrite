@@ -26,6 +26,9 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 
+INPUT     = src
+@INCLUDE  = docs/mainpage.md
+
 # This tag specifies the encoding used for all characters in the configuration
 # file that follow. The default is UTF-8 which is also the encoding used for all
 # text before the first occurrence of this tag. Doxygen uses libiconv (or the
