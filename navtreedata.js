@@ -28,7 +28,7 @@ var NAVTREE =
     [ "Extensions", "md_docs_doxygen-awesome-css_docs_extensions.html", null ],
     [ "Tips & Tricks", "md_docs_doxygen-awesome-css_docs_tricks.html", null ],
     [ "Doxygen Awesome", "md_docs_doxygen-awesome-css__r_e_a_d_m_e.html", null ],
-    [ "2022HyperionRewrite", "md__r_e_a_d_m_e.html", null ],
+    [ "2022 Hyperion Rewrite", "md__r_e_a_d_m_e.html", null ],
     [ "WPILib-License", "md__w_p_i_lib-_license.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
