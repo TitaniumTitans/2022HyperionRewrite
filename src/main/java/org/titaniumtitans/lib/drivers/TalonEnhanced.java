@@ -53,11 +53,18 @@ public class TalonEnhanced {
     // TODO overloaded constructor methods
     public TalonEnhanced(BaseMotorController talon) {
         m_motorController = talon;
+        this.setAllStatusIntervals(255)
+                .setControlIntervals(45)
+                .setFeedbackIntervals(20);
+    }
+
+    public BaseMotorController getController () {
+        return m_motorController;
     }
 
     // TODO Change to handleError and change behavior depending on error type
     public TalonEnhanced autoRetry(ConfigCall talonConfigCall) {
-        CTREUtil.autoRetry(talonConfigCall);
+        CTREUtil.autoRetry(talonConfigCall, String.format("%s(%d)", m_motorController.getClass().getSimpleName(), this.getDeviceID()));
         return this;
     }
 
@@ -640,9 +647,12 @@ public class TalonEnhanced {
                 .autoRetry(() -> m_motorController.configForwardLimitSwitchSource(type, normalOpenOrClose, kTimeoutMs));
     }
 
+    // TODO Fix this.
     public TalonEnhanced configReverseLimitSwitchSource(LimitSwitchSource type, LimitSwitchNormal normalOpenOrClose) {
-        return this
-                .autoRetry(() -> m_motorController.configReverseLimitSwitchSource(type, normalOpenOrClose, kTimeoutMs));
+        return this;
+        // return this
+        // .autoRetry(() -> m_motorController.configReverseLimitSwitchSource(type,
+        // normalOpenOrClose, kTimeoutMs));
 
     }
 }

@@ -8,8 +8,8 @@ public class CTREUtil {
         abstract ErrorCode run();
     }
 
-    private static final int MAX_RETRY_COUNT = 3;
-    private static final int RETRY_DELAY_MS = 100;
+    private static final int RETRY_COUNT = 3;
+    private static final int RETRY_DELAY_MS = 50;
 
     static boolean hasError(ErrorCode err) {
         return err != ErrorCode.OK;
@@ -24,21 +24,21 @@ public class CTREUtil {
         }
     }
 
-    static void autoRetry(ConfigCall configCall) {
+    static void autoRetry(ConfigCall configCall, String name) {
         int i;
         ErrorCode err;
-        for (i = 0; hasError(err = configCall.run()) && i < MAX_RETRY_COUNT; i++) {
-            DriverStation.reportWarning(String.format("Try #%d failed: %s. Retrying...", i, err.toString()), false);
+        for (i = 1; hasError(err = configCall.run()) && i < RETRY_COUNT; i++) {
+            DriverStation.reportWarning(String.format("%s: Try #%d failed: %s. Retrying...", name, i, err.toString()), false);
             try {
                 Thread.sleep(RETRY_DELAY_MS);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
-        if (i > MAX_RETRY_COUNT) {
-            DriverStation.reportError("Error: Maximum retry count exceeded.", false);
-        } else if (i > 0) {
-            DriverStation.reportWarning(String.format("Try #%d succeeded!", i), false);
+        if (i >= RETRY_COUNT) {
+            DriverStation.reportError(String.format("%s: Try #%d failed: %s. Maximum retry count exceeded.", name, i, err.toString()), false);
+        } else if (i > 1) {
+            DriverStation.reportWarning(String.format("%s: Try #%d succeeded!", name, i), false);
         }
     }
 }

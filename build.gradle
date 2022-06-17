@@ -111,4 +111,4 @@ deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
 
-compileJava.dependsOn doxygen
+// compileJava.dependsOn doxygen
