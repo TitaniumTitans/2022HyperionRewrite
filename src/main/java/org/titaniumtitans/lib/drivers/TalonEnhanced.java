@@ -241,20 +241,6 @@ public class TalonEnhanced {
         return m_motorController.getStatusFramePeriod(frame, kTimeoutMs);
     }
 
-    public TalonEnhanced configForwardLimitSwitchSource(RemoteLimitSwitchSource type,
-            LimitSwitchNormal normalOpenOrClose, int deviceID) {
-        return this
-                .autoRetry(() -> m_motorController.configForwardLimitSwitchSource(type, normalOpenOrClose, deviceID,
-                        kTimeoutMs));
-    }
-
-    public TalonEnhanced configReverseLimitSwitchSource(RemoteLimitSwitchSource type,
-            LimitSwitchNormal normalOpenOrClose, int deviceID) {
-        return this
-                .autoRetry(() -> m_motorController.configReverseLimitSwitchSource(type, normalOpenOrClose, deviceID,
-                        kTimeoutMs));
-    }
-
     public TalonEnhanced overrideLimitSwitchesEnable(boolean enable) {
         m_motorController.overrideLimitSwitchesEnable(enable);
         return this;
@@ -635,14 +621,28 @@ public class TalonEnhanced {
         return this.autoRetry(() -> m_motorController.configVelocityMeasurementWindow(windowSize, kTimeoutMs));
     }
 
+    public TalonEnhanced configForwardLimitSwitchSource(RemoteLimitSwitchSource type,
+            LimitSwitchNormal normalOpenOrClose, int deviceID) {
+        return this
+                .autoRetry(() -> m_motorController.configForwardLimitSwitchSource(type, normalOpenOrClose, deviceID,
+                        kTimeoutMs));
+    }
+
+    public TalonEnhanced configReverseLimitSwitchSource(RemoteLimitSwitchSource type,
+            LimitSwitchNormal normalOpenOrClose, int deviceID) {
+        return this
+                .autoRetry(() -> m_motorController.configReverseLimitSwitchSource(type, normalOpenOrClose, deviceID,
+                        kTimeoutMs));
+    }
+
     public TalonEnhanced configForwardLimitSwitchSource(LimitSwitchSource type, LimitSwitchNormal normalOpenOrClose) {
         return this
                 .autoRetry(() -> m_motorController.configForwardLimitSwitchSource(type, normalOpenOrClose, kTimeoutMs));
     }
 
-    public TalonEnhanced configReverseLimitSwitchSource(RemoteLimitSwitchSource type,
-            LimitSwitchNormal normalOpenOrClose) {
+    public TalonEnhanced configReverseLimitSwitchSource(LimitSwitchSource type, LimitSwitchNormal normalOpenOrClose) {
         return this
                 .autoRetry(() -> m_motorController.configReverseLimitSwitchSource(type, normalOpenOrClose, kTimeoutMs));
+
     }
 }
