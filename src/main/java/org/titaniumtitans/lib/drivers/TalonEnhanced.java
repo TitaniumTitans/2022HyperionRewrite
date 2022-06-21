@@ -1,5 +1,7 @@
 package org.titaniumtitans.lib.drivers;
 
+import org.titaniumtitans.lib.drivers.CTREUtil.*;
+
 import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motion.MotionProfileStatus;
@@ -28,9 +30,9 @@ import com.ctre.phoenix.motorcontrol.can.BaseTalon;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.SensorVelocityMeasPeriod;
-import org.titaniumtitans.lib.drivers.CTREUtil.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 /**
  * This is my second attempt to create a wrapper class for CTRE motor
@@ -41,7 +43,7 @@ import edu.wpi.first.wpilibj.DriverStation;
  * TalonFX or TalonSRX (some of those class's methods that aren't in
  * BaseMotorController are missing), but it's pretty close.
  */
-public class TalonEnhanced {
+public class TalonEnhanced implements MotorController {
     private final BaseMotorController m_motorController;
 
     // TODO Consider moving these constants somewhere else
@@ -58,13 +60,14 @@ public class TalonEnhanced {
                 .setFeedbackIntervals(20);
     }
 
-    public BaseMotorController getController () {
+    public BaseMotorController getController() {
         return m_motorController;
     }
 
     // TODO Change to handleError and change behavior depending on error type
     public TalonEnhanced autoRetry(ConfigCall talonConfigCall) {
-        CTREUtil.autoRetry(talonConfigCall, String.format("%s(%d)", m_motorController.getClass().getSimpleName(), this.getDeviceID()));
+        CTREUtil.autoRetry(talonConfigCall,
+                String.format("%s(%d)", m_motorController.getClass().getSimpleName(), this.getDeviceID()));
         return this;
     }
 
@@ -122,11 +125,11 @@ public class TalonEnhanced {
         return this;
     }
 
-    public TalonEnhanced setInverted(boolean invert) {
-        m_motorController.setInverted(invert);
+    // public TalonEnhanced setInverted(boolean invert) {
+    // m_motorController.setInverted(invert);
 
-        return this;
-    }
+    // return this;
+    // }
 
     public TalonEnhanced setInverted(InvertType invertType) {
         m_motorController.setInverted(invertType);
@@ -572,6 +575,7 @@ public class TalonEnhanced {
         return this.setAllStatusIntervals(kSlowFrameMs).setControlIntervals(kFastFrameMs);
     }
 
+    // TODO: Move this into child class that inherits this
     public double getSupplyCurrent() {
         if (m_motorController instanceof BaseTalon) {
             BaseTalon m_talon = (BaseTalon) m_motorController;
@@ -584,6 +588,7 @@ public class TalonEnhanced {
         return 0.0;
     }
 
+    // TODO: Move this into child class that inherits this
     public double getStatorCurrent() {
         if (m_motorController instanceof BaseTalon) {
             BaseTalon m_talon = (BaseTalon) m_motorController;
@@ -596,6 +601,7 @@ public class TalonEnhanced {
         return 0.0;
     }
 
+    // TODO: Move this into child class that inherits this
     public TalonEnhanced configSupplyCurrentLimit(SupplyCurrentLimitConfiguration currLimitCfg) {
         if (m_motorController instanceof BaseTalon) {
             BaseTalon m_talon = (BaseTalon) m_motorController;
@@ -608,6 +614,7 @@ public class TalonEnhanced {
         return this;
     }
 
+    // TODO: Move this into child class that inherits this
     public TalonEnhanced configStatorCurrentLimit(StatorCurrentLimitConfiguration currLimitCfg) {
         if (m_motorController instanceof TalonFX) {
             TalonFX m_talon = (TalonFX) m_motorController;
@@ -654,5 +661,43 @@ public class TalonEnhanced {
         // .autoRetry(() -> m_motorController.configReverseLimitSwitchSource(type,
         // normalOpenOrClose, kTimeoutMs));
 
+    }
+
+    //////////////////////////////////////////////////////////////////
+    // implements MotorController //
+    //////////////////////////////////////////////////////////////////
+
+    @Override
+    public void set(double demand0) {
+        if (m_lastControlMode != ControlMode.PercentOutput || m_lastDemand0 != demand0) {
+            m_motorController.set(ControlMode.PercentOutput, demand0);
+            m_lastControlMode = ControlMode.PercentOutput;
+            m_lastDemand0 = demand0;
+        }
+    }
+
+    @Override
+    public void setVoltage(double outputVolts) {
+        // if(
+    }
+
+    @Override
+    public double get() {
+        return this.getMotorOutputPercent();
+    }
+
+    @Override
+    public void setInverted(boolean isInverted) {
+        m_motorController.setInverted(isInverted);
+    }
+
+    @Override
+    public void disable() {
+        this.neutralOutput();
+    }
+
+    @Override
+    public void stopMotor() {
+        this.neutralOutput();
     }
 }
