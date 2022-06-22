@@ -19,6 +19,8 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import org.titaniumtitans.frc2022.Constants.ModuleConstants;
+import org.titaniumtitans.lib.Utils;
+import org.titaniumtitans.lib.Swerve.CTREModuleState;
 
 public class SwerveModule {
     private final WPI_TalonFX m_driveMotor;
@@ -87,18 +89,16 @@ public class SwerveModule {
      */
     public void setDesiredState(SwerveModuleState desiredState) {
         // Optimize the reference state to avoid spinning further than 90 degrees
-        SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
+        SwerveModuleState state = CTREModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
-        // state = optimize(state, m_turningMotor.getSelectedSensorPosition(0) * 8.14 /
-        // 2048 * 360);
+        //final double driveOutput = ModuleConstants.driveController.calculate(state.speedMetersPerSecond);
+        double driveOutput = Utils.MPSToFalcon(state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, 8.17);
 
-        // Calculate the drive output from the drive PID controller.
-        final double driveOutput = ModuleConstants.driveController.calculate(state.speedMetersPerSecond);
-
-        final double turnOutput = getTurnPulses(state.angle.getRadians());
+        //final double turnOutput = getTurnPulses(state.angle.getRadians());
+        double turnOutput = Utils.degreesToFalcon(state.angle.getDegrees(), 8.17);
 
         // Calculate the turning motor output from the turning PID controller.
-        m_driveMotor.setVoltage(driveOutput);
+        m_driveMotor.set(ControlMode.Velocity, driveOutput);
         // m_turningMotor.set(ControlMode.Position,
         // Units.radiansToDegrees(turnOutput));\
         m_turningMotor.set(ControlMode.Position, turnOutput);
