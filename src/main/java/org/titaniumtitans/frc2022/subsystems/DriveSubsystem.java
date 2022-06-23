@@ -52,7 +52,7 @@ public class DriveSubsystem extends SubsystemBase {
     private double lastY = 0;
     private double lastRot = 0;
 
-    private boolean fieldRelative;
+    private boolean fieldRelative = false;
 
     /** Creates a new DriveSubsystem. */
     public DriveSubsystem() {

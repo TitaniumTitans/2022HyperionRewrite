@@ -5,6 +5,7 @@
 package org.titaniumtitans.frc2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -14,6 +15,7 @@ import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -28,8 +30,7 @@ public class SwerveModule {
 
     private final CANCoder m_turningEncoder;
 
-    // Using a TrapezoidProfile PIDController to allow for smooth turning
-    private int resetIterations = 0;
+    SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
 
     /**
      * Constructs a SwerveModule.
@@ -91,16 +92,11 @@ public class SwerveModule {
         // Optimize the reference state to avoid spinning further than 90 degrees
         SwerveModuleState state = CTREModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
-        //final double driveOutput = ModuleConstants.driveController.calculate(state.speedMetersPerSecond);
         double driveOutput = Utils.MPSToFalcon(state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, 8.17);
 
-        //final double turnOutput = getTurnPulses(state.angle.getRadians());
         double turnOutput = Utils.degreesToFalcon(state.angle.getDegrees(), 8.17);
 
-        // Calculate the turning motor output from the turning PID controller.
-        m_driveMotor.set(ControlMode.Velocity, driveOutput);
-        // m_turningMotor.set(ControlMode.Position,
-        // Units.radiansToDegrees(turnOutput));\
+        m_driveMotor.set(ControlMode.Velocity, driveOutput, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
         m_turningMotor.set(ControlMode.Position, turnOutput);
     }
 
@@ -110,30 +106,7 @@ public class SwerveModule {
         m_turningEncoder.setPosition(0);
     }
 
-    private double getTurnPulses(double referenceAngleRadians) {
-        return referenceAngleRadians * ModuleConstants.kEncoderCPR / 2 / Math.PI;
-    }
-
-    public void configMotorPID(WPI_TalonFX talon, int slotIdx, double p, double i, double d) {
-        talon.config_kP(slotIdx, p);
-        talon.config_kI(slotIdx, i);
-        talon.config_kD(slotIdx, d);
-    }
-
     private double getTurningEncoderRadians() {
         return Math.toRadians(m_turningMotor.getSelectedSensorPosition(0) / 4096 * 360);
-    }
-
-    private SwerveModuleState optimize(SwerveModuleState st, double currentAngleRadians) {
-        double changeAngleRads = st.angle.getRadians() - currentAngleRadians;
-        while (Math.abs(changeAngleRads) > Math.PI / 2) {
-            if (changeAngleRads > Math.PI / 2) {
-                st = new SwerveModuleState(st.speedMetersPerSecond, new Rotation2d(st.angle.getRadians() - Math.PI));
-            } else if (changeAngleRads < -Math.PI / 2) {
-                st = new SwerveModuleState(st.speedMetersPerSecond, new Rotation2d(st.angle.getRadians() + Math.PI));
-            }
-            changeAngleRads = st.angle.getRadians() - currentAngleRadians;
-        }
-        return st;
     }
 }
