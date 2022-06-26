@@ -20,6 +20,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.titaniumtitans.frc2022.Constants.ModuleConstants;
 import org.titaniumtitans.lib.Utils;
 import org.titaniumtitans.lib.Swerve.CTREModuleState;
@@ -29,6 +31,8 @@ public class SwerveModule {
     private final WPI_TalonFX m_turningMotor;
 
     private final CANCoder m_turningEncoder;
+
+    private final String m_name;
 
     SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
 
@@ -46,7 +50,8 @@ public class SwerveModule {
             int driveMotorChannel,
             int turningMotorChannel,
             int turningEncoderChannels,
-            double encoderOffset) {
+            double encoderOffset,
+            String name) {
         m_driveMotor = new WPI_TalonFX(driveMotorChannel);
         m_turningMotor = new WPI_TalonFX(turningMotorChannel);
 
@@ -70,6 +75,8 @@ public class SwerveModule {
         m_driveMotor.configClosedloopRamp(0.5);
         m_driveMotor.configOpenloopRamp(0.5);
 
+        m_name = name;
+
     }
 
     /**
@@ -90,11 +97,21 @@ public class SwerveModule {
      */
     public void setDesiredState(SwerveModuleState desiredState) {
         // Optimize the reference state to avoid spinning further than 90 degrees
-        SwerveModuleState state = CTREModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
+        SwerveModuleState state = CTREModuleState.optimize(desiredState, Rotation2d.fromDegrees(Utils.falconToDegrees(m_turningMotor.getSelectedSensorPosition(), 8.14)));
+        //SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
         double driveOutput = Utils.MPSToFalcon(state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, 8.17);
 
-        double turnOutput = Utils.degreesToFalcon(state.angle.getDegrees(), 8.17);
+        double turnOutput = Utils.degreesToFalcon(state.angle.getDegrees(), 8.14);
+
+        // Debugging values
+        SmartDashboard.putNumber("driveOutput" + m_name, driveOutput);
+        SmartDashboard.putNumber("turnOutput" + m_name, turnOutput);
+
+        SmartDashboard.putNumber("desiredAngle" + m_name, state.angle.getDegrees());
+        SmartDashboard.putNumber("desiredSpeed" + m_name, state.speedMetersPerSecond);
+
+        SmartDashboard.putNumber("rawAngle" + m_name, desiredState.angle.getDegrees());
 
         m_driveMotor.set(ControlMode.Velocity, driveOutput, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
         m_turningMotor.set(ControlMode.Position, turnOutput);

@@ -22,25 +22,29 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
-            11.07);
+            11.07,
+            "FL");
 
     private final SwerveModule m_rearLeft = new SwerveModule(
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            337.412);
+            337.412,
+            "RL");
 
     private final SwerveModule m_frontRight = new SwerveModule(
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            345.673);
+            345.673,
+            "FR");
 
     private final SwerveModule m_rearRight = new SwerveModule(
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            23.291);
+            23.291,
+            "RR");
 
     // The gyro sensor
     private final Gyro m_gyro = new WPI_PigeonIMU(15);
@@ -106,17 +110,10 @@ public class DriveSubsystem extends SubsystemBase {
     @SuppressWarnings("ParameterName")
     public void drive(double xSpeed, double ySpeed, double rot) {
         SwerveModuleState[] swerveModuleStates = new SwerveModuleState[4];
-        if (xSpeed != 0.0 && ySpeed != 0.0 && rot != 0.0) {
-            swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
-                    fieldRelative
-                            ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, m_gyro.getRotation2d())
-                            : new ChassisSpeeds(xSpeed, ySpeed, rot));
-        } else {
-            swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
-                    fieldRelative
-                            ? ChassisSpeeds.fromFieldRelativeSpeeds(lastX, lastY, lastRot, m_gyro.getRotation2d())
-                            : new ChassisSpeeds(lastX, lastY, lastRot));
-        }
+        swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
+                fieldRelative
+                    ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, m_gyro.getRotation2d())
+                        : new ChassisSpeeds(xSpeed, ySpeed, rot));
         SwerveDriveKinematics.desaturateWheelSpeeds(
                 swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
         m_frontLeft.setDesiredState(swerveModuleStates[0]);

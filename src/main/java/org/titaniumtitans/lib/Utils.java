@@ -48,4 +48,13 @@ public class Utils {
         double wheelVelocity = RPMToFalcon(wheelRPM, gearRatio);
         return wheelVelocity;
     }
+
+     /**
+     * @param counts Falcon Counts
+     * @param gearRatio Gear Ratio between Falcon and Mechanism
+     * @return Degrees of Rotation of Mechanism
+     */
+    public static double falconToDegrees(double counts, double gearRatio) {
+        return counts * (360.0 / (gearRatio * 2048.0));
+    }
 }
