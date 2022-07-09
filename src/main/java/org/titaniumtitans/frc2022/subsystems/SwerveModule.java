@@ -7,18 +7,14 @@ package org.titaniumtitans.frc2022.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -97,12 +93,12 @@ public class SwerveModule {
      */
     public void setDesiredState(SwerveModuleState desiredState) {
         // Optimize the reference state to avoid spinning further than 90 degrees
-        SwerveModuleState state = CTREModuleState.optimize(desiredState, Rotation2d.fromDegrees(Utils.falconToDegrees(m_turningMotor.getSelectedSensorPosition(), 8.14)));
+        SwerveModuleState state = CTREModuleState.optimize(desiredState, Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), 8.14)));
         //SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
         double driveOutput = Utils.MPSToFalcon(state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, 8.17);
 
-        double turnOutput = Utils.degreesToFalcon(state.angle.getDegrees(), 8.14);
+        double turnOutput = Utils.degreesToFalcon4096(state.angle.getDegrees(), 8.14);
 
         // Debugging values
         SmartDashboard.putNumber("driveOutput" + m_name, driveOutput);
@@ -121,9 +117,5 @@ public class SwerveModule {
     public void resetEncoders() {
         m_driveMotor.setSelectedSensorPosition(0);
         m_turningEncoder.setPosition(0);
-    }
-
-    private double getTurningEncoderRadians() {
-        return Math.toRadians(m_turningMotor.getSelectedSensorPosition(0) / 4096 * 360);
     }
 }

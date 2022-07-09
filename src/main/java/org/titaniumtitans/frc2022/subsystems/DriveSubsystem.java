@@ -52,10 +52,6 @@ public class DriveSubsystem extends SubsystemBase {
     // Odometry class for tracking robot pose
     SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(DriveConstants.kDriveKinematics, m_gyro.getRotation2d());
 
-    private double lastX = 0;
-    private double lastY = 0;
-    private double lastRot = 0;
-
     private boolean fieldRelative = false;
 
     /** Creates a new DriveSubsystem. */
@@ -121,9 +117,6 @@ public class DriveSubsystem extends SubsystemBase {
         m_rearLeft.setDesiredState(swerveModuleStates[2]);
         m_rearRight.setDesiredState(swerveModuleStates[3]);
 
-        lastX = xSpeed;
-        lastY = ySpeed;
-        lastRot = rot;
     }
 
     /**
