@@ -30,6 +30,8 @@ public class SwerveModule {
 
     private final String m_name;
 
+    private SwerveModuleState m_desired_state;
+
     SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
 
     /**
@@ -71,6 +73,7 @@ public class SwerveModule {
         m_driveMotor.configClosedloopRamp(0.5);
         m_driveMotor.configOpenloopRamp(0.5);
 
+        m_desired_state = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
         m_name = name;
 
     }
@@ -86,6 +89,10 @@ public class SwerveModule {
                 new Rotation2d(Units.degreesToRadians(m_turningEncoder.getAbsolutePosition())));
     }
 
+    public SwerveModuleState getDesiredState() {
+        return m_desired_state;
+    }
+
     /**
      * Sets the desired state for the module.
      *
@@ -93,19 +100,19 @@ public class SwerveModule {
      */
     public void setDesiredState(SwerveModuleState desiredState) {
         // Optimize the reference state to avoid spinning further than 90 degrees
-        SwerveModuleState state = CTREModuleState.optimize(desiredState, Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), 8.14)));
+        m_desired_state = CTREModuleState.optimize(desiredState, Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), 8.14)));
         //SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
-        double driveOutput = Utils.MPSToFalcon(state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, 8.17);
+        double driveOutput = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, 8.17);
 
-        double turnOutput = Utils.degreesToFalcon4096(state.angle.getDegrees(), 8.14);
+        double turnOutput = Utils.degreesToFalcon4096(m_desired_state.angle.getDegrees(), 8.14);
 
         // Debugging values
         SmartDashboard.putNumber("driveOutput" + m_name, driveOutput);
         SmartDashboard.putNumber("turnOutput" + m_name, turnOutput);
 
-        SmartDashboard.putNumber("desiredAngle" + m_name, state.angle.getDegrees());
-        SmartDashboard.putNumber("desiredSpeed" + m_name, state.speedMetersPerSecond);
+        SmartDashboard.putNumber("desiredAngle" + m_name, m_desired_state.angle.getDegrees());
+        SmartDashboard.putNumber("desiredSpeed" + m_name, m_desired_state.speedMetersPerSecond);
 
         SmartDashboard.putNumber("rawAngle" + m_name, desiredState.angle.getDegrees());
 
@@ -113,9 +120,21 @@ public class SwerveModule {
         m_turningMotor.set(ControlMode.Position, turnOutput);
     }
 
+    public double getDriveMotorPercentage() {
+        return m_driveMotor.getMotorOutputPercent();
+    }
+
+    public double getTurningMotorPercentage() {
+        return m_turningMotor.getMotorOutputPercent();
+    }
+
     /** Zeroes all the SwerveModule encoders. */
     public void resetEncoders() {
         m_driveMotor.setSelectedSensorPosition(0);
         m_turningEncoder.setPosition(0);
+    }
+
+    public String getName() {
+        return m_name;
     }
 }

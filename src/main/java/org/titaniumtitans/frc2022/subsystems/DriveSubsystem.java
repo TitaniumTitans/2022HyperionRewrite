@@ -11,6 +11,9 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import org.titaniumtitans.frc2022.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -46,6 +49,8 @@ public class DriveSubsystem extends SubsystemBase {
             23.291,
             "RR");
 
+    private final SwerveModule[] m_modules = new SwerveModule[]{m_frontLeft, m_frontRight, m_rearLeft, m_rearRight};
+
     // The gyro sensor
     private final Gyro m_gyro = new WPI_PigeonIMU(15);
 
@@ -56,6 +61,23 @@ public class DriveSubsystem extends SubsystemBase {
 
     /** Creates a new DriveSubsystem. */
     public DriveSubsystem() {
+        Shuffleboard.getTab("Drivetrain").add("SwerveState", new SwerveModuleSendable());
+    }
+
+    private final class SwerveModuleSendable implements Sendable {
+
+        @Override
+        public void initSendable(SendableBuilder builder) {
+            builder.setSmartDashboardType("SwerveDrive");
+            for (SwerveModule module : m_modules) {
+                builder.addDoubleProperty(module.getName() + "/CurrentStateAngle", () -> module.getState().angle.getDegrees(), null);
+                builder.addDoubleProperty(module.getName() + "/CurrentStateSpeed", () -> module.getState().speedMetersPerSecond, null);
+                builder.addDoubleProperty(module.getName() + "/DesiredStateAngle", () -> module.getDesiredState().angle.getDegrees(), null);
+                builder.addDoubleProperty(module.getName() + "/DesiredStateSpeed", () -> module.getDesiredState().speedMetersPerSecond, null);
+                builder.addDoubleProperty(module.getName() + "/DrivePercentage", module::getDriveMotorPercentage, null);
+                builder.addDoubleProperty(module.getName() + "/TurningPercentage", module::getTurningMotorPercentage, null);
+            }
+        }
     }
 
     @Override
