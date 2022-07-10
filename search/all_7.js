@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['indexer_21',['Indexer',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html',1,'org.titaniumtitans.frc2022.subsystems.Indexer'],['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html#afba187842dc2472639a264f27a5d0a3f',1,'org.titaniumtitans.frc2022.subsystems.Indexer.Indexer()']]],
-  ['intakeextend_22',['IntakeExtend',['../classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_extend.html',1,'org.titaniumtitans.frc2022.commands.IntakeExtend'],['../classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_extend.html#a45cf0e8a3c84f177b82a19ab1d1c6115',1,'org.titaniumtitans.frc2022.commands.IntakeExtend.IntakeExtend()']]],
-  ['intakeretract_23',['IntakeRetract',['../classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract.html',1,'org.titaniumtitans.frc2022.commands.IntakeRetract'],['../classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract.html#a56c7d11aad5e2d66b7199b32f4f015a1',1,'org.titaniumtitans.frc2022.commands.IntakeRetract.IntakeRetract()']]]
+  ['getautonomouscommand_19',['getAutonomousCommand',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html#aee9fa101226bd8cf2b3c1fc16a9c806b',1,'org::titaniumtitans::frc2022::RobotContainer']]],
+  ['getheading_20',['getHeading',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ad97c909034214672fd90131f596ec57e',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
+  ['getpose_21',['getPose',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ae8f4cfc8f9de9f032063da2595ef3813',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
+  ['getstate_22',['getState',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#aaaa44d468bd20b593883eebf2d5ed0b8',1,'org::titaniumtitans::frc2022::subsystems::SwerveModule']]],
+  ['getturnrate_23',['getTurnRate',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a5ed268f2b8aab9a11f3c8b8ad6b1a2ce',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]]
 ];

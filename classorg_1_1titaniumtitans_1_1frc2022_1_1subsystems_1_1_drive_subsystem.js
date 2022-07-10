@@ -1,7 +1,8 @@
 var classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem =
 [
     [ "DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ae7dbc747486a8d1689d652b56370016a", null ],
-    [ "drive", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a5d960a608238c7345ed9862c4862e0db", null ],
+    [ "changeDriveMode", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a3494466660f8c01ea24525782ef28b99", null ],
+    [ "drive", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ab3c8b29dc059a64f50c913c2263942fa", null ],
     [ "getHeading", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ad97c909034214672fd90131f596ec57e", null ],
     [ "getPose", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ae8f4cfc8f9de9f032063da2595ef3813", null ],
     [ "getTurnRate", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a5ed268f2b8aab9a11f3c8b8ad6b1a2ce", null ],

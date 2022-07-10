@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['getautonomouscommand_77',['getAutonomousCommand',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html#aee9fa101226bd8cf2b3c1fc16a9c806b',1,'org::titaniumtitans::frc2022::RobotContainer']]],
-  ['getheading_78',['getHeading',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ad97c909034214672fd90131f596ec57e',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
-  ['getpose_79',['getPose',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ae8f4cfc8f9de9f032063da2595ef3813',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
-  ['getstate_80',['getState',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#aaaa44d468bd20b593883eebf2d5ed0b8',1,'org::titaniumtitans::frc2022::subsystems::SwerveModule']]],
-  ['getturnrate_81',['getTurnRate',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a5ed268f2b8aab9a11f3c8b8ad6b1a2ce',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]]
+  ['deadband_84',['deadBand',['../classorg_1_1titaniumtitans_1_1lib_1_1_utils.html#a3cd76b16852c405000399d0dc199d3e0',1,'org::titaniumtitans::lib::Utils']]],
+  ['disabledinit_85',['disabledInit',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html#a5f33c1ea382815a6971b51591926124b',1,'org::titaniumtitans::frc2022::Robot']]],
+  ['drive_86',['drive',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ab3c8b29dc059a64f50c913c2263942fa',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
+  ['drivesubsystem_87',['DriveSubsystem',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ae7dbc747486a8d1689d652b56370016a',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]]
 ];
