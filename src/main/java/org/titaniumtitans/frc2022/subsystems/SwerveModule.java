@@ -86,7 +86,11 @@ public class SwerveModule {
     public SwerveModuleState getState() {
         return new SwerveModuleState(
                 m_driveMotor.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
-                new Rotation2d(Units.degreesToRadians(m_turningEncoder.getAbsolutePosition())));
+                getCurrentAngle());
+    }
+
+    public Rotation2d getCurrentAngle() {
+        return Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), 8.14));
     }
 
     public SwerveModuleState getDesiredState() {
@@ -100,7 +104,7 @@ public class SwerveModule {
      */
     public void setDesiredState(SwerveModuleState desiredState) {
         // Optimize the reference state to avoid spinning further than 90 degrees
-        m_desired_state = CTREModuleState.optimize(desiredState, Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), 8.14)));
+        m_desired_state = CTREModuleState.optimize(desiredState, getCurrentAngle());
         //SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
         double driveOutput = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, 8.17);
