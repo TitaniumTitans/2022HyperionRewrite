@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 
-import com.ctre.phoenix.sensors.WPI_CANCoder;
+import com.ctre.phoenix.sensors.CANCoder;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -32,7 +32,7 @@ public class SwerveModule {
     private final WPI_TalonFX m_driveMotor;
     private final WPI_TalonFX m_turningMotor;
 
-    private final WPI_CANCoder m_turningEncoder;
+    private final CANCoder m_turningEncoder;
 
     private final String m_name;
 
@@ -63,7 +63,7 @@ public class SwerveModule {
         m_driveMotor = new WPI_TalonFX(driveMotorChannel);
         m_turningMotor = new WPI_TalonFX(turningMotorChannel);
 
-        m_turningEncoder = new WPI_CANCoder(turningEncoderChannels);
+        m_turningEncoder = new CANCoder(turningEncoderChannels);
 
         m_table = NetworkTableInstance.getDefault().getTable("Swerve" + name);
 
@@ -74,11 +74,7 @@ public class SwerveModule {
         m_turningEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
         m_turningEncoder.configMagnetOffset(encoderOffset);
         m_turningEncoder.configSensorDirection(true);
-        m_turningEncoder.setPositionToAbsolute();
 
-        m_turningMotor.configRemoteFeedbackFilter(m_turningEncoder, 0);
-        m_turningMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.RemoteSensor0, 0, 0);
-        m_turningMotor.configSelectedFeedbackCoefficient(1);
         m_turningMotor.config_kP(0, ModuleConstants.kPModuleTurningController);
 
         m_driveMotor.configVoltageCompSaturation(10);
@@ -158,5 +154,14 @@ public class SwerveModule {
 
     public String getName() {
         return m_name;
+    }
+
+    public void setAbsoluteValue(){
+        double absolutePosition = Utils.degreesToFalcon2048(getCancoderCurrentAngle().getDegrees(), TURNING_GEAR_RATION);
+        m_turningMotor.setSelectedSensorPosition(absolutePosition);
+    }
+
+    public void setModuleAngle(double degrees){
+        m_turningMotor.set(ControlMode.Position, Utils.degreesToFalcon2048(degrees, 21.42));
     }
 }

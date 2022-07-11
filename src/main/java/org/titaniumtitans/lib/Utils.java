@@ -12,7 +12,7 @@ public class Utils {
      * @return The output
      */
     public static double deadBand(double input) {
-        if (Math.abs(input) < 0.1) {
+        if (Math.abs(input) < 0.2) {
             return 0.0;
         }
         return input;

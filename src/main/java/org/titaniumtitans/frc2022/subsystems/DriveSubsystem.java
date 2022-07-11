@@ -132,8 +132,10 @@ public class DriveSubsystem extends SubsystemBase {
                 fieldRelative
                     ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, m_gyro.getRotation2d())
                         : new ChassisSpeeds(xSpeed, ySpeed, rot));
+                        
         SwerveDriveKinematics.desaturateWheelSpeeds(
                 swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
+
         m_frontLeft.setDesiredState(swerveModuleStates[0]);
         m_frontRight.setDesiredState(swerveModuleStates[1]);
         m_rearLeft.setDesiredState(swerveModuleStates[2]);
@@ -188,5 +190,11 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void changeDriveMode(){
         fieldRelative = !fieldRelative;
+    }
+
+    public void setModuleAngle(double angle){
+        for(SwerveModule module: m_modules){
+            module.setModuleAngle(angle);
+        }
     }
 }

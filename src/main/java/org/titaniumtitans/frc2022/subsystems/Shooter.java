@@ -13,6 +13,7 @@ public class Shooter extends SubsystemBase{
     //Shooter motors, both Falcon 500s
     private static TalonFX m_shooterR;
     private static TalonFX m_shooterL;
+    private static ShooterLimelight m_limelight;
 
     private static SimpleMotorFeedforward m_shooterController;
 
@@ -30,6 +31,8 @@ public class Shooter extends SubsystemBase{
         m_shooterL.enableVoltageCompensation(true);
 
         m_shooterController = new SimpleMotorFeedforward(0.1309, 0.114, 0);
+
+        m_limelight = new ShooterLimelight();
     }
 
     public void shootAtVelocity(double velocity){
@@ -41,5 +44,10 @@ public class Shooter extends SubsystemBase{
     public boolean atRPM(double velocity){
         return velocity <= (m_shooterR.getSelectedSensorVelocity() + m_shooterL.getSelectedSensorVelocity() / 2);
     }
-    
+
+    /*
+    public double getRPMForDistance(){
+        return m_limelight.calcRPM();
+    }
+    */
 }
