@@ -17,17 +17,18 @@ public class CTREModuleState {
     public static SwerveModuleState optimize(SwerveModuleState desiredState, Rotation2d currentAngle){
         double targetSpeed = desiredState.speedMetersPerSecond;
         double targetAngle = placeInAppropriate0To360Scope(currentAngle.getDegrees(), desiredState.angle.getDegrees());
+
         double delta = targetAngle - currentAngle.getDegrees();
-    if (Math.abs(delta) > 90){
-        targetSpeed = -targetSpeed;
-        targetAngle = delta > 90 ? (targetAngle -= 180) : (targetAngle += 180);
-    }        
-    return new SwerveModuleState(targetSpeed, Rotation2d.fromDegrees(targetAngle));
+        if (Math.abs(delta) > 90){
+            targetSpeed = -targetSpeed;
+            targetAngle = delta > 90 ? (targetAngle - 180) : (targetAngle + 180);
+        }
+        return new SwerveModuleState(targetSpeed, Rotation2d.fromDegrees(targetAngle));
     }
 
     /***
-     * Wraps the current poition of the swerve module around a
-     * 0 - 360 boundry so it can be used in the optimize method
+     * Wraps the current position of the swerve module around a
+     * 0 - 360 boundary so that it can be used in the optimize method
      * 
      * @param scopeReference The current angle the swerve module is at
      * @param newAngle

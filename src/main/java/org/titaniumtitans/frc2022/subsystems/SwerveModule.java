@@ -6,7 +6,7 @@ package org.titaniumtitans.frc2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
-import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
@@ -16,18 +16,20 @@ import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.titaniumtitans.frc2022.Constants.ModuleConstants;
 import org.titaniumtitans.lib.Swerve.CTREModuleState;
 import org.titaniumtitans.lib.Utils;
 
-public class SwerveModule {
+public class SwerveModule implements Sendable {
 
-    private static final double TURNING_GEAR_RATION = 21.428;
-    private static final double DRIVE_GEAR_RATION = 8.17;
+    // MK4i - L1
+    private static final double TURNING_GEAR_RATION = (50.0 / 14.0) * (60.0 / 10.0);
+    private static final double DRIVE_GEAR_RATION = (50.0 / 14.0) * (19.0 / 25.0) * (45.0 / 15.0);
 
     private final WPI_TalonFX m_driveMotor;
     private final WPI_TalonFX m_turningMotor;
@@ -37,10 +39,10 @@ public class SwerveModule {
     private final String m_name;
 
     private SwerveModuleState m_desired_state;
+    private double m_turnGoalTicks;
+    private double m_driveGoalTicks;
 
-    SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
-
-    NetworkTable m_table;
+    private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
 
 
 
@@ -65,20 +67,16 @@ public class SwerveModule {
 
         m_turningEncoder = new WPI_CANCoder(turningEncoderChannels);
 
-        m_table = NetworkTableInstance.getDefault().getTable("Swerve" + name);
-
         // Set the distance (in this case, angle) per pulse for the turning encoder.
         // This is the the angle through an entire rotation (2 * pi) divided by the
         // encoder resolution.
         m_turningEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
         m_turningEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
         m_turningEncoder.configMagnetOffset(encoderOffset);
-        m_turningEncoder.configSensorDirection(true);
+        m_turningEncoder.configSensorDirection(false);
         m_turningEncoder.setPositionToAbsolute();
 
-        m_turningMotor.configRemoteFeedbackFilter(m_turningEncoder, 0);
-        m_turningMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.RemoteSensor0, 0, 0);
-        m_turningMotor.configSelectedFeedbackCoefficient(1);
+        m_turningMotor.setInverted(TalonFXInvertType.Clockwise);
         m_turningMotor.config_kP(0, ModuleConstants.kPModuleTurningController);
 
         m_driveMotor.configVoltageCompSaturation(10);
@@ -87,8 +85,6 @@ public class SwerveModule {
 
         m_desired_state = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
         m_name = name;
-
-        SmartDashboard.putBoolean("Enable Driving", false);
     }
 
     /**
@@ -99,7 +95,7 @@ public class SwerveModule {
     public SwerveModuleState getState() {
         return new SwerveModuleState(
                 m_driveMotor.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
-                getCancoderCurrentAngle());
+                getTurningMotorAngle());
     }
 
     public Rotation2d getCancoderCurrentAngle() {
@@ -107,7 +103,7 @@ public class SwerveModule {
     }
 
     public Rotation2d getTurningMotorAngle() {
-        return Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), TURNING_GEAR_RATION));
+        return Rotation2d.fromDegrees(Utils.falconToDegrees(m_turningMotor.getSelectedSensorPosition(), TURNING_GEAR_RATION));
     }
 
     public SwerveModuleState getDesiredState() {
@@ -122,23 +118,13 @@ public class SwerveModule {
     public void setDesiredState(SwerveModuleState desiredState) {
         // Optimize the reference state to avoid spinning further than 90 degrees
         m_desired_state = CTREModuleState.optimize(desiredState, getState().angle);
-        //SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
-        double driveOutput = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, DRIVE_GEAR_RATION);
-
-        double turnOutput = Utils.degreesToFalcon2048(m_desired_state.angle.getDegrees(), TURNING_GEAR_RATION);
-
-        // Debugging values
-        m_table.getEntry("getSelectedSensorPosition").setNumber(m_turningMotor.getSelectedSensorPosition());
-        m_table.getEntry("cancoderAngle").setNumber(getCancoderCurrentAngle().getDegrees());
-        m_table.getEntry("motorAngle").setNumber(getTurningMotorAngle().getDegrees());
-        m_table.getEntry("driveOutput").setNumber(driveOutput);
-        m_table.getEntry("turnOutput").setNumber(turnOutput);
-
+        m_driveGoalTicks = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, DRIVE_GEAR_RATION);
+        m_turnGoalTicks = Utils.degreesToFalcon(m_desired_state.angle.getDegrees(), TURNING_GEAR_RATION);
 
         if (SmartDashboard.getBoolean("Enable Driving", false)) {
-            m_driveMotor.set(ControlMode.Velocity, driveOutput, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
-            m_turningMotor.set(ControlMode.Position, turnOutput);
+            m_driveMotor.set(ControlMode.Velocity, m_driveGoalTicks, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
+            m_turningMotor.set(ControlMode.Position, m_turnGoalTicks);
         }
     }
 
@@ -158,5 +144,16 @@ public class SwerveModule {
 
     public String getName() {
         return m_name;
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.addDoubleProperty("CancoderAngle", () -> getCancoderCurrentAngle().getDegrees(), null);
+        builder.addDoubleProperty("TurnTicks", m_turningMotor::getSelectedSensorPosition, null);
+        builder.addDoubleProperty("MotorAngle", () -> getTurningMotorAngle().getDegrees(), null);
+        builder.addDoubleProperty("TurnGoalDegrees", () -> m_desired_state.angle.getDegrees(), null);
+        builder.addDoubleProperty("TurnGoalTicks", () -> m_turnGoalTicks, null);
+        builder.addDoubleProperty("DriveGoalMps", () -> m_desired_state.speedMetersPerSecond, null);
+        builder.addDoubleProperty("DriveGoalTicks", () -> m_driveGoalTicks, null);
     }
 }

@@ -14,6 +14,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import org.titaniumtitans.frc2022.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -61,7 +62,11 @@ public class DriveSubsystem extends SubsystemBase {
 
     /** Creates a new DriveSubsystem. */
     public DriveSubsystem() {
-        Shuffleboard.getTab("Drivetrain").add("SwerveState", new SwerveModuleSendable());
+        ShuffleboardTab debugTab = Shuffleboard.getTab("Drivetrain");
+        debugTab.add("SwerveState", new SwerveModuleSendable());
+        for(SwerveModule module : m_modules) {
+            debugTab.add(module.getName() + " Module", module);
+        }
     }
 
     private final class SwerveModuleSendable implements Sendable {
@@ -90,10 +95,6 @@ public class DriveSubsystem extends SubsystemBase {
                 m_rearLeft.getState(),
                 m_rearRight.getState());
 
-        SmartDashboard.putNumber("FR Angle", m_frontRight.getState().angle.getDegrees());
-        SmartDashboard.putNumber("FL Angle", m_frontLeft.getState().angle.getDegrees());
-        SmartDashboard.putNumber("BR Angle", m_rearRight.getState().angle.getDegrees());
-        SmartDashboard.putNumber("BL Angle", m_rearLeft.getState().angle.getDegrees());
         SmartDashboard.putBoolean("Field Oriented?", fieldRelative);
     }
 
@@ -121,23 +122,14 @@ public class DriveSubsystem extends SubsystemBase {
      * @param xSpeed            Speed of the robot in the x direction (forward).
      * @param ySpeed            Speed of the robot in the y direction (sideways).
      * @param rot               Angular rate of the robot.
-     * @param fieldRelative     Whether the provided x and y speeds are relative to
-     *                          the field.
-     * @param SwerveModuleState
      */
     @SuppressWarnings("ParameterName")
     public void drive(double xSpeed, double ySpeed, double rot) {
-        SwerveModuleState[] swerveModuleStates = new SwerveModuleState[4];
-        swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
+        SwerveModuleState[] swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
                 fieldRelative
                     ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, m_gyro.getRotation2d())
                         : new ChassisSpeeds(xSpeed, ySpeed, rot));
-        SwerveDriveKinematics.desaturateWheelSpeeds(
-                swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
-        m_frontLeft.setDesiredState(swerveModuleStates[0]);
-        m_frontRight.setDesiredState(swerveModuleStates[1]);
-        m_rearLeft.setDesiredState(swerveModuleStates[2]);
-        m_rearRight.setDesiredState(swerveModuleStates[3]);
+        setModuleStates(swerveModuleStates);
 
     }
 
@@ -149,18 +141,16 @@ public class DriveSubsystem extends SubsystemBase {
     public void setModuleStates(SwerveModuleState[] desiredStates) {
         SwerveDriveKinematics.desaturateWheelSpeeds(
                 desiredStates, DriveConstants.kMaxSpeedMetersPerSecond);
-        m_frontLeft.setDesiredState(desiredStates[0]);
-        m_frontRight.setDesiredState(desiredStates[1]);
-        m_rearLeft.setDesiredState(desiredStates[2]);
-        m_rearRight.setDesiredState(desiredStates[3]);
+        for (int i = 0; i < m_modules.length; ++i) {
+            m_modules[i].setDesiredState(desiredStates[i]);
+        }
     }
 
     /** Resets the drive encoders to currently read a position of 0. */
     public void resetEncoders() {
-        m_frontLeft.resetEncoders();
-        m_rearLeft.resetEncoders();
-        m_frontRight.resetEncoders();
-        m_rearRight.resetEncoders();
+        for (SwerveModule m_module : m_modules) {
+            m_module.resetEncoders();
+        }
     }
 
     /** Zeroes the heading of the robot. */
