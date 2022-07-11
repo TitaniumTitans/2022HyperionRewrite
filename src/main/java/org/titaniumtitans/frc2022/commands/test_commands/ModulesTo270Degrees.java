@@ -23,7 +23,7 @@ public class ModulesTo270Degrees extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drive.setModuleAngle(270);
+    m_drive.drive(0, -1, 0);
   }
 
   // Called once the command ends or is interrupted.
