@@ -26,8 +26,7 @@ import org.titaniumtitans.lib.Utils;
 
 public class SwerveModule {
 
-    private static final double TURNING_GEAR_RATION = 21.428;
-    private static final double DRIVE_GEAR_RATION = 8.17;
+    
 
     private final WPI_TalonFX m_driveMotor;
     private final WPI_TalonFX m_turningMotor;
@@ -41,6 +40,8 @@ public class SwerveModule {
     SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
 
     NetworkTable m_table;
+
+    double m_lastAngle;
 
 
 
@@ -76,6 +77,7 @@ public class SwerveModule {
         m_turningEncoder.configSensorDirection(true);
 
         m_turningMotor.config_kP(0, ModuleConstants.kPModuleTurningController);
+        setAbsoluteValue();
 
         m_driveMotor.configVoltageCompSaturation(10);
         m_driveMotor.configClosedloopRamp(0.5);
@@ -83,6 +85,7 @@ public class SwerveModule {
 
         m_desired_state = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
         m_name = name;
+        m_lastAngle = getState().angle.getDegrees();
 
         SmartDashboard.putBoolean("Enable Driving", false);
     }
@@ -103,7 +106,7 @@ public class SwerveModule {
     }
 
     public Rotation2d getTurningMotorAngle() {
-        return Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), TURNING_GEAR_RATION));
+        return Rotation2d.fromDegrees(Utils.falconToDegrees4096(m_turningMotor.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
     }
 
     public SwerveModuleState getDesiredState() {
@@ -120,9 +123,13 @@ public class SwerveModule {
         m_desired_state = CTREModuleState.optimize(desiredState, getState().angle);
         //SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
 
-        double driveOutput = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, DRIVE_GEAR_RATION);
+        double driveOutput = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
 
-        double turnOutput = Utils.degreesToFalcon2048(m_desired_state.angle.getDegrees(), TURNING_GEAR_RATION);
+        double turnOutput = Utils.degreesToFalcon2048(m_desired_state.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
+
+        if(driveOutput <= 0.05){
+            turnOutput = m_lastAngle;
+        }
 
         // Debugging values
         m_table.getEntry("getSelectedSensorPosition").setNumber(m_turningMotor.getSelectedSensorPosition());
@@ -135,6 +142,8 @@ public class SwerveModule {
         if (SmartDashboard.getBoolean("Enable Driving", false)) {
             m_driveMotor.set(ControlMode.Velocity, driveOutput, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
             m_turningMotor.set(ControlMode.Position, turnOutput);
+
+            m_lastAngle = turnOutput;
         }
     }
 
@@ -157,7 +166,7 @@ public class SwerveModule {
     }
 
     public void setAbsoluteValue(){
-        double absolutePosition = Utils.degreesToFalcon2048(getCancoderCurrentAngle().getDegrees(), TURNING_GEAR_RATION);
+        double absolutePosition = Utils.degreesToFalcon2048(getCancoderCurrentAngle().getDegrees(), ModuleConstants.kTurningGearRatio);
         m_turningMotor.setSelectedSensorPosition(absolutePosition);
     }
 
