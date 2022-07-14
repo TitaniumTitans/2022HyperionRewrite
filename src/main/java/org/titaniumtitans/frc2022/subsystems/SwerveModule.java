@@ -128,6 +128,7 @@ public class SwerveModule {
 
         if(driveOutput <= 0.05){
             turnOutput = m_lastAngle;
+            setAbsoluteValue();
         }
 
         // Debugging values
