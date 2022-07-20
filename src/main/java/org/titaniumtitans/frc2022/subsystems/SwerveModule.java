@@ -76,11 +76,13 @@ public class SwerveModule {
         m_turningEncoder.configSensorDirection(true);
 
         m_turningMotor.config_kP(0, ModuleConstants.kPModuleTurningController);
+        m_turningMotor.configNeutralDeadband(0.1);
         setAbsoluteValue();
 
         m_driveMotor.configVoltageCompSaturation(10);
         m_driveMotor.configClosedloopRamp(0.5);
         m_driveMotor.configOpenloopRamp(0.5);
+        m_driveMotor.configNeutralDeadband(0.1);
 
         m_desired_state = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
         m_name = name;
@@ -127,7 +129,7 @@ public class SwerveModule {
         double turnOutput = Utils.degreesToFalcon2048(m_desired_state.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
 
         if(driveOutput <= 0.05){
-            turnOutput = m_lastAngle;
+            //turnOutput = m_lastAngle;
             setAbsoluteValue();
         }
 
@@ -139,7 +141,7 @@ public class SwerveModule {
         m_table.getEntry("turnOutput").setNumber(turnOutput);
 
 
-        if (SmartDashboard.getBoolean("Enable Driving", false)) {
+        if (SmartDashboard.getBoolean("Enable Driving", true)) {
             m_driveMotor.set(ControlMode.Velocity, driveOutput, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
             m_turningMotor.set(ControlMode.Position, turnOutput);
 
