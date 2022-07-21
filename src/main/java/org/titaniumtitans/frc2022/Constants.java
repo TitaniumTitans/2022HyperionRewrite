@@ -84,7 +84,9 @@ public final class Constants {
         public static final double kCTREToWPILibPIDFConstants = 0.63661977237;
         public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
 
+
         public static final double kPModuleTurningController = 0.005;
+
         public static final double kDModuleTurningController = 0;
 
         public static final double ksModuleDriveController = 0.50545;
