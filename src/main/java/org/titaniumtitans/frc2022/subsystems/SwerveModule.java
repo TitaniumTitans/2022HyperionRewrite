@@ -68,7 +68,7 @@ public class SwerveModule {
         m_table = NetworkTableInstance.getDefault().getTable("Swerve" + name);
 
         // Set the distance (in this case, angle) per pulse for the turning encoder.
-        // This is the the angle through an entire rotation (2 * pi) divided by the
+        // This is the angle through an entire rotation (2 * pi) divided by the
         // encoder resolution.
         m_turningEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
         m_turningEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
