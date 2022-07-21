@@ -138,7 +138,7 @@ public class DriveSubsystem extends SubsystemBase {
         m_frontRight.setDesiredState(swerveModuleStates[1]);
         m_rearLeft.setDesiredState(swerveModuleStates[2]);
         m_rearRight.setDesiredState(swerveModuleStates[3]);
-
+    }
 
     /** Resets the drive encoders to currently read a position of 0. */
     public void resetEncoders() {
