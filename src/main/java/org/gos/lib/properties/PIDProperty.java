@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.function.DoubleConsumer;
 
 
-public class PIDProperty {
+public class PidProperty {
     private final List<HeavyDoubleProperty> m_properties;
 
 
-    /* default */ PIDProperty(List<HeavyDoubleProperty> properties) {
+    /* default */ PidProperty(List<HeavyDoubleProperty> properties) {
         m_properties = properties;
     }
 
@@ -77,8 +77,8 @@ public class PIDProperty {
             return this;
         }
 
-        public PIDProperty build() {
-            return new PIDProperty(m_properties);
+        public PidProperty build() {
+            return new PidProperty(m_properties);
         }
     }
 }
