@@ -4,9 +4,9 @@
 
 package org.titaniumtitans.frc2022.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import org.gos.lib.properties.HeavyDoubleProperty;
 import org.gos.lib.properties.PidProperty;
 import org.gos.lib.properties.PropertyManager;
 import org.gos.lib.properties.CTRE.CtrePidPropertyBuilder;
@@ -60,6 +60,16 @@ public class Climber extends SubsystemBase {
   public void resetEncoders(){
     m_rightClimber.setSelectedSensorPosition(0);
     m_leftClimber.setSelectedSensorPosition(0);
+  }
+
+  public void joystickControl(double speed){
+    m_leftClimber.set(ControlMode.PercentOutput, speed);
+    m_rightClimber.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void climberPidControl(double position){
+    m_leftClimber.set(ControlMode.MotionMagic, position);
+    m_rightClimber.set(ControlMode.MotionMagic, position);
   }
 
 }
