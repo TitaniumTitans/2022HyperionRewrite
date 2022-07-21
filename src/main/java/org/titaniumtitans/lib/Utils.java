@@ -22,16 +22,11 @@ public class Utils {
      * Converts from degrees to Falcon encoder position
      * 
      * @param degrees Input degrees
-     * @param gearRation Mechanism gear ratio
+     * @param gearRatio Mechanism gear ratio
      * @return Falcon encoder position
      */
-    public static double degreesToFalcon2048(double degrees, double gearRatio){
+    public static double degreesToFalcon(double degrees, double gearRatio){
         double ticks = degrees / (360.0 / (gearRatio * 2048));
-        return ticks;
-    }
-
-    public static double degreesToFalcon4096(double degrees, double gearRatio){
-        double ticks = degrees / (360.0 / (gearRatio * 4096));
         return ticks;
     }
 
@@ -39,7 +34,7 @@ public class Utils {
      * Converts RPM to Falcon Encoder Counts per 100 ms.
      * 
      * @param RPM Input RPM 
-     * @param gearRation Mechanism RPM
+     * @param gearRatio Mechanism RPM
      * @return Falcon Velocity
      */
     public static double RPMToFalcon(double RPM, double gearRatio){
@@ -59,12 +54,8 @@ public class Utils {
      * @param gearRatio Gear Ratio between Falcon and Mechanism
      * @return Degrees of Rotation of Mechanism
      */
-    public static double falconToDegrees2048(double counts, double gearRatio) {
+    public static double falconToDegrees(double counts, double gearRatio) {
         return counts * (360.0 / (gearRatio * 2048.0));
-    }
-
-    public static double falconToDegrees4096(double counts, double gearRatio) {
-        return counts * (360.0 / (gearRatio * 4096.0));
     }
 }
 
