@@ -9,7 +9,6 @@ var hierarchy =
     [ "org.titaniumtitans.frc2022.Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
     [ "org.titaniumtitans.frc2022.RobotContainer", "classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html", null ],
     [ "org.titaniumtitans.frc2022.subsystems.ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", null ],
-    [ "org.titaniumtitans.frc2022.subsystems.SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", null ],
     [ "org.titaniumtitans.lib.drivers.TalonEnhanced", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html", null ],
     [ "org.titaniumtitans.lib.Utils", "classorg_1_1titaniumtitans_1_1lib_1_1_utils.html", null ],
     [ "CommandBase", null, [
@@ -20,6 +19,9 @@ var hierarchy =
       [ "org.titaniumtitans.frc2022.commands.ResetDriveGyro", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro.html", null ],
       [ "org.titaniumtitans.frc2022.commands.ShooterToRPM", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_shooter_to_r_p_m.html", null ],
       [ "org.titaniumtitans.frc2022.commands.TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", null ]
+    ] ],
+    [ "Sendable", null, [
+      [ "org.titaniumtitans.frc2022.subsystems.SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", null ]
     ] ],
     [ "SubsystemBase", null, [
       [ "org.titaniumtitans.frc2022.subsystems.DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", null ],
