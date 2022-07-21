@@ -23,9 +23,11 @@ var annotated_dup =
             [ "TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive" ]
           ] ],
           [ "subsystems", null, [
+            [ "DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem" ],
             [ "Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer" ],
             [ "Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter" ],
-            [ "ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight" ]
+            [ "ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight" ],
+            [ "SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module" ]
           ] ],
           [ "Constants", "classorg_1_1titaniumtitans_1_1frc2022_1_1_constants.html", null ],
           [ "Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],

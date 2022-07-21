@@ -24,7 +24,11 @@ var hierarchy =
       [ "org.titaniumtitans.frc2022.commands.test_commands.ModulesTo360Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to360_degrees.html", null ],
       [ "org.titaniumtitans.frc2022.commands.test_commands.ModulesTo90Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees.html", null ]
     ] ],
+    [ "Sendable", null, [
+      [ "org.titaniumtitans.frc2022.subsystems.SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", null ]
+    ] ],
     [ "SubsystemBase", null, [
+      [ "org.titaniumtitans.frc2022.subsystems.DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", null ]
     ] ],
