@@ -127,6 +127,9 @@ public final class Constants {
      * subsystem.
      */
     public static class ShooterConstants {
+        public static final double kTargetHeight = 102.619; //inches
+        public static final double kLimelightHeight = 39.7483595; //inches
+        public static final double kLimelightAngle = 17.728393; //degrees
     }
 
     /**

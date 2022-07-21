@@ -2,6 +2,7 @@ package org.titaniumtitans.frc2022.subsystems;
 
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import org.titaniumtitans.frc2022.Constants.ShooterConstants;
 
 public class ShooterLimelight {
 
@@ -16,6 +17,11 @@ public class ShooterLimelight {
     public double getDistanceFromGoal(double targetHight, double cameraHeight, double cameraAngle){
         return targetHight - cameraHeight / 
         Math.tan(Units.degreesToRadians(getTX() + cameraAngle));
+    }
+
+    public double calcRPM(){
+        double dist = getDistanceFromGoal(ShooterConstants.kTargetHeight, ShooterConstants.kLimelightHeight, ShooterConstants.kLimelightAngle);
+        return 0.07 * Math.pow((dist - 100), 2) + 3120;
     }
     
 }
