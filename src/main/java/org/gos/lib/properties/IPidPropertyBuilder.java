@@ -13,5 +13,5 @@ public interface IPidPropertyBuilder {
 
     IPidPropertyBuilder addMaxAcceleration(double defaultValue);
 
-    PidProperty build();
+    PIDProperty build();
 }

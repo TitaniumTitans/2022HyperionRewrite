@@ -7,7 +7,7 @@ package org.titaniumtitans.frc2022.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import org.gos.lib.properties.PidProperty;
+import org.gos.lib.properties.PIDProperty;
 import org.gos.lib.properties.PropertyManager;
 import org.gos.lib.properties.CTRE.CtrePidPropertyBuilder;
 import org.gos.lib.properties.PropertyManager.IProperty;
@@ -23,8 +23,8 @@ public class Climber extends SubsystemBase {
   private final IProperty<Double> m_rightMaxHeight;
   private final IProperty<Double> m_leftMaxHeight;
 
-  private final PidProperty m_leftPidProperty;
-  private final PidProperty m_rightPidProperty;
+  private final PIDProperty m_leftPidProperty;
+  private final PIDProperty m_rightPidProperty;
 
   /** Creates a new Climber. */
   public Climber() {
@@ -55,6 +55,9 @@ public class Climber extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Left Climber Height", m_leftClimber.getSelectedSensorPosition());
     SmartDashboard.putNumber("Right Climber Height", m_rightClimber.getSelectedSensorPosition());
+
+    m_leftPidProperty.updateIfChanged();
+    m_rightPidProperty.updateIfChanged();
   }
 
   public void resetEncoders(){
