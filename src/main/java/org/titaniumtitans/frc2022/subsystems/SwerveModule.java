@@ -6,12 +6,13 @@ package org.titaniumtitans.frc2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
+
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 
-import com.ctre.phoenix.sensors.WPI_CANCoder;
+import com.ctre.phoenix.sensors.CANCoder;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -27,14 +28,16 @@ import org.titaniumtitans.lib.Utils;
 
 public class SwerveModule implements Sendable {
 
+
     // MK4i - L1
     private static final double TURNING_GEAR_RATION = (50.0 / 14.0) * (60.0 / 10.0);
     private static final double DRIVE_GEAR_RATION = (50.0 / 14.0) * (19.0 / 25.0) * (45.0 / 15.0);
 
+
     private final WPI_TalonFX m_driveMotor;
     private final WPI_TalonFX m_turningMotor;
 
-    private final WPI_CANCoder m_turningEncoder;
+    private final CANCoder m_turningEncoder;
 
     private final String m_name;
 
@@ -43,6 +46,8 @@ public class SwerveModule implements Sendable {
     private double m_driveGoalTicks;
 
     private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
+
+    double m_lastAngle;
 
 
 
@@ -65,26 +70,34 @@ public class SwerveModule implements Sendable {
         m_driveMotor = new WPI_TalonFX(driveMotorChannel);
         m_turningMotor = new WPI_TalonFX(turningMotorChannel);
 
-        m_turningEncoder = new WPI_CANCoder(turningEncoderChannels);
+        m_turningEncoder = new CANCoder(turningEncoderChannels);
 
         // Set the distance (in this case, angle) per pulse for the turning encoder.
-        // This is the the angle through an entire rotation (2 * pi) divided by the
+        // This is the angle through an entire rotation (2 * pi) divided by the
         // encoder resolution.
         m_turningEncoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
         m_turningEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
         m_turningEncoder.configMagnetOffset(encoderOffset);
+        m_turningEncoder.configSensorDirection(true);
+
         m_turningEncoder.configSensorDirection(false);
         m_turningEncoder.setPositionToAbsolute();
 
         m_turningMotor.setInverted(TalonFXInvertType.Clockwise);
         m_turningMotor.config_kP(0, ModuleConstants.kPModuleTurningController);
+        m_turningMotor.configNeutralDeadband(0.1);
+        setAbsoluteValue();
 
         m_driveMotor.configVoltageCompSaturation(10);
         m_driveMotor.configClosedloopRamp(0.5);
         m_driveMotor.configOpenloopRamp(0.5);
+        m_driveMotor.configNeutralDeadband(0.1);
 
         m_desired_state = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
         m_name = name;
+        m_lastAngle = getState().angle.getDegrees();
+
+        SmartDashboard.putBoolean("Enable Driving", false);
     }
 
     /**
@@ -118,13 +131,33 @@ public class SwerveModule implements Sendable {
     public void setDesiredState(SwerveModuleState desiredState) {
         // Optimize the reference state to avoid spinning further than 90 degrees
         m_desired_state = CTREModuleState.optimize(desiredState, getState().angle);
+        //SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(getTurningEncoderRadians()));
+
+        double driveOutput = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
+
+        double turnOutput = Utils.degreesToFalcon2048(m_desired_state.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
+
+        if(driveOutput <= 0.05){
+            //turnOutput = m_lastAngle;
+            setAbsoluteValue();
+        }
+
+        // Debugging values
+        m_table.getEntry("getSelectedSensorPosition").setNumber(m_turningMotor.getSelectedSensorPosition());
+        m_table.getEntry("cancoderAngle").setNumber(getCancoderCurrentAngle().getDegrees());
+        m_table.getEntry("motorAngle").setNumber(getTurningMotorAngle().getDegrees());
+        m_table.getEntry("driveOutput").setNumber(driveOutput);
+        m_table.getEntry("turnOutput").setNumber(turnOutput);
+
 
         m_driveGoalTicks = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, DRIVE_GEAR_RATION);
         m_turnGoalTicks = Utils.degreesToFalcon(m_desired_state.angle.getDegrees(), TURNING_GEAR_RATION);
 
-        if (SmartDashboard.getBoolean("Enable Driving", false)) {
-            m_driveMotor.set(ControlMode.Velocity, m_driveGoalTicks, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
-            m_turningMotor.set(ControlMode.Position, m_turnGoalTicks);
+        if (SmartDashboard.getBoolean("Enable Driving", true)) {
+            m_driveMotor.set(ControlMode.Velocity, driveOutput, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
+            m_turningMotor.set(ControlMode.Position, turnOutput);
+
+            m_lastAngle = turnOutput;
         }
     }
 
@@ -146,6 +179,14 @@ public class SwerveModule implements Sendable {
         return m_name;
     }
 
+    public void setAbsoluteValue(){
+        double absolutePosition = Utils.degreesToFalcon2048(getCancoderCurrentAngle().getDegrees(), ModuleConstants.kTurningGearRatio);
+        m_turningMotor.setSelectedSensorPosition(absolutePosition);
+    }
+
+    public void setModuleAngle(double degrees){
+        m_turningMotor.set(ControlMode.Position, Utils.degreesToFalcon2048(degrees, 21.42));
+
     @Override
     public void initSendable(SendableBuilder builder) {
         builder.addDoubleProperty("CancoderAngle", () -> getCancoderCurrentAngle().getDegrees(), null);
@@ -155,5 +196,6 @@ public class SwerveModule implements Sendable {
         builder.addDoubleProperty("TurnGoalTicks", () -> m_turnGoalTicks, null);
         builder.addDoubleProperty("DriveGoalMps", () -> m_desired_state.speedMetersPerSecond, null);
         builder.addDoubleProperty("DriveGoalTicks", () -> m_driveGoalTicks, null);
+
     }
 }

@@ -65,6 +65,9 @@ public final class Constants {
     }
 
     public static final class ModuleConstants {
+        public static final double kTurningGearRatio = 21.428;
+        public static final double kDriveGearRatio = 8.17;
+
         public static final double kMaxModuleAngularSpeedRadiansPerSecond = 12.20703125;
         public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 12.20703125;
 
@@ -81,7 +84,9 @@ public final class Constants {
         public static final double kCTREToWPILibPIDFConstants = 0.63661977237;
         public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
 
-        public static final double kPModuleTurningController = 0.1;
+
+        public static final double kPModuleTurningController = 0.005;
+
         public static final double kDModuleTurningController = 0;
 
         public static final double ksModuleDriveController = 0.50545;
@@ -124,6 +129,9 @@ public final class Constants {
      * subsystem.
      */
     public static class ShooterConstants {
+        public static final double kTargetHeight = 102.619; //inches
+        public static final double kLimelightHeight = 39.7483595; //inches
+        public static final double kLimelightAngle = 17.728393; //degrees
     }
 
     /**

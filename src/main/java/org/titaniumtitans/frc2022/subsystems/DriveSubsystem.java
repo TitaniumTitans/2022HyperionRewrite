@@ -129,22 +129,16 @@ public class DriveSubsystem extends SubsystemBase {
                 fieldRelative
                     ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, m_gyro.getRotation2d())
                         : new ChassisSpeeds(xSpeed, ySpeed, rot));
-        setModuleStates(swerveModuleStates);
 
-    }
-
-    /**
-     * Sets the swerve ModuleStates.
-     *
-     * @param desiredStates The desired SwerveModule states.
-     */
-    public void setModuleStates(SwerveModuleState[] desiredStates) {
+                        
         SwerveDriveKinematics.desaturateWheelSpeeds(
-                desiredStates, DriveConstants.kMaxSpeedMetersPerSecond);
-        for (int i = 0; i < m_modules.length; ++i) {
-            m_modules[i].setDesiredState(desiredStates[i]);
-        }
-    }
+                swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
+
+        m_frontLeft.setDesiredState(swerveModuleStates[0]);
+        m_frontRight.setDesiredState(swerveModuleStates[1]);
+        m_rearLeft.setDesiredState(swerveModuleStates[2]);
+        m_rearRight.setDesiredState(swerveModuleStates[3]);
+
 
     /** Resets the drive encoders to currently read a position of 0. */
     public void resetEncoders() {
@@ -178,5 +172,11 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void changeDriveMode(){
         fieldRelative = !fieldRelative;
+    }
+
+    public void setModuleAngle(double angle){
+        for(SwerveModule module: m_modules){
+            module.setModuleAngle(angle);
+        }
     }
 }
