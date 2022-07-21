@@ -8,6 +8,12 @@ var annotated_dup =
       [ "titaniumtitans", null, [
         [ "frc2022", null, [
           [ "commands", null, [
+            [ "test_commands", null, [
+              [ "ModulesTo180Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to180_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to180_degrees" ],
+              [ "ModulesTo270Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to270_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to270_degrees" ],
+              [ "ModulesTo360Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to360_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to360_degrees" ],
+              [ "ModulesTo90Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees" ]
+            ] ],
             [ "CargoShoot", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_cargo_shoot.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_cargo_shoot" ],
             [ "ChangeFieldOriented", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_change_field_oriented.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_change_field_oriented" ],
             [ "IntakeExtend", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_extend.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_extend" ],
@@ -17,11 +23,9 @@ var annotated_dup =
             [ "TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive" ]
           ] ],
           [ "subsystems", null, [
-            [ "DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem" ],
             [ "Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer" ],
             [ "Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter" ],
-            [ "ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight" ],
-            [ "SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module" ]
+            [ "ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight" ]
           ] ],
           [ "Constants", "classorg_1_1titaniumtitans_1_1frc2022_1_1_constants.html", null ],
           [ "Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],

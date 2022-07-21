@@ -18,13 +18,13 @@ var hierarchy =
       [ "org.titaniumtitans.frc2022.commands.IntakeRetract", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract.html", null ],
       [ "org.titaniumtitans.frc2022.commands.ResetDriveGyro", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro.html", null ],
       [ "org.titaniumtitans.frc2022.commands.ShooterToRPM", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_shooter_to_r_p_m.html", null ],
-      [ "org.titaniumtitans.frc2022.commands.TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", null ]
-    ] ],
-    [ "Sendable", null, [
-      [ "org.titaniumtitans.frc2022.subsystems.SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", null ]
+      [ "org.titaniumtitans.frc2022.commands.TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", null ],
+      [ "org.titaniumtitans.frc2022.commands.test_commands.ModulesTo180Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to180_degrees.html", null ],
+      [ "org.titaniumtitans.frc2022.commands.test_commands.ModulesTo270Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to270_degrees.html", null ],
+      [ "org.titaniumtitans.frc2022.commands.test_commands.ModulesTo360Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to360_degrees.html", null ],
+      [ "org.titaniumtitans.frc2022.commands.test_commands.ModulesTo90Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees.html", null ]
     ] ],
     [ "SubsystemBase", null, [
-      [ "org.titaniumtitans.frc2022.subsystems.DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", null ]
     ] ],

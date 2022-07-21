@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['drivesubsystem_64',['DriveSubsystem',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html',1,'org::titaniumtitans::frc2022::subsystems']]]
+  ['example_56',['Example',['../class_my_library_1_1_example.html',1,'MyLibrary']]]
 ];

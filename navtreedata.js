@@ -51,7 +51,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"todo.html"
+"md_docs_doxygen-awesome-css_docs_extensions.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
