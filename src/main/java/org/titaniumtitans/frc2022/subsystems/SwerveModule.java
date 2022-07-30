@@ -82,7 +82,7 @@ public class SwerveModule implements Sendable {
         m_turningEncoder.configSensorDirection(false);
         m_turningEncoder.setPositionToAbsolute();
 
-        m_turningMotor.setInverted(TalonFXInvertType.Clockwise);
+        m_turningMotor.setInverted(TalonFXInvertType.CounterClockwise);
         m_turningMotor.config_kP(0, ModuleConstants.kPModuleTurningController);
         m_turningMotor.configNeutralDeadband(0.1);
         setAbsoluteValue();

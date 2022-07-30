@@ -4,10 +4,12 @@
 
 package org.titaniumtitans.frc2022;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.titaniumtitans.frc2022.commands.CargoShoot;
 import org.titaniumtitans.frc2022.commands.ClimberManualJoystick;
@@ -16,6 +18,7 @@ import org.titaniumtitans.frc2022.commands.IntakeExtend;
 import org.titaniumtitans.frc2022.commands.IntakeRetract;
 import org.titaniumtitans.frc2022.commands.ShooterToRPM;
 import org.titaniumtitans.frc2022.commands.TeleopSwerveDrive;
+import org.titaniumtitans.frc2022.commands.test_commands.ClimberControl;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo180Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo270Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo360Degrees;
@@ -43,6 +46,7 @@ public class RobotContainer {
     private final Indexer m_indexer = new Indexer();
     private final Shooter m_shooter = new Shooter();
     private final Climber m_climber = new Climber();
+    NetworkTableEntry climberControlSelecter;
 
     // The driver's controller
     XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -52,10 +56,11 @@ public class RobotContainer {
      */
     public RobotContainer() {
         // Configure the button bindings
-        configureButtonBindings();
+        
 
         ShuffleboardTab testCommands = Shuffleboard.getTab("Test Commands");
         ShuffleboardTab utilityCommands = Shuffleboard.getTab("UtilityCommands");
+        ShuffleboardTab driverTab = Shuffleboard.getTab("Driver");
 
         testCommands.add("Modules to 360", new ModulesTo360Degrees(m_robotDrive));
         testCommands.add("Modules to 270", new ModulesTo270Degrees(m_robotDrive));
@@ -64,8 +69,10 @@ public class RobotContainer {
 
         utilityCommands.add("Reset Climbers", new InstantCommand(() -> m_climber.resetEncoders()));
         
+        
 
-        // Configure default commands
+        // Configure default commands and button bindings
+        configureButtonBindings();
     
         m_robotDrive.setDefaultCommand(new TeleopSwerveDrive(m_robotDrive, m_driverController));
         
@@ -93,8 +100,8 @@ public class RobotContainer {
         JoystickButton climberUp = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
         JoystickButton climberDown = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
 
-        climberUp.whenHeld(new ClimberPIDControl(m_climber, true));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
-        climberDown.whenHeld(new ClimberPIDControl(m_climber, false));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
+        climberUp.whenHeld(new ClimberControl(m_climber, m_driverController));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
+        climberDown.whenHeld(new ClimberControl(m_climber, m_driverController));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
     }
 
     /**
