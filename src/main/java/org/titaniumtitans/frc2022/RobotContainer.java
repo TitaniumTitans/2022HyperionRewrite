@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 import org.titaniumtitans.frc2022.commands.CargoShoot;
+import org.titaniumtitans.frc2022.commands.ClimberManualJoystick;
+import org.titaniumtitans.frc2022.commands.ClimberPIDControl;
 import org.titaniumtitans.frc2022.commands.IntakeExtend;
 import org.titaniumtitans.frc2022.commands.IntakeRetract;
 import org.titaniumtitans.frc2022.commands.ShooterToRPM;
@@ -19,11 +21,13 @@ import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo270Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo360Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo90Degrees;
 import org.titaniumtitans.frc2022.Constants.OIConstants;
+import org.titaniumtitans.frc2022.subsystems.Climber;
 import org.titaniumtitans.frc2022.subsystems.DriveSubsystem;
 import org.titaniumtitans.frc2022.subsystems.Indexer;
 import org.titaniumtitans.frc2022.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
@@ -38,6 +42,7 @@ public class RobotContainer {
     private final DriveSubsystem m_robotDrive = new DriveSubsystem();
     private final Indexer m_indexer = new Indexer();
     private final Shooter m_shooter = new Shooter();
+    private final Climber m_climber = new Climber();
 
     // The driver's controller
     XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -50,11 +55,15 @@ public class RobotContainer {
         configureButtonBindings();
 
         ShuffleboardTab testCommands = Shuffleboard.getTab("Test Commands");
+        ShuffleboardTab utilityCommands = Shuffleboard.getTab("UtilityCommands");
 
         testCommands.add("Modules to 360", new ModulesTo360Degrees(m_robotDrive));
         testCommands.add("Modules to 270", new ModulesTo270Degrees(m_robotDrive));
         testCommands.add("Modules to 180", new ModulesTo180Degrees(m_robotDrive));
         testCommands.add("Modules to 90", new ModulesTo90Degrees(m_robotDrive));
+
+        utilityCommands.add("Reset Climbers", new InstantCommand(() -> m_climber.resetEncoders()));
+        
 
         // Configure default commands
     
@@ -80,7 +89,12 @@ public class RobotContainer {
         activateIntake.and(shooterActivate.negate()).whenActive(new IntakeExtend(m_indexer)).whenInactive(new IntakeRetract(m_indexer));
         shooterActivate.and(activateIntake.negate()).whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
         shooterActivate.and(activateIntake).whenActive(new CargoShoot(m_shooter, m_indexer, 1500));
-        
+
+        JoystickButton climberUp = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
+        JoystickButton climberDown = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
+
+        climberUp.whenHeld(new ClimberPIDControl(m_climber, true));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
+        climberDown.whenHeld(new ClimberPIDControl(m_climber, false));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
     }
 
     /**

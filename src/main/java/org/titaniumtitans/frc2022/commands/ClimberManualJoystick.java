@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ClimberManualJoystick extends CommandBase {
   Climber m_climber;
-  XboxController m_driverController;
+  boolean isUp;
   double speed;
   /** Creates a new ClimberManualJoystick. */
-  public ClimberManualJoystick(Climber climber, XboxController driverController) {
+  public ClimberManualJoystick(Climber climber, boolean up) {
     m_climber = climber;
-    m_driverController = driverController;
+    isUp = up;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_climber);
   }
@@ -30,21 +30,18 @@ public class ClimberManualJoystick extends CommandBase {
   @Override
   public void execute() {
     speed = SmartDashboard.getNumber("Climber Speed", 0.0);
-    if (m_driverController.getRightBumperPressed()){
-      m_climber.joystickControl(speed);
+    if (isUp == true){
+      m_climber.joystickControl(speed, isUp);
     }
-    if(m_driverController.getLeftBumperPressed()){
-      m_climber.joystickControl(-speed);
+    if(isUp == false){
+      m_climber.joystickControl(-speed, isUp);
     }
-    else{
-      m_climber.joystickControl(0.0);
-    }
-  }
+   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_climber.joystickControl(0.0);
+    m_climber.joystickControl(0.0, true);
   }
 
   // Returns true when the command should end.

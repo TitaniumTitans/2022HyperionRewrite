@@ -5,6 +5,7 @@
 package org.titaniumtitans.frc2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import org.gos.lib.properties.PIDProperty;
@@ -20,11 +21,14 @@ public class Climber extends SubsystemBase {
   private final TalonFX m_leftClimber;
   private final TalonFX m_rightClimber;
 
-  private final IProperty<Double> m_rightMaxHeight;
-  private final IProperty<Double> m_leftMaxHeight;
+  public final IProperty<Double> m_rightMaxHeight;
+  public final IProperty<Double> m_leftMaxHeight;
 
   private final PIDProperty m_leftPidProperty;
   private final PIDProperty m_rightPidProperty;
+
+  private double m_lastPower;
+  private boolean m_direction;
 
   /** Creates a new Climber. */
   public Climber() {
@@ -34,19 +38,27 @@ public class Climber extends SubsystemBase {
     m_rightMaxHeight = PropertyManager.createDoubleProperty(false, "Right Max Height", 0.0);
     m_leftMaxHeight = PropertyManager.createDoubleProperty(false, "Left Max Height", 0.0);
 
-    m_leftPidProperty = new CtrePidPropertyBuilder("Left CLimber", false, m_leftClimber, 0)
-      .addP(0.0)
+    m_rightClimber.setInverted(InvertType.InvertMotorOutput);
+
+    m_leftPidProperty = new CtrePidPropertyBuilder("Left CLimber", true, m_leftClimber, 0)
+      .addP(0.45)
       .addD(0.0)
-      .addMaxAcceleration(1000)
-      .addMaxVelocity(1000)
+      .addMaxAcceleration(40000)
+      .addMaxVelocity(40000)
       .build();
 
-      m_rightPidProperty = new CtrePidPropertyBuilder("Left CLimber", false, m_leftClimber, 0)
-      .addP(0.0)
+      m_rightPidProperty = new CtrePidPropertyBuilder("Right CLimber", true, m_rightClimber, 0)
+      .addP(0.45)
       .addD(0.0)
-      .addMaxAcceleration(1000)
-      .addMaxVelocity(1000)
-      .build();    
+      .addMaxAcceleration(40000)
+      .addMaxVelocity(40000)
+      .build(); 
+
+      m_lastPower = 0.0;
+      m_direction = true;
+      
+    SmartDashboard.putNumber("Climber Speed", 0.0);
+    
       
   }
 
@@ -55,6 +67,8 @@ public class Climber extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Left Climber Height", m_leftClimber.getSelectedSensorPosition());
     SmartDashboard.putNumber("Right Climber Height", m_rightClimber.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Output power", m_lastPower);
+    SmartDashboard.putBoolean("Is going up?", m_direction);
 
     m_leftPidProperty.updateIfChanged();
     m_rightPidProperty.updateIfChanged();
@@ -65,14 +79,16 @@ public class Climber extends SubsystemBase {
     m_leftClimber.setSelectedSensorPosition(0);
   }
 
-  public void joystickControl(double speed){
+  public void joystickControl(double speed, boolean isUp){
+    m_lastPower = speed;
+    m_direction = isUp;
     m_leftClimber.set(ControlMode.PercentOutput, speed);
     m_rightClimber.set(ControlMode.PercentOutput, speed);
   }
 
-  public void climberPidControl(double position){
-    m_leftClimber.set(ControlMode.MotionMagic, position);
-    m_rightClimber.set(ControlMode.MotionMagic, position);
+  public void climberPidControl(double leftPosition, double rightPosition){
+    m_leftClimber.set(ControlMode.MotionMagic, leftPosition);
+    m_rightClimber.set(ControlMode.MotionMagic, rightPosition);
   }
 
 }
