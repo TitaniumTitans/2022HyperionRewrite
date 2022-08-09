@@ -16,6 +16,7 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Climber": "Subsystem",
       "/LiveWindow/DriveSubsystem": "Subsystem",
       "/LiveWindow/Indexer": "Subsystem",
       "/LiveWindow/Shooter": "Subsystem",
@@ -31,7 +32,12 @@
       "/LiveWindow/Ungrouped/Talon FX [4]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon FX [6]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon FX [7]": "Motor Controller",
-      "/LiveWindow/Ungrouped/Talon FX [9]": "Motor Controller"
+      "/LiveWindow/Ungrouped/Talon FX [9]": "Motor Controller",
+      "/Shuffleboard/Test Commands/Modules to 180": "Command",
+      "/Shuffleboard/Test Commands/Modules to 270": "Command",
+      "/Shuffleboard/Test Commands/Modules to 360": "Command",
+      "/Shuffleboard/Test Commands/Modules to 90": "Command",
+      "/Shuffleboard/UtilityCommands/Reset Climbers": "Command"
     }
   },
   "NetworkTables": {
@@ -42,6 +48,9 @@
         },
         "open": true
       },
+      "open": true
+    },
+    "SmartDashboard": {
       "open": true
     }
   }

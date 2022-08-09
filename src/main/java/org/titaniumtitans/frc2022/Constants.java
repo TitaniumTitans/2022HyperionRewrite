@@ -65,8 +65,8 @@ public final class Constants {
     }
 
     public static final class ModuleConstants {
-        public static final double kTurningGearRatio = 21.428;
-        public static final double kDriveGearRatio = 8.17;
+        public static final double kTurningGearRatio = (50.0 / 14.0) * (60.0 / 10.0);
+        public static final double kDriveGearRatio = (50.0 / 14.0) * (19.0 / 25.0) * (45.0 / 15.0);
 
         public static final double kMaxModuleAngularSpeedRadiansPerSecond = 12.20703125;
         public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 12.20703125;
