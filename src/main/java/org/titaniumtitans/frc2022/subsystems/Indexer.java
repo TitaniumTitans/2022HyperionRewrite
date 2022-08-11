@@ -24,7 +24,7 @@ public class Indexer extends SubsystemBase {
     //Drive motors for magazine and intake
     private final TalonSRX m_intake;
     private final TalonFX m_magazine;
-    private final TalonFX m_kicker;
+    private final TalonSRX m_kicker;
     //private final Compressor m_compressor;
 
     //Pnuematics for intake
@@ -41,7 +41,7 @@ public class Indexer extends SubsystemBase {
         //Create motor controller objects
         m_intake = new TalonSRX(IndexerConstants.intakeDriveID);
         m_magazine = new TalonFX(IndexerConstants.magazineDriveID);
-        m_kicker = new TalonFX(IndexerConstants.kickerDriveID);
+        m_kicker = new TalonSRX(IndexerConstants.kickerDriveID);
 
         //Create Solenoid Objects
         m_solenoids = new DoubleSolenoid(2, PneumaticsModuleType.REVPH, IndexerConstants.intakeOpenPort, IndexerConstants.intakeClosePort);

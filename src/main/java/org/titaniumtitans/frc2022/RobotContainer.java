@@ -81,6 +81,7 @@ public class RobotContainer {
         shooterActivate.and(activateIntake.negate()).whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
         shooterActivate.and(activateIntake).whenActive(new CargoShoot(m_shooter, m_indexer, 1500));
         
+        activateIntake.whenPressed(new IntakeExtend(m_indexer)).whenReleased(new IntakeRetract(m_indexer));
     }
 
     /**
