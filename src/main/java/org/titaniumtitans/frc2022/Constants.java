@@ -65,6 +65,8 @@ public final class Constants {
     }
 
     public static final class ModuleConstants {
+        public final static double kTimeoutMs = 100;
+
         public static final double kTurningGearRatio = (50.0 / 14.0) * (60.0 / 10.0);
         public static final double kDriveGearRatio = (50.0 / 14.0) * (19.0 / 25.0) * (45.0 / 15.0);
 

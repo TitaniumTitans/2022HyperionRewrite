@@ -17,6 +17,7 @@ import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.titaniumtitans.lib.Utils;
+import org.titaniumtitans.lib.drivers.CTREUtil;
 import org.titaniumtitans.lib.Swerve.CTREModuleState;
 import org.titaniumtitans.lib.Swerve.SwerveAzimuthFactoy;
 
@@ -24,11 +25,13 @@ public class SwerveModuleNew extends SubsystemBase {
   private final TalonFX m_azimuth;
   private final TalonFX m_drive;
   private final CANCoder m_encoder;
+
   /** Creates a new SwerveModuleNew. */
   public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort) {
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
+    // CTREUtil.autoRetry(() -> m_drive.configOpenloopRamp(1));
   }
 
   @Override
@@ -36,35 +39,38 @@ public class SwerveModuleNew extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public Rotation2d getAzimuthAngle(){
-    return Rotation2d.fromDegrees(Utils.falconToDegrees(m_azimuth.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
+  public Rotation2d getAzimuthAngle() {
+    return Rotation2d
+        .fromDegrees(Utils.falconToDegrees(m_azimuth.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
   }
 
-  public void setModuleState(SwerveModuleState state){
+  public void setModuleState(SwerveModuleState state) {
     SwerveModuleState desiredState = CTREModuleState.optimize(state, getAzimuthAngle());
 
-    double driveOutput = Utils.MPSToFalcon(desiredState.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
+    double driveOutput = Utils.MPSToFalcon(desiredState.speedMetersPerSecond,
+        ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
 
     double turningOutput = Utils.degreesToFalcon(desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
 
-    if(SmartDashboard.getBoolean("Enable Driving", true)){
+    if (SmartDashboard.getBoolean("Enable Driving", true)) {
       m_drive.set(ControlMode.Velocity, driveOutput);
       m_azimuth.set(ControlMode.Position, turningOutput);
     }
   }
 
-  public SwerveModuleState getModuleState(){
-    return new SwerveModuleState(m_drive.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,  
+  public SwerveModuleState getModuleState() {
+    return new SwerveModuleState(
+        m_drive.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
         getAzimuthAngle());
   }
 
-  public void resetEncoders(){
+  public void resetEncoders() {
     m_azimuth.setSelectedSensorPosition(0);
     m_drive.setSelectedSensorPosition(0);
   }
 
-  public void setAbsoluteValue(){
+  public void setAbsoluteValue() {
     double absolutePosition = Utils.degreesToFalcon(m_encoder.getAbsolutePosition(), ModuleConstants.kTurningGearRatio);
-        m_azimuth.setSelectedSensorPosition(absolutePosition);
-    }
+    m_azimuth.setSelectedSensorPosition(absolutePosition);
+  }
 }
