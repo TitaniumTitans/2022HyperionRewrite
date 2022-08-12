@@ -65,7 +65,7 @@ public final class Constants {
     }
 
     public static final class ModuleConstants {
-        public final static double kTimeoutMs = 100;
+        public final static int kTimeoutMs = 100;
 
         public static final double kTurningGearRatio = (50.0 / 14.0) * (60.0 / 10.0);
         public static final double kDriveGearRatio = (50.0 / 14.0) * (19.0 / 25.0) * (45.0 / 15.0);
@@ -87,9 +87,10 @@ public final class Constants {
         public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
 
 
-        public static final double kPModuleTurningController = 0.005;
-
-        public static final double kDModuleTurningController = 0;
+        public static final double kPModuleTurningController = 0.8;
+        public static final double kIModuleTurningController = 0.001;
+        public static final double kDModuleTurningController = 10;
+        public static final double kIZoneModuleTurningController = 20;
 
         public static final double ksModuleDriveController = 0.50545;
         public static final double kvModuleDriveController = 0.85875;
