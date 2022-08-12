@@ -7,6 +7,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import org.titaniumtitans.frc2022.Constants.ModuleConstants;
+
 public class SwerveAzimuthFactoy {
     static int kTimeoutMs = 100;
 
@@ -44,7 +46,13 @@ public class SwerveAzimuthFactoy {
 
         talon.setControlFramePeriod(ControlFrame.Control_3_General, 
             kControlFrameMs);
+        
+        talon.config_kP(0, ModuleConstants.kPModuleTurningController);
+        talon.config_kI(0, ModuleConstants.kIModuleTurningController);
+        talon.config_kD(0, ModuleConstants.kDModuleTurningController);
 
+        talon.config_IntegralZone(0, ModuleConstants.kIZoneModuleTurningController);
+        
         return talon;
     }
     
