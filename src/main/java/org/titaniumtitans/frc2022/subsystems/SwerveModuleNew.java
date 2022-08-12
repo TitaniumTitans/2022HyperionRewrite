@@ -6,18 +6,18 @@ package org.titaniumtitans.frc2022.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import org.titaniumtitans.frc2022.Constants.ModuleConstants;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.titaniumtitans.lib.Utils;
-import org.titaniumtitans.lib.drivers.CTREUtil;
 import org.titaniumtitans.lib.Swerve.CTREModuleState;
 import org.titaniumtitans.lib.Swerve.SwerveAzimuthFactoy;
 
@@ -27,11 +27,16 @@ public class SwerveModuleNew extends SubsystemBase {
   private final CANCoder m_encoder;
 
   /** Creates a new SwerveModuleNew. */
-  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort) {
+  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, int offsetDegrees) {
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
     // CTREUtil.autoRetry(() -> m_drive.configOpenloopRamp(1));
+
+    m_encoder.configMagnetOffset(offsetDegrees);
+    m_encoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+    m_encoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
+    m_encoder.configSensorDirection(true, ModuleConstants.kTimeoutMs);
   }
 
   @Override
