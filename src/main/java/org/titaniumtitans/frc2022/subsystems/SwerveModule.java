@@ -135,7 +135,7 @@ public class SwerveModule implements Sendable {
 
         double driveOutput = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
 
-        double turnOutput = Utils.degreesToFalcon2048(m_desired_state.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
+        double turnOutput = Utils.degreesToFalcon(m_desired_state.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
 
         if(driveOutput <= 0.05){
             //turnOutput = m_lastAngle;
@@ -143,11 +143,13 @@ public class SwerveModule implements Sendable {
         }
 
         // Debugging values
+        /*
         m_table.getEntry("getSelectedSensorPosition").setNumber(m_turningMotor.getSelectedSensorPosition());
         m_table.getEntry("cancoderAngle").setNumber(getCancoderCurrentAngle().getDegrees());
         m_table.getEntry("motorAngle").setNumber(getTurningMotorAngle().getDegrees());
         m_table.getEntry("driveOutput").setNumber(driveOutput);
         m_table.getEntry("turnOutput").setNumber(turnOutput);
+        */
 
 
         m_driveGoalTicks = Utils.MPSToFalcon(m_desired_state.speedMetersPerSecond, ModuleConstants.kWheelDiameterMeters * Math.PI, DRIVE_GEAR_RATION);
@@ -180,12 +182,13 @@ public class SwerveModule implements Sendable {
     }
 
     public void setAbsoluteValue(){
-        double absolutePosition = Utils.degreesToFalcon2048(getCancoderCurrentAngle().getDegrees(), ModuleConstants.kTurningGearRatio);
+    double absolutePosition = Utils.degreesToFalcon(getCancoderCurrentAngle().getDegrees(), ModuleConstants.kTurningGearRatio);
         m_turningMotor.setSelectedSensorPosition(absolutePosition);
     }
 
     public void setModuleAngle(double degrees){
-        m_turningMotor.set(ControlMode.Position, Utils.degreesToFalcon2048(degrees, 21.42));
+        m_turningMotor.set(ControlMode.Position, Utils.degreesToFalcon(degrees, 21.42));
+    }
 
     @Override
     public void initSendable(SendableBuilder builder) {
