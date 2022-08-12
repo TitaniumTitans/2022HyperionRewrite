@@ -27,7 +27,7 @@ public class SwerveModuleNew extends SubsystemBase {
   private final CANCoder m_encoder;
 
   /** Creates a new SwerveModuleNew. */
-  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, int offsetDegrees) {
+  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, int offsetDegrees, String name) {
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
