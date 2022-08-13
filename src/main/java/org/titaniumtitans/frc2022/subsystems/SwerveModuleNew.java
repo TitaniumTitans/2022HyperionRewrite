@@ -75,11 +75,11 @@ public double getAzimuthPercentage() {
 
     double turningOutput = Utils.degreesToFalcon(m_desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
 
-    SmartDashboard.putNumber("ExpectedAngle" + m_name, m_desiredState.angle.getDegrees());
-    SmartDashboard.putNumber("Setpoint" +  m_name, turningOutput);
+    SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
+    SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
 
     //if (SmartDashboard.getBoolean("Enable Driving", true)) {
-      m_drive.set(ControlMode.Velocity, driveOutput);
+      m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
       m_azimuth.set(ControlMode.Position, turningOutput);
     //}
   }

@@ -29,6 +29,8 @@ public class SwerveAzimuthFactoy {
     public static TalonFX createAzimuthTalon(int talonPort){
         TalonFX talon = new TalonFX(talonPort);
 
+        talon.configFactoryDefault();
+
         talon.changeMotionControlFramePeriod(kMotionControlFrameMs);
 
         talon.setInverted(kInverted);
