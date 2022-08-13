@@ -26,28 +26,28 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
-            347.695,
+            244,
             "FL");
 
     private final SwerveModuleNew m_rearLeft = new SwerveModuleNew(
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            251.104,
+            24,
             "RL");
 
     private final SwerveModuleNew m_frontRight = new SwerveModuleNew(
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            359.29,
+            184,
             "FR");
 
     private final SwerveModuleNew m_rearRight = new SwerveModuleNew(
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            227.5488,
+            255,
             "RR");
 
     private final SwerveModuleNew[] m_modules = new SwerveModuleNew[]{m_frontLeft, m_frontRight, m_rearLeft, m_rearRight};
