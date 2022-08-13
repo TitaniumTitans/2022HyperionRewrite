@@ -87,20 +87,10 @@ public final class Constants {
         public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
 
 
-        public static final double kPModuleTurningController = 0.8;
-        public static final double kIModuleTurningController = 0.001;
-        public static final double kDModuleTurningController = 10;
+        public static final double kPModuleTurningController = 0.8 * kTurningGearRatio;
+        public static final double kIModuleTurningController = 0.001 * kTurningGearRatio;
+        public static final double kDModuleTurningController = 10 * kTurningGearRatio;
         public static final double kIZoneModuleTurningController = 20;
-
-        public static final double ksModuleDriveController = 0.50545;
-        public static final double kvModuleDriveController = 0.85875;
-        public static final double kaModuleDriveController = 0.021264;
-
-        public static final SimpleMotorFeedforward driveController = new SimpleMotorFeedforward(
-                ksModuleDriveController,
-                kvModuleDriveController,
-                kaModuleDriveController);
-
     }
 
     public static final class OIConstants {
