@@ -87,9 +87,9 @@ public final class Constants {
         public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
 
 
-        public static final double kPModuleTurningController = 0.8 * kTurningGearRatio;
-        public static final double kIModuleTurningController = 0.001 * kTurningGearRatio;
-        public static final double kDModuleTurningController = 10 * kTurningGearRatio;
+        public static final double kPModuleTurningController = 0.8 / kTurningGearRatio;
+        public static final double kIModuleTurningController = 0.001 / kTurningGearRatio;
+        public static final double kDModuleTurningController = 10 / kTurningGearRatio;
         public static final double kIZoneModuleTurningController = 20;
     }
 

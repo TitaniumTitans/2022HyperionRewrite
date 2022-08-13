@@ -30,7 +30,7 @@ public class SwerveModuleNew extends SubsystemBase {
   private SwerveModuleState m_desiredState;
 
   /** Creates a new SwerveModuleNew. */
-  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, int offsetDegrees, String name) {
+  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, double offsetDegrees, String name) {
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
@@ -48,6 +48,7 @@ public class SwerveModuleNew extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Encoder" + m_name, m_azimuth.getSelectedSensorPosition());
   }
 
   public Rotation2d getAzimuthAngle() {
@@ -77,6 +78,7 @@ public double getAzimuthPercentage() {
 
     SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
     SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
+    
 
     //if (SmartDashboard.getBoolean("Enable Driving", true)) {
       m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
