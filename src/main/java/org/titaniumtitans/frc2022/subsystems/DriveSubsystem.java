@@ -65,7 +65,7 @@ public class DriveSubsystem extends SubsystemBase {
         ShuffleboardTab debugTab = Shuffleboard.getTab("Drivetrain");
         debugTab.add("SwerveState", new SwerveModuleSendable());
         for(SwerveModuleNew module : m_modules) {
-            debugTab.add(module.getName() + " Module", module);
+            //%debugTab.add(module.getName() + " Module", module);
         }
     }
 
@@ -75,14 +75,14 @@ public class DriveSubsystem extends SubsystemBase {
         public void initSendable(SendableBuilder builder) {
             builder.setSmartDashboardType("SwerveDrive");
             for (SwerveModuleNew module : m_modules) {
-                /*
+                
                 builder.addDoubleProperty(module.getName() + "/CurrentStateAngle", () -> module.getState().angle.getDegrees(), null);
                 builder.addDoubleProperty(module.getName() + "/CurrentStateSpeed", () -> module.getState().speedMetersPerSecond, null);
                 builder.addDoubleProperty(module.getName() + "/DesiredStateAngle", () -> module.getDesiredState().angle.getDegrees(), null);
                 builder.addDoubleProperty(module.getName() + "/DesiredStateSpeed", () -> module.getDesiredState().speedMetersPerSecond, null);
-                builder.addDoubleProperty(module.getName() + "/DrivePercentage", module::getDriveMotorPercentage, null);
-                builder.addDoubleProperty(module.getName() + "/TurningPercentage", module::getTurningMotorPercentage, null);
-                */
+                builder.addDoubleProperty(module.getName() + "/DrivePercentage", module::getDrivePercentage, null);
+                builder.addDoubleProperty(module.getName() + "/TurningPercentage", module::getAzimuthPercentage, null);
+                
             }
         }
     }
@@ -92,10 +92,10 @@ public class DriveSubsystem extends SubsystemBase {
         // Update the odometry in the periodic block
         m_odometry.update(
                 m_gyro.getRotation2d(),
-                m_frontLeft.getModuleState(),
-                m_frontRight.getModuleState(),
-                m_rearLeft.getModuleState(),
-                m_rearRight.getModuleState());
+                m_frontLeft.getState(),
+                m_frontRight.getState(),
+                m_rearLeft.getState(),
+                m_rearRight.getState());
 
         SmartDashboard.putBoolean("Field Oriented?", fieldRelative);
     }

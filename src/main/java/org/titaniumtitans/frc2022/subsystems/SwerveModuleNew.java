@@ -25,6 +25,9 @@ public class SwerveModuleNew extends SubsystemBase {
   private final TalonFX m_azimuth;
   private final TalonFX m_drive;
   private final CANCoder m_encoder;
+  private String m_name;
+
+  private SwerveModuleState m_desiredState;
 
   /** Creates a new SwerveModuleNew. */
   public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, int offsetDegrees, String name) {
@@ -37,6 +40,9 @@ public class SwerveModuleNew extends SubsystemBase {
     m_encoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
     m_encoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
     m_encoder.configSensorDirection(true, ModuleConstants.kTimeoutMs);
+
+    m_desiredState = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
+    m_name = name;
   }
 
   @Override
@@ -49,21 +55,36 @@ public class SwerveModuleNew extends SubsystemBase {
         .fromDegrees(Utils.falconToDegrees(m_azimuth.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
   }
 
-  public void setModuleState(SwerveModuleState state) {
-    SwerveModuleState desiredState = CTREModuleState.optimize(state, getAzimuthAngle());
-
-    double driveOutput = Utils.MPSToFalcon(desiredState.speedMetersPerSecond,
-        ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
-
-    double turningOutput = Utils.degreesToFalcon(desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
-
-    if (SmartDashboard.getBoolean("Enable Driving", true)) {
-      m_drive.set(ControlMode.Velocity, driveOutput);
-      m_azimuth.set(ControlMode.Position, turningOutput);
-    }
+  public SwerveModuleState getDesiredState(){
+    return m_desiredState;
   }
 
-  public SwerveModuleState getModuleState() {
+  public double getDrivePercentage() {
+    return m_drive.getMotorOutputPercent();
+}
+
+public double getAzimuthPercentage() {
+    return m_azimuth.getMotorOutputPercent();
+}
+
+  public void setModuleState(SwerveModuleState state) {
+    m_desiredState = CTREModuleState.optimize(state, getAzimuthAngle());
+
+    double driveOutput = Utils.MPSToFalcon(m_desiredState.speedMetersPerSecond,
+        ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
+
+    double turningOutput = Utils.degreesToFalcon(m_desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
+
+    SmartDashboard.putNumber("ExpectedAngle" + m_name, m_desiredState.angle.getDegrees());
+    SmartDashboard.putNumber("Setpoint" +  m_name, turningOutput);
+
+    //if (SmartDashboard.getBoolean("Enable Driving", true)) {
+      m_drive.set(ControlMode.Velocity, driveOutput);
+      m_azimuth.set(ControlMode.Position, turningOutput);
+    //}
+  }
+
+  public SwerveModuleState getState() {
     return new SwerveModuleState(
         m_drive.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
         getAzimuthAngle());

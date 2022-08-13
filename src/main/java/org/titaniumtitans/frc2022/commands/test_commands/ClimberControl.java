@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
+/*
 package org.titaniumtitans.frc2022.commands.test_commands;
 
 import org.titaniumtitans.frc2022.commands.ClimberManualJoystick;
@@ -20,7 +20,8 @@ public class ClimberControl extends CommandBase {
   XboxController m_dController;
   boolean controlMode;
 
-  /** Creates a new ClimberControl. */
+  /** Creates a new ClimberControl. **/
+  /*
   public ClimberControl(Climber m_climber, XboxController m_dController) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_climber = m_climber;
@@ -75,3 +76,4 @@ public class ClimberControl extends CommandBase {
     return false;
   }
 }
+*/
