@@ -85,6 +85,7 @@ public class RobotContainer {
     private void configureButtonBindings() {
         JoystickButton activateIntake = new JoystickButton(m_driverController, XboxController.Button.kX.value);
         JoystickButton shooterActivate = new JoystickButton(m_driverController, XboxController.Button.kY.value);
+        JoystickButton resetSwerveEncoders = new JoystickButton(m_driverController, XboxController.Button.kStart.value);
 
         activateIntake.and(shooterActivate.negate()).whenActive(new IntakeExtend(m_indexer)).whenInactive(new IntakeRetract(m_indexer));
         shooterActivate.and(activateIntake.negate()).whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
@@ -95,6 +96,7 @@ public class RobotContainer {
 
         climberUp.whenHeld(new ClimberPIDControl(m_climber, true));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
         climberDown.whenHeld(new ClimberPIDControl(m_climber, false));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
+
     }
 
     /**
