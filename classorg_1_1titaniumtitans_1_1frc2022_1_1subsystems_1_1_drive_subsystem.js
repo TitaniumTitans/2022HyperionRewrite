@@ -9,6 +9,5 @@ var classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem =
     [ "periodic", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ade534f00612d6463848e29c5b3d450ef", null ],
     [ "resetEncoders", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a0bbf0f914c62df3745458c2b9a4678ea", null ],
     [ "resetOdometry", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a7ed3a799506ea289dd4ea4841569ee65", null ],
-    [ "setModuleAngle", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a88fa4ffb6edb40fd8df9de8d88001c77", null ],
     [ "zeroHeading", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a92cfcb373ddbef3147396c085a22792b", null ]
 ];

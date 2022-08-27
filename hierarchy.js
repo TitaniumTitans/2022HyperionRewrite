@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "org.titaniumtitans.lib.drivers.CTREUtil.ConfigCall", "interfaceorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util_1_1_config_call.html", null ],
     [ "org.titaniumtitans.frc2022.Constants", "classorg_1_1titaniumtitans_1_1frc2022_1_1_constants.html", null ],
     [ "org.titaniumtitans.lib.Swerve.CTREModuleState", "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_c_t_r_e_module_state.html", null ],
     [ "org.titaniumtitans.lib.drivers.CTREUtil", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util.html", null ],
@@ -9,6 +10,7 @@ var hierarchy =
     [ "org.titaniumtitans.frc2022.Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
     [ "org.titaniumtitans.frc2022.RobotContainer", "classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html", null ],
     [ "org.titaniumtitans.frc2022.subsystems.ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", null ],
+    [ "org.titaniumtitans.lib.Swerve.SwerveAzimuthFactoy", "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_swerve_azimuth_factoy.html", null ],
     [ "org.titaniumtitans.lib.drivers.TalonEnhanced", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html", null ],
     [ "org.titaniumtitans.lib.Utils", "classorg_1_1titaniumtitans_1_1lib_1_1_utils.html", null ],
     [ "CommandBase", null, [
@@ -30,7 +32,8 @@ var hierarchy =
     [ "SubsystemBase", null, [
       [ "org.titaniumtitans.frc2022.subsystems.DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", null ],
-      [ "org.titaniumtitans.frc2022.subsystems.Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", null ]
+      [ "org.titaniumtitans.frc2022.subsystems.Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", null ],
+      [ "org.titaniumtitans.frc2022.subsystems.SwerveModuleNew", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new.html", null ]
     ] ],
     [ "TimedRobot", null, [
       [ "org.titaniumtitans.frc2022.Robot", "classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html", null ]

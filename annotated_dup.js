@@ -27,7 +27,8 @@ var annotated_dup =
             [ "Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer" ],
             [ "Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter" ],
             [ "ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight" ],
-            [ "SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module" ]
+            [ "SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module" ],
+            [ "SwerveModuleNew", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new" ]
           ] ],
           [ "Constants", "classorg_1_1titaniumtitans_1_1frc2022_1_1_constants.html", null ],
           [ "Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
@@ -36,11 +37,12 @@ var annotated_dup =
         ] ],
         [ "lib", null, [
           [ "drivers", null, [
-            [ "CTREUtil", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util.html", null ],
+            [ "CTREUtil", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util.html", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util" ],
             [ "TalonEnhanced", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html", "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced" ]
           ] ],
           [ "Swerve", null, [
-            [ "CTREModuleState", "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_c_t_r_e_module_state.html", null ]
+            [ "CTREModuleState", "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_c_t_r_e_module_state.html", null ],
+            [ "SwerveAzimuthFactoy", "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_swerve_azimuth_factoy.html", null ]
           ] ],
           [ "Utils", "classorg_1_1titaniumtitans_1_1lib_1_1_utils.html", null ]
         ] ]
