@@ -149,6 +149,8 @@ public final class Constants {
      * subsystem.
      */
     public static class ClimberConstants {
+        public static final int kLeftCimberPort = 23;
+        public static final int kRightClimberPort = 24;
     }
 
     /**
@@ -156,6 +158,7 @@ public final class Constants {
      * subsystem.
      */
     public static class TurretConstants {
+
             public static final double kTurretGearRatio = 0.0;
 
             public static final int kTurretPort = 19;
