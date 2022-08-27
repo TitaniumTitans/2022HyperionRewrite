@@ -27,6 +27,8 @@ public class SwerveModuleNew extends SubsystemBase {
   private final CANCoder m_encoder;
   private String m_name;
 
+  private int count = 0;
+
   private SwerveModuleState m_desiredState;
 
   /** Creates a new SwerveModuleNew. */
@@ -35,6 +37,7 @@ public class SwerveModuleNew extends SubsystemBase {
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
 
+    m_encoder.configFactoryDefault();
     m_encoder.configMagnetOffset(offsetDegrees);
     m_encoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
     m_encoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
@@ -42,17 +45,32 @@ public class SwerveModuleNew extends SubsystemBase {
 
     m_desiredState = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
     m_name = name;
+
+    setAbsoluteValue();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Encoder" + m_name, m_azimuth.getSelectedSensorPosition());
+    //  SmartDashboard.putNumber("Encoder" + m_name, m_azimuth.getSelectedSensorPosition());
+
+    if(count++ == 300){
+      setAbsoluteValue();
+      count = 0;
+    }
   }
 
   public Rotation2d getAzimuthAngle() {
     return Rotation2d
         .fromDegrees(Utils.falconToDegrees(m_azimuth.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
+  }
+
+  public double getEncoder(){
+    return m_azimuth.getSelectedSensorPosition();
+  }
+
+  public double getAbsolutePosition(){
+    return m_encoder.getAbsolutePosition();
   }
 
   public SwerveModuleState getDesiredState(){
@@ -94,10 +112,15 @@ public double getAzimuthPercentage() {
   public void resetEncoders() {
     m_azimuth.setSelectedSensorPosition(0);
     m_drive.setSelectedSensorPosition(0);
+    setAbsoluteValue();
   }
 
   public void setAbsoluteValue() {
     double absolutePosition = Utils.degreesToFalcon(m_encoder.getAbsolutePosition(), ModuleConstants.kTurningGearRatio);
     m_azimuth.setSelectedSensorPosition(absolutePosition);
+  }
+
+  public String getName(){
+    return m_name;
   }
 }

@@ -16,6 +16,9 @@ import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import org.titaniumtitans.frc2022.Constants.DriveConstants;
+import org.titaniumtitans.frc2022.Constants.ModuleConstants;
+import org.titaniumtitans.lib.Utils;
+
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -26,14 +29,14 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
-            347.695,
+            360 - 224.033,
             "FL");
 
     private final SwerveModuleNew m_rearLeft = new SwerveModuleNew(
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            251.104,
+            360 - 74.09,
             "RL");
 
     private final SwerveModuleNew m_frontRight = new SwerveModuleNew(
@@ -47,7 +50,7 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            227.5488,
+            360 - 1.40,
             "RR");
 
     private final SwerveModuleNew[] m_modules = new SwerveModuleNew[]{m_frontLeft, m_frontRight, m_rearLeft, m_rearRight};
@@ -65,7 +68,7 @@ public class DriveSubsystem extends SubsystemBase {
         ShuffleboardTab debugTab = Shuffleboard.getTab("Drivetrain");
         debugTab.add("SwerveState", new SwerveModuleSendable());
         for(SwerveModuleNew module : m_modules) {
-            //%debugTab.add(module.getName() + " Module", module);
+            //debugTab.add(module.getName() + " Module", module);
         }
     }
 
@@ -98,6 +101,12 @@ public class DriveSubsystem extends SubsystemBase {
                 m_rearRight.getState());
 
         SmartDashboard.putBoolean("Field Oriented?", fieldRelative);
+
+        
+        SmartDashboard.putNumber("Encoder" + m_frontLeft.getName(), m_frontLeft.getAbsolutePosition());
+        SmartDashboard.putNumber("Encoder" + m_frontRight.getName(), m_frontRight.getAbsolutePosition());
+        SmartDashboard.putNumber("Encoder" + m_rearLeft.getName(), m_rearLeft.getAbsolutePosition());
+        SmartDashboard.putNumber("Encoder" + m_rearRight.getName(), m_rearRight.getAbsolutePosition());
     }
 
     /**
