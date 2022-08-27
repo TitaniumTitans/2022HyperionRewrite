@@ -35,7 +35,8 @@ var annotated_dup =
             [ "IntakeRetract", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract" ],
             [ "ResetDriveGyro", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro" ],
             [ "ShooterToRPM", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_shooter_to_r_p_m.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_shooter_to_r_p_m" ],
-            [ "TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive" ]
+            [ "TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive" ],
+            [ "TrackTarget", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_track_target.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_track_target" ]
           ] ],
           [ "subsystems", null, [
             [ "Climber", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_climber.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_climber" ],
@@ -44,7 +45,8 @@ var annotated_dup =
             [ "Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter" ],
             [ "ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight" ],
             [ "SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module" ],
-            [ "SwerveModuleNew", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new" ]
+            [ "SwerveModuleNew", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new" ],
+            [ "Turret", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret" ]
           ] ],
           [ "Constants", "classorg_1_1titaniumtitans_1_1frc2022_1_1_constants.html", null ],
           [ "Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
