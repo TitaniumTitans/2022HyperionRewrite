@@ -4,7 +4,6 @@
 
 package org.titaniumtitans.frc2022;
 
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -162,5 +161,11 @@ public final class Constants {
             public static final double kTurretGearRatio = 0.0;
 
             public static final int kTurretPort = 19;
+
+            public static final double kPTurret = 0.02;
+            public static final double kITurret = 0.0001;
+
+            public static final int kCruiseVelocity = 50000;
+            public static final int kAcceleration = 50000;
     }
 }
