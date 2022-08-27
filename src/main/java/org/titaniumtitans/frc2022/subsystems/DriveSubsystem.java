@@ -151,7 +151,6 @@ public class DriveSubsystem extends SubsystemBase {
         m_rearRight.setModuleState(swerveModuleStates[3]);
     }
 
-
     /** Resets the drive encoders to currently read a position of 0. */
     public void resetEncoders() {
         for (SwerveModuleNew m_module : m_modules) {
