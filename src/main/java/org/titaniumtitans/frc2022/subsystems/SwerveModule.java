@@ -45,8 +45,6 @@ public class SwerveModule implements Sendable {
     private double m_turnGoalTicks;
     private double m_driveGoalTicks;
 
-    private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(ModuleConstants.ksModuleDriveController, ModuleConstants.kvModuleDriveController, ModuleConstants.kaModuleDriveController);
-
     double m_lastAngle;
 
 
@@ -154,8 +152,8 @@ public class SwerveModule implements Sendable {
         m_turnGoalTicks = Utils.degreesToFalcon(m_desired_state.angle.getDegrees(), TURNING_GEAR_RATION);
 
         if (SmartDashboard.getBoolean("Enable Driving", true)) {
-            m_driveMotor.set(ControlMode.Velocity, driveOutput, DemandType.ArbitraryFeedForward, feedforward.calculate(desiredState.speedMetersPerSecond));
-            m_turningMotor.set(ControlMode.Position, turnOutput);
+            m_driveMotor.set(ControlMode.PercentOutput, m_desired_state.speedMetersPerSecond);
+            m_turningMotor.set(ControlMode.Position, m_turnGoalTicks);
 
             m_lastAngle = turnOutput;
         }
@@ -180,7 +178,9 @@ public class SwerveModule implements Sendable {
     }
 
     public void setAbsoluteValue(){
+
         double absolutePosition = Utils.degreesToFalcon(getCancoderCurrentAngle().getDegrees(), ModuleConstants.kTurningGearRatio);
+
         m_turningMotor.setSelectedSensorPosition(absolutePosition);
     }
 

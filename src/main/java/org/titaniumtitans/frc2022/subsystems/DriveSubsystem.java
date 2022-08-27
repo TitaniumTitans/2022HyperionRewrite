@@ -16,41 +16,44 @@ import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import org.titaniumtitans.frc2022.Constants.DriveConstants;
+import org.titaniumtitans.frc2022.Constants.ModuleConstants;
+import org.titaniumtitans.lib.Utils;
+
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
     // Robot swerve modules
-    private final SwerveModule m_frontLeft = new SwerveModule(
+    private final SwerveModuleNew m_frontLeft = new SwerveModuleNew(
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
-            0,
+            360 - 224.033,
             "FL");
 
-    private final SwerveModule m_rearLeft = new SwerveModule(
+    private final SwerveModuleNew m_rearLeft = new SwerveModuleNew(
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            0,
+            360 - 74.09,
             "RL");
 
-    private final SwerveModule m_frontRight = new SwerveModule(
+    private final SwerveModuleNew m_frontRight = new SwerveModuleNew(
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            0,
+            359.297,
             "FR");
 
-    private final SwerveModule m_rearRight = new SwerveModule(
+    private final SwerveModuleNew m_rearRight = new SwerveModuleNew(
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            0,
+            360 - 1.40,
             "RR");
 
-    private final SwerveModule[] m_modules = new SwerveModule[]{m_frontLeft, m_frontRight, m_rearLeft, m_rearRight};
+    private final SwerveModuleNew[] m_modules = new SwerveModuleNew[]{m_frontLeft, m_frontRight, m_rearLeft, m_rearRight};
 
     // The gyro sensor
     private final Gyro m_gyro = new WPI_PigeonIMU(15);
@@ -64,8 +67,8 @@ public class DriveSubsystem extends SubsystemBase {
     public DriveSubsystem() {
         ShuffleboardTab debugTab = Shuffleboard.getTab("Drivetrain");
         debugTab.add("SwerveState", new SwerveModuleSendable());
-        for(SwerveModule module : m_modules) {
-            debugTab.add(module.getName() + " Module", module);
+        for(SwerveModuleNew module : m_modules) {
+            //debugTab.add(module.getName() + " Module", module);
         }
     }
 
@@ -74,13 +77,15 @@ public class DriveSubsystem extends SubsystemBase {
         @Override
         public void initSendable(SendableBuilder builder) {
             builder.setSmartDashboardType("SwerveDrive");
-            for (SwerveModule module : m_modules) {
+            for (SwerveModuleNew module : m_modules) {
+                
                 builder.addDoubleProperty(module.getName() + "/CurrentStateAngle", () -> module.getState().angle.getDegrees(), null);
                 builder.addDoubleProperty(module.getName() + "/CurrentStateSpeed", () -> module.getState().speedMetersPerSecond, null);
                 builder.addDoubleProperty(module.getName() + "/DesiredStateAngle", () -> module.getDesiredState().angle.getDegrees(), null);
                 builder.addDoubleProperty(module.getName() + "/DesiredStateSpeed", () -> module.getDesiredState().speedMetersPerSecond, null);
-                builder.addDoubleProperty(module.getName() + "/DrivePercentage", module::getDriveMotorPercentage, null);
-                builder.addDoubleProperty(module.getName() + "/TurningPercentage", module::getTurningMotorPercentage, null);
+                builder.addDoubleProperty(module.getName() + "/DrivePercentage", module::getDrivePercentage, null);
+                builder.addDoubleProperty(module.getName() + "/TurningPercentage", module::getAzimuthPercentage, null);
+                
             }
         }
     }
@@ -96,6 +101,12 @@ public class DriveSubsystem extends SubsystemBase {
                 m_rearRight.getState());
 
         SmartDashboard.putBoolean("Field Oriented?", fieldRelative);
+
+        
+        SmartDashboard.putNumber("Encoder" + m_frontLeft.getName(), m_frontLeft.getAbsolutePosition());
+        SmartDashboard.putNumber("Encoder" + m_frontRight.getName(), m_frontRight.getAbsolutePosition());
+        SmartDashboard.putNumber("Encoder" + m_rearLeft.getName(), m_rearLeft.getAbsolutePosition());
+        SmartDashboard.putNumber("Encoder" + m_rearRight.getName(), m_rearRight.getAbsolutePosition());
     }
 
     /**
@@ -134,15 +145,15 @@ public class DriveSubsystem extends SubsystemBase {
         SwerveDriveKinematics.desaturateWheelSpeeds(
                 swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
 
-        m_frontLeft.setDesiredState(swerveModuleStates[0]);
-        m_frontRight.setDesiredState(swerveModuleStates[1]);
-        m_rearLeft.setDesiredState(swerveModuleStates[2]);
-        m_rearRight.setDesiredState(swerveModuleStates[3]);
+        m_frontLeft.setModuleState(swerveModuleStates[0]);
+        m_frontRight.setModuleState(swerveModuleStates[1]);
+        m_rearLeft.setModuleState(swerveModuleStates[2]);
+        m_rearRight.setModuleState(swerveModuleStates[3]);
     }
 
     /** Resets the drive encoders to currently read a position of 0. */
     public void resetEncoders() {
-        for (SwerveModule m_module : m_modules) {
+        for (SwerveModuleNew m_module : m_modules) {
             m_module.resetEncoders();
         }
     }
@@ -174,9 +185,11 @@ public class DriveSubsystem extends SubsystemBase {
         fieldRelative = !fieldRelative;
     }
 
+    /*
     public void setModuleAngle(double angle){
-        for(SwerveModule module: m_modules){
+        for(SwerveModuleNew module: m_modules){
             module.setModuleAngle(angle);
         }
     }
+    */
 }

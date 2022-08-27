@@ -4,18 +4,18 @@ import com.ctre.phoenix.ErrorCode;
 import edu.wpi.first.wpilibj.DriverStation;
 
 public class CTREUtil {
-    interface ConfigCall {
+    public interface ConfigCall {
         abstract ErrorCode run();
     }
 
     private static final int MAX_RETRY_COUNT = 3;
     private static final int RETRY_DELAY_MS = 100;
 
-    static boolean hasError(ErrorCode err) {
+    public static boolean hasError(ErrorCode err) {
         return err != ErrorCode.OK;
     }
 
-    static void reportError(ErrorCode err, boolean warning) {
+    public static void reportError(ErrorCode err, boolean warning) {
         String msg = String.format("Error: %s", err.toString());
         if (warning) {
             DriverStation.reportWarning(msg, false);
@@ -24,7 +24,7 @@ public class CTREUtil {
         }
     }
 
-    static void autoRetry(ConfigCall configCall) {
+    public static void autoRetry(ConfigCall configCall) {
         int i;
         ErrorCode err;
         for (i = 0; hasError(err = configCall.run()) && i < MAX_RETRY_COUNT; i++) {

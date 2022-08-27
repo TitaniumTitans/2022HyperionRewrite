@@ -24,6 +24,7 @@ import org.titaniumtitans.frc2022.subsystems.Indexer;
 import org.titaniumtitans.frc2022.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
@@ -76,11 +77,17 @@ public class RobotContainer {
     private void configureButtonBindings() {
         JoystickButton activateIntake = new JoystickButton(m_driverController, XboxController.Button.kX.value);
         JoystickButton shooterActivate = new JoystickButton(m_driverController, XboxController.Button.kY.value);
+        JoystickButton resetSwerveEncoders = new JoystickButton(m_driverController, XboxController.Button.kStart.value);
 
         activateIntake.and(shooterActivate.negate()).whenActive(new IntakeExtend(m_indexer)).whenInactive(new IntakeRetract(m_indexer));
         shooterActivate.and(activateIntake.negate()).whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
         shooterActivate.and(activateIntake).whenActive(new CargoShoot(m_shooter, m_indexer, 1500));
+
+        activateIntake.whenHeld(new IntakeExtend(m_indexer));
         
+        resetSwerveEncoders.whenActive(new InstantCommand(() -> m_robotDrive.resetEncoders()));
+
+        activateIntake.whenPressed(new IntakeExtend(m_indexer)).whenReleased(new IntakeRetract(m_indexer));
     }
 
     /**

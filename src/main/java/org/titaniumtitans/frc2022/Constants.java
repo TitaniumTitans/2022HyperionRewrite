@@ -65,8 +65,10 @@ public final class Constants {
     }
 
     public static final class ModuleConstants {
-        public static final double kTurningGearRatio = 21.428;
-        public static final double kDriveGearRatio = 8.17;
+        public final static int kTimeoutMs = 100;
+
+        public static final double kTurningGearRatio = (50.0 / 14.0) * (60.0 / 10.0);
+        public static final double kDriveGearRatio = (50.0 / 14.0) * (19.0 / 25.0) * (45.0 / 15.0);
 
         public static final double kMaxModuleAngularSpeedRadiansPerSecond = 12.20703125;
         public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 12.20703125;
@@ -85,19 +87,10 @@ public final class Constants {
         public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
 
 
-        public static final double kPModuleTurningController = 0.005;
-
-        public static final double kDModuleTurningController = 0;
-
-        public static final double ksModuleDriveController = 0.50545;
-        public static final double kvModuleDriveController = 0.85875;
-        public static final double kaModuleDriveController = 0.021264;
-
-        public static final SimpleMotorFeedforward driveController = new SimpleMotorFeedforward(
-                ksModuleDriveController,
-                kvModuleDriveController,
-                kaModuleDriveController);
-
+        public static final double kPModuleTurningController = 0.8 / kTurningGearRatio;
+        public static final double kIModuleTurningController = 0.001 / kTurningGearRatio;
+        public static final double kDModuleTurningController = 10 / kTurningGearRatio;
+        public static final double kIZoneModuleTurningController = 20;
     }
 
     public static final class OIConstants {
@@ -163,5 +156,8 @@ public final class Constants {
      * subsystem.
      */
     public static class TurretConstants {
+            public static final double kTurretGearRatio = 0.0;
+
+            public static final int kTurretPort = 19;
     }
 }

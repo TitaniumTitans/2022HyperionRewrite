@@ -1,0 +1,21 @@
+Drive Motor:
+	* Set status frames (feedback data true)
+	* Factory default
+	* SetNeutralMode Brake
+	* ConfigVoltageCompensation 10v
+	* EnableVoltageCompensation true
+	* ConfigClosedLoopRamp 0.5
+Azimuth:
+	* Set status frames (feedback data false)
+	* Factory Default
+	* SetNeutralMode Brake
+	* ConfigNeutralDeadband 0.04
+	* ConfigRemoteSensorSource CANCoder, Encoder ID, Source Index 0
+	* Config PIDF Slot ID 0, P 0.8, I 0.001, D 20, F 0, I-Zone 20
+	* Config Motion Magic Cruise Velocity 5000, Acceleration 5000
+Encoder:
+	* Set status frames SensorData 45ms, VbatAndFaults 255ms
+	* Factory Default
+	* ConfigSensorInitializationStrategy BootToAbsolute
+	* ConfigSensorDirection true
+	* ConfigAbsoluteSensorRange Absolute 0-360deg
