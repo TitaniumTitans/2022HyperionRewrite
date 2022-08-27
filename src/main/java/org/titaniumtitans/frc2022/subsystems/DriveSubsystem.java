@@ -40,7 +40,7 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            359.29,
+            359.297,
             "FR");
 
     private final SwerveModuleNew m_rearRight = new SwerveModuleNew(

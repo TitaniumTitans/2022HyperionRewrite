@@ -34,7 +34,6 @@ public class SwerveModuleNew extends SubsystemBase {
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
-    // CTREUtil.autoRetry(() -> m_drive.configOpenloopRamp(1));
 
     m_encoder.configMagnetOffset(offsetDegrees);
     m_encoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
