@@ -51,7 +51,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#ab4578598555e4f4e3993a08906195897"
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a583f93032bfbb5242c9e95133173a3d5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

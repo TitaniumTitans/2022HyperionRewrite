@@ -7,7 +7,15 @@ var hierarchy =
     [ "MyLibrary::Example", "class_my_library_1_1_example.html", [
       [ "MyLibrary::SubclassExample", "class_my_library_1_1_subclass_example.html", null ]
     ] ],
+    [ "org.gos.lib.properties.HeavyDoubleProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_heavy_double_property.html", null ],
+    [ "org.gos.lib.properties.IPidPropertyBuilder", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_i_pid_property_builder.html", [
+      [ "org.gos.lib.properties.CTRE.CtrePidPropertyBuilder", "classorg_1_1gos_1_1lib_1_1properties_1_1_c_t_r_e_1_1_ctre_pid_property_builder.html", null ]
+    ] ],
+    [ "org.gos.lib.properties.PropertyManager.IProperty< TypeT >", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_property_manager_1_1_i_property.html", null ],
+    [ "org.gos.lib.properties.PropertyManager.IProperty< Double >", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_property_manager_1_1_i_property.html", null ],
     [ "org.titaniumtitans.frc2022.Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
+    [ "org.gos.lib.properties.PIDProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property.html", null ],
+    [ "org.gos.lib.properties.PropertyManager", "classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager.html", null ],
     [ "org.titaniumtitans.frc2022.RobotContainer", "classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html", null ],
     [ "org.titaniumtitans.frc2022.subsystems.ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", null ],
     [ "org.titaniumtitans.lib.Swerve.SwerveAzimuthFactoy", "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_swerve_azimuth_factoy.html", null ],
@@ -16,6 +24,8 @@ var hierarchy =
     [ "CommandBase", null, [
       [ "org.titaniumtitans.frc2022.commands.CargoShoot", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_cargo_shoot.html", null ],
       [ "org.titaniumtitans.frc2022.commands.ChangeFieldOriented", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_change_field_oriented.html", null ],
+      [ "org.titaniumtitans.frc2022.commands.ClimberManualJoystick", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_climber_manual_joystick.html", null ],
+      [ "org.titaniumtitans.frc2022.commands.ClimberPIDControl", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_climber_p_i_d_control.html", null ],
       [ "org.titaniumtitans.frc2022.commands.IntakeExtend", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_extend.html", null ],
       [ "org.titaniumtitans.frc2022.commands.IntakeRetract", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract.html", null ],
       [ "org.titaniumtitans.frc2022.commands.ResetDriveGyro", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro.html", null ],
@@ -30,6 +40,7 @@ var hierarchy =
       [ "org.titaniumtitans.frc2022.subsystems.SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", null ]
     ] ],
     [ "SubsystemBase", null, [
+      [ "org.titaniumtitans.frc2022.subsystems.Climber", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_climber.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", null ],
       [ "org.titaniumtitans.frc2022.subsystems.Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", null ],

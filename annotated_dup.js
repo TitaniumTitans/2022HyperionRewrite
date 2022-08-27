@@ -5,6 +5,19 @@ var annotated_dup =
       [ "SubclassExample", "class_my_library_1_1_subclass_example.html", "class_my_library_1_1_subclass_example" ]
     ] ],
     [ "org", null, [
+      [ "gos", null, [
+        [ "lib", null, [
+          [ "properties", null, [
+            [ "CTRE", null, [
+              [ "CtrePidPropertyBuilder", "classorg_1_1gos_1_1lib_1_1properties_1_1_c_t_r_e_1_1_ctre_pid_property_builder.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_c_t_r_e_1_1_ctre_pid_property_builder" ]
+            ] ],
+            [ "HeavyDoubleProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_heavy_double_property.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_heavy_double_property" ],
+            [ "IPidPropertyBuilder", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_i_pid_property_builder.html", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_i_pid_property_builder" ],
+            [ "PIDProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property" ],
+            [ "PropertyManager", "classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager" ]
+          ] ]
+        ] ]
+      ] ],
       [ "titaniumtitans", null, [
         [ "frc2022", null, [
           [ "commands", null, [
@@ -16,6 +29,8 @@ var annotated_dup =
             ] ],
             [ "CargoShoot", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_cargo_shoot.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_cargo_shoot" ],
             [ "ChangeFieldOriented", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_change_field_oriented.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_change_field_oriented" ],
+            [ "ClimberManualJoystick", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_climber_manual_joystick.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_climber_manual_joystick" ],
+            [ "ClimberPIDControl", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_climber_p_i_d_control.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_climber_p_i_d_control" ],
             [ "IntakeExtend", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_extend.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_extend" ],
             [ "IntakeRetract", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_intake_retract" ],
             [ "ResetDriveGyro", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro" ],
@@ -23,6 +38,7 @@ var annotated_dup =
             [ "TeleopSwerveDrive", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_teleop_swerve_drive" ]
           ] ],
           [ "subsystems", null, [
+            [ "Climber", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_climber.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_climber" ],
             [ "DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem" ],
             [ "Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer" ],
             [ "Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter" ],
