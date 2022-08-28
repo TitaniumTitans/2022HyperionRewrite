@@ -23,7 +23,8 @@ public class Turret extends ProfiledPIDSubsystem {
   public Turret() {
     super(
       // The PIDController used by the subsystem
-      new ProfiledPIDController(0, 0, 0,
+      new ProfiledPIDController(TurretConstants.kPTurret, 
+                                TurretConstants.kITurret, 0,
       new TrapezoidProfile.Constraints(TurretConstants.kCruiseVelocity, TurretConstants.kAcceleration)), 0);
       m_turretMotor = new TalonSRX(TurretConstants.kTurretPort);
       m_limeLight = new ShooterLimelight();
