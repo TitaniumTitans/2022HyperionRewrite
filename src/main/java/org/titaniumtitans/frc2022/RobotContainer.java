@@ -4,18 +4,17 @@
 
 package org.titaniumtitans.frc2022;
 
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 import org.titaniumtitans.frc2022.commands.CargoShoot;
-import org.titaniumtitans.frc2022.commands.ClimberManualJoystick;
 import org.titaniumtitans.frc2022.commands.ClimberPIDControl;
 import org.titaniumtitans.frc2022.commands.IntakeExtend;
 import org.titaniumtitans.frc2022.commands.IntakeRetract;
 import org.titaniumtitans.frc2022.commands.ShooterToRPM;
 import org.titaniumtitans.frc2022.commands.TeleopSwerveDrive;
+import org.titaniumtitans.frc2022.commands.TrackTarget;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo180Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo270Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo360Degrees;
@@ -25,9 +24,11 @@ import org.titaniumtitans.frc2022.subsystems.Climber;
 import org.titaniumtitans.frc2022.subsystems.DriveSubsystem;
 import org.titaniumtitans.frc2022.subsystems.Indexer;
 import org.titaniumtitans.frc2022.subsystems.Shooter;
+import org.titaniumtitans.frc2022.subsystems.Turret;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
@@ -43,6 +44,7 @@ public class RobotContainer {
     private final Indexer m_indexer = new Indexer();
     private final Shooter m_shooter = new Shooter();
     private final Climber m_climber = new Climber();
+    private final Turret m_turret = new Turret();
 
     // The driver's controller
     XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -68,6 +70,7 @@ public class RobotContainer {
         // Configure default commands
     
         m_robotDrive.setDefaultCommand(new TeleopSwerveDrive(m_robotDrive, m_driverController));
+        m_turret.setDefaultCommand(new TrackTarget(m_turret));
         
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
@@ -86,16 +89,15 @@ public class RobotContainer {
         JoystickButton activateIntake = new JoystickButton(m_driverController, XboxController.Button.kX.value);
         JoystickButton shooterActivate = new JoystickButton(m_driverController, XboxController.Button.kY.value);
         JoystickButton resetSwerveEncoders = new JoystickButton(m_driverController, XboxController.Button.kStart.value);
+        JoystickButton climberUp = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
+        JoystickButton climberDown = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
 
         activateIntake.and(shooterActivate.negate()).whenActive(new IntakeExtend(m_indexer)).whenInactive(new IntakeRetract(m_indexer));
         shooterActivate.and(activateIntake.negate()).whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
         shooterActivate.and(activateIntake).whenActive(new CargoShoot(m_shooter, m_indexer, 1500));
-
-        JoystickButton climberUp = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
-        JoystickButton climberDown = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
-
         climberUp.whenHeld(new ClimberPIDControl(m_climber, true));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
         climberDown.whenHeld(new ClimberPIDControl(m_climber, false));//.whenReleased(new ClimberManualJoystick(m_climber, m_driverController));
+        resetSwerveEncoders.whenActive(new RunCommand(() -> m_robotDrive.resetEncoders(), m_robotDrive));
 
     }
 
