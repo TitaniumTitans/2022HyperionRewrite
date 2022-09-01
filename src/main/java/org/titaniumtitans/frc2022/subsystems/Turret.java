@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.titaniumtitans.frc2022.Constants.TurretConstants;
 import org.titaniumtitans.lib.Utils;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
@@ -34,6 +35,8 @@ public class Turret extends ProfiledPIDSubsystem {
   protected void useOutput(double output, State setpoint) {
   // Use the output here
   double falconAngle = Utils.degreesToFalcon(output, TurretConstants.kTurretGearRatio);
+
+  MathUtil.clamp(falconAngle, 10, 200);
 
   m_turretMotor.set(ControlMode.Position, falconAngle); 
   }
