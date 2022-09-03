@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.ControlFrame;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 
 import org.titaniumtitans.frc2022.Constants.ModuleConstants;
 
@@ -16,7 +17,7 @@ public class SwerveAzimuthFactoy {
     static NeutralMode kNeutralMode = NeutralMode.Brake;
     static double kDeadBanding = 0.04;
 
-    static boolean kInverted = false;
+    static boolean kInverted = true;
     static boolean kSensorPhase = false;
 
     static int kControlFrameMs = 20;
@@ -54,6 +55,8 @@ public class SwerveAzimuthFactoy {
         talon.config_kD(0, ModuleConstants.kDModuleTurningController);
 
         talon.config_IntegralZone(0, ModuleConstants.kIZoneModuleTurningController);
+
+        talon.configIntegratedSensorInitializationStrategy(SensorInitializationStrategy.BootToZero);
         
         return talon;
     }

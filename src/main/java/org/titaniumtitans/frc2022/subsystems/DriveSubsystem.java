@@ -7,6 +7,7 @@ package org.titaniumtitans.frc2022.subsystems;
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
@@ -29,28 +30,28 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
-            360 - 224.033,
+            360 - 45.35,
             "FL");
 
     private final SwerveModuleNew m_rearLeft = new SwerveModuleNew(
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            360 - 74.09,
+            120.23,
             "RL");
 
     private final SwerveModuleNew m_frontRight = new SwerveModuleNew(
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            359.297,
+            348.75,
             "FR");
 
     private final SwerveModuleNew m_rearRight = new SwerveModuleNew(
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            360 - 1.40,
+            360 - 253.125,
             "RR");
 
     private final SwerveModuleNew[] m_modules = new SwerveModuleNew[]{m_frontLeft, m_frontRight, m_rearLeft, m_rearRight};
@@ -193,4 +194,16 @@ public class DriveSubsystem extends SubsystemBase {
         }
     }
     */
+
+    public void setTestState(double angle){
+        SwerveModuleState state = createTestState(angle);
+
+        for(SwerveModuleNew module: m_modules){
+            module.setModuleState(state);
+        }
+    }
+
+    public SwerveModuleState createTestState(double angle){
+        return new SwerveModuleState(0, Rotation2d.fromDegrees(angle));
+    }
 }

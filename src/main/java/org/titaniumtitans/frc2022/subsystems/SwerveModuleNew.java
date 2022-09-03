@@ -26,6 +26,7 @@ public class SwerveModuleNew extends SubsystemBase {
   private final TalonFX m_drive;
   private final CANCoder m_encoder;
   private String m_name;
+  private double m_lastAngle = 0;
 
   private int count = 0;
 
@@ -47,6 +48,7 @@ public class SwerveModuleNew extends SubsystemBase {
     m_name = name;
 
     setAbsoluteValue();
+    //TODO changeable offsets
   }
 
   @Override
@@ -58,6 +60,8 @@ public class SwerveModuleNew extends SubsystemBase {
       setAbsoluteValue();
       count = 0;
     }
+
+    SmartDashboard.putNumber("Angle" + m_name, m_encoder.getAbsolutePosition());
   }
 
   public Rotation2d getAzimuthAngle() {
@@ -65,6 +69,11 @@ public class SwerveModuleNew extends SubsystemBase {
         .fromDegrees(Utils.falconToDegrees(m_azimuth.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
   }
 
+  /***
+   * Gets the current angle of the azimuth motor, in CTRE units
+   * 
+   * @return double encoder counts
+   */
   public double getEncoder(){
     return m_azimuth.getSelectedSensorPosition();
   }
@@ -110,6 +119,7 @@ public double getAzimuthPercentage() {
   }
 
   public void resetEncoders() {
+    m_encoder.setPosition(0, 0);
     m_azimuth.setSelectedSensorPosition(0);
     m_drive.setSelectedSensorPosition(0);
     setAbsoluteValue();
@@ -123,4 +133,6 @@ public double getAzimuthPercentage() {
   public String getName(){
     return m_name;
   }
+
+  
 }
