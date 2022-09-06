@@ -69,6 +69,8 @@ public class SwerveModuleNew extends SubsystemBase {
         .fromDegrees(Utils.falconToDegrees(m_azimuth.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
   }
 
+  // The next few methods are for a shuffleboard widget for debugging purposes
+
   /***
    * Gets the current angle of the azimuth motor, in CTRE units
    * 
@@ -78,18 +80,22 @@ public class SwerveModuleNew extends SubsystemBase {
     return m_azimuth.getSelectedSensorPosition();
   }
 
+  //Absolute position of the module
   public double getAbsolutePosition(){
     return m_encoder.getAbsolutePosition();
   }
 
+  //Desired state of the module
   public SwerveModuleState getDesiredState(){
     return m_desiredState;
   }
 
+  // Drive output
   public double getDrivePercentage() {
     return m_drive.getMotorOutputPercent();
 }
 
+// Azimuth output
 public double getAzimuthPercentage() {
     return m_azimuth.getMotorOutputPercent();
 }
