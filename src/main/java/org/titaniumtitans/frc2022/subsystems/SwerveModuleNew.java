@@ -100,23 +100,23 @@ public double getAzimuthPercentage() {
     return m_azimuth.getMotorOutputPercent();
 }
 
-  public void setModuleState(SwerveModuleState state) {
-    m_desiredState = CTREModuleState.optimize(state, getAzimuthAngle());
+public void setModuleState(SwerveModuleState state) {
+  m_desiredState = CTREModuleState.optimize(state, getAzimuthAngle());
 
-    double driveOutput = Utils.MPSToFalcon(m_desiredState.speedMetersPerSecond,
-        ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
+  double driveOutput = Utils.MPSToFalcon(m_desiredState.speedMetersPerSecond,
+      ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
 
-    double turningOutput = Utils.degreesToFalcon(m_desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
+  double turningOutput = Utils.degreesToFalcon(m_desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
 
-    SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
-    SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
-    
+  SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
+  SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
+  
 
-    //if (SmartDashboard.getBoolean("Enable Driving", true)) {
-      m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
-      m_azimuth.set(ControlMode.Position, turningOutput);
-    //}
-  }
+  //if (SmartDashboard.getBoolean("Enable Driving", true)) {
+    m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
+    m_azimuth.set(ControlMode.Position, turningOutput);
+  //}
+}
 
   // Gets the current state of the module
   public SwerveModuleState getState() {
