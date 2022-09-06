@@ -118,6 +118,7 @@ public double getAzimuthPercentage() {
     //}
   }
 
+  // Gets the current state of the module
   public SwerveModuleState getState() {
     return new SwerveModuleState(
         m_drive.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
