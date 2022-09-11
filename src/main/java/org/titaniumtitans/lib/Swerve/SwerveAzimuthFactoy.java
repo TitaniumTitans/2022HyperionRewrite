@@ -13,11 +13,10 @@ import org.titaniumtitans.frc2022.Constants.ModuleConstants;
 public class SwerveAzimuthFactoy {
     static int kTimeoutMs = 100;
 
-
-    static NeutralMode kNeutralMode = NeutralMode.Brake;
+    static NeutralMode kNeutralMode = NeutralMode.Coast;
     static double kDeadBanding = 0.04;
 
-    static boolean kInverted = true;
+    static boolean kInverted = false;
     static boolean kSensorPhase = false;
 
     static int kControlFrameMs = 20;

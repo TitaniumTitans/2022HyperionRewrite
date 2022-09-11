@@ -33,7 +33,7 @@ public class SwerveModuleNew extends SubsystemBase {
   private SwerveModuleState m_desiredState;
 
   /** Creates a new SwerveModuleNew. */
-  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, double offsetDegrees, String name) {
+  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, double offsetDegrees, String name, boolean inverted) {
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
@@ -43,6 +43,8 @@ public class SwerveModuleNew extends SubsystemBase {
     m_encoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
     m_encoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
     m_encoder.configSensorDirection(true, ModuleConstants.kTimeoutMs);
+
+    m_drive.setInverted(inverted);
 
     m_desiredState = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
     m_name = name;
@@ -56,10 +58,7 @@ public class SwerveModuleNew extends SubsystemBase {
     // This method will be called once per scheduler run
     //  SmartDashboard.putNumber("Encoder" + m_name, m_azimuth.getSelectedSensorPosition());
 
-    if(count++ == 300){
-      setAbsoluteValue();
-      count = 0;
-    }
+    count++;
 
     SmartDashboard.putNumber("Angle" + m_name, m_encoder.getAbsolutePosition());
   }
@@ -110,12 +109,13 @@ public void setModuleState(SwerveModuleState state) {
 
   SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
   SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
-  
 
-  //if (SmartDashboard.getBoolean("Enable Driving", true)) {
-    m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
-    m_azimuth.set(ControlMode.Position, turningOutput);
-  //}
+  m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
+  m_azimuth.set(ControlMode.Position, turningOutput);
+
+  if (driveOutput <= 0.1) {
+    updateAbsoluteValue();
+  }
 }
 
   // Gets the current state of the module
@@ -135,6 +135,13 @@ public void setModuleState(SwerveModuleState state) {
   public void setAbsoluteValue() {
     double absolutePosition = Utils.degreesToFalcon(m_encoder.getAbsolutePosition(), ModuleConstants.kTurningGearRatio);
     m_azimuth.setSelectedSensorPosition(absolutePosition);
+  }
+
+  public void updateAbsoluteValue() {
+    if (count <= 300) {
+      setAbsoluteValue();
+      count = 0;
+    }
   }
 
   public String getName(){
