@@ -27,9 +27,9 @@ public class TeleopSwerveDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double xSpeed = Utils.deadBand(m_controller.getLeftX());
-        double ySpeed = Utils.deadBand(m_controller.getLeftY());
-        double rot = Utils.deadBand(m_controller.getRightX());
+        double xSpeed = Utils.deadBand(m_controller.getLeftY());
+        double ySpeed = Utils.deadBand(-m_controller.getLeftX());
+        double rot = Utils.deadBand(-m_controller.getRightX());
         m_drive.drive(xSpeed, ySpeed, rot);
     }
 
