@@ -110,11 +110,14 @@ public void setModuleState(SwerveModuleState state) {
   SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
   SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
 
-  m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
-  m_azimuth.set(ControlMode.Position, turningOutput);
   
   if (m_desiredState.speedMetersPerSecond <= 0.1) {
     updateAbsoluteValue();
+  }
+  
+  if (m_desiredState.speedMetersPerSecond >= 0.1) {
+    m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
+    m_azimuth.set(ControlMode.Position, turningOutput);
   }
 }
 
