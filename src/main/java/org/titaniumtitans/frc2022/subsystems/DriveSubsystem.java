@@ -7,51 +7,55 @@ package org.titaniumtitans.frc2022.subsystems;
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.util.sendable.Sendable;
-import edu.wpi.first.util.sendable.SendableBuilder;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import org.titaniumtitans.frc2022.Constants.DriveConstants;
-import org.titaniumtitans.frc2022.Constants.ModuleConstants;
-import org.titaniumtitans.lib.Utils;
 
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
+
     // Robot swerve modules
     private final SwerveModuleNew m_frontLeft = new SwerveModuleNew(
             DriveConstants.kFrontLeftDriveMotorPort,
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
-            360 - 224.033,
-            "FL");
+            //360 - 45.35,
+            181,
+            "FL",
+            false);
 
     private final SwerveModuleNew m_rearLeft = new SwerveModuleNew(
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            360 - 74.09,
-            "RL");
+            225,
+            //0,
+            "RL",
+            true);
 
     private final SwerveModuleNew m_frontRight = new SwerveModuleNew(
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            359.297,
-            "FR");
+            170,
+            //0,
+            "FR",
+            false);
 
     private final SwerveModuleNew m_rearRight = new SwerveModuleNew(
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            360 - 1.40,
-            "RR");
+            71,
+            //0,
+            "RR",
+            false);
 
     private final SwerveModuleNew[] m_modules = new SwerveModuleNew[]{m_frontLeft, m_frontRight, m_rearLeft, m_rearRight};
 
@@ -65,13 +69,15 @@ public class DriveSubsystem extends SubsystemBase {
 
     /** Creates a new DriveSubsystem. */
     public DriveSubsystem() {
+        /*
         ShuffleboardTab debugTab = Shuffleboard.getTab("Drivetrain");
         debugTab.add("SwerveState", new SwerveModuleSendable());
         for(SwerveModuleNew module : m_modules) {
             //debugTab.add(module.getName() + " Module", module);
         }
+        */
     }
-
+/*
     private final class SwerveModuleSendable implements Sendable {
 
         @Override
@@ -89,6 +95,7 @@ public class DriveSubsystem extends SubsystemBase {
             }
         }
     }
+    */
 
     @Override
     public void periodic() {
@@ -192,4 +199,29 @@ public class DriveSubsystem extends SubsystemBase {
         }
     }
     */
+
+    public void setTestState(double angle){
+        SwerveModuleState state = createTestState(angle);
+
+        for(SwerveModuleNew module: m_modules){
+            module.setModuleState(state);
+        }
+    }
+
+    public SwerveModuleState createTestState(double angle){
+        return new SwerveModuleState(0, Rotation2d.fromDegrees(angle));
+    }
+
+    /**Updates the magnetic offset of the the absolute encoder
+     * 
+     * @param angles The angle offset in degrees of the encoder 
+     */
+    public void updateEncoderOffset(double[] angles){
+        int i = 0;
+        for(SwerveModuleNew module: m_modules){
+            module.updateOffsets(angles[i]);
+            i++;
+        }
+    }
+
 }

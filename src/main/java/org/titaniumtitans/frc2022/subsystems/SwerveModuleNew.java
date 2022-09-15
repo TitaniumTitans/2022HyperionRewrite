@@ -26,13 +26,14 @@ public class SwerveModuleNew extends SubsystemBase {
   private final TalonFX m_drive;
   private final CANCoder m_encoder;
   private String m_name;
+  private double m_lastAngle = 0;
 
   private int count = 0;
 
   private SwerveModuleState m_desiredState;
 
   /** Creates a new SwerveModuleNew. */
-  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, double offsetDegrees, String name) {
+  public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, double offsetDegrees, String name, boolean inverted) {
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
@@ -43,10 +44,13 @@ public class SwerveModuleNew extends SubsystemBase {
     m_encoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
     m_encoder.configSensorDirection(true, ModuleConstants.kTimeoutMs);
 
+    m_drive.setInverted(inverted);
+
     m_desiredState = new SwerveModuleState(0, Rotation2d.fromDegrees(0));
     m_name = name;
 
     setAbsoluteValue();
+    //TODO changeable offsets
   }
 
   @Override
@@ -54,10 +58,9 @@ public class SwerveModuleNew extends SubsystemBase {
     // This method will be called once per scheduler run
     //  SmartDashboard.putNumber("Encoder" + m_name, m_azimuth.getSelectedSensorPosition());
 
-    if(count++ == 300){
-      setAbsoluteValue();
-      count = 0;
-    }
+    count++;
+
+    SmartDashboard.putNumber("Angle" + m_name, m_encoder.getAbsolutePosition());
   }
 
   public Rotation2d getAzimuthAngle() {
@@ -65,51 +68,69 @@ public class SwerveModuleNew extends SubsystemBase {
         .fromDegrees(Utils.falconToDegrees(m_azimuth.getSelectedSensorPosition(), ModuleConstants.kTurningGearRatio));
   }
 
+  // The next few methods are for a shuffleboard widget for debugging purposes
+
+  /***
+   * Gets the current angle of the azimuth motor, in CTRE units
+   * 
+   * @return double encoder counts
+   */
   public double getEncoder(){
     return m_azimuth.getSelectedSensorPosition();
   }
 
+  //Absolute position of the module
   public double getAbsolutePosition(){
     return m_encoder.getAbsolutePosition();
   }
 
+  //Desired state of the module
   public SwerveModuleState getDesiredState(){
     return m_desiredState;
   }
 
+  // Drive output
   public double getDrivePercentage() {
     return m_drive.getMotorOutputPercent();
 }
 
+// Azimuth output
 public double getAzimuthPercentage() {
     return m_azimuth.getMotorOutputPercent();
 }
 
-  public void setModuleState(SwerveModuleState state) {
-    m_desiredState = CTREModuleState.optimize(state, getAzimuthAngle());
+public void setModuleState(SwerveModuleState state) {
+  m_desiredState = CTREModuleState.optimize(state, getAzimuthAngle());
 
-    double driveOutput = Utils.MPSToFalcon(m_desiredState.speedMetersPerSecond,
-        ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
+  double driveOutput = Utils.MPSToFalcon(m_desiredState.speedMetersPerSecond,
+      ModuleConstants.kWheelDiameterMeters * Math.PI, ModuleConstants.kDriveGearRatio);
 
-    double turningOutput = Utils.degreesToFalcon(m_desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
+  double turningOutput = Utils.degreesToFalcon(m_desiredState.angle.getDegrees(), ModuleConstants.kTurningGearRatio);
 
-    SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
-    SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
-    
+  SmartDashboard.putNumber("DriveOutput" + m_name, driveOutput);
+  SmartDashboard.putNumber("ExpectedOutput" + m_name, m_desiredState.speedMetersPerSecond);
 
-    //if (SmartDashboard.getBoolean("Enable Driving", true)) {
-      m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
-      m_azimuth.set(ControlMode.Position, turningOutput);
-    //}
+  
+  if (m_desiredState.speedMetersPerSecond <= 0.1) {
+    updateAbsoluteValue();
   }
+  
+  if (m_desiredState.speedMetersPerSecond >= 0.1) {
+    m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
+    m_azimuth.set(ControlMode.Position, turningOutput);
+  }
+}
 
+  // Gets the current state of the module
   public SwerveModuleState getState() {
     return new SwerveModuleState(
         m_drive.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
         getAzimuthAngle());
   }
 
+  /**Resets the angle of azimuth motors encoders */
   public void resetEncoders() {
+    m_encoder.setPosition(0, 0);
     m_azimuth.setSelectedSensorPosition(0);
     m_drive.setSelectedSensorPosition(0);
     setAbsoluteValue();
@@ -120,7 +141,20 @@ public double getAzimuthPercentage() {
     m_azimuth.setSelectedSensorPosition(absolutePosition);
   }
 
+  public void updateAbsoluteValue() {
+    if (count <= 300) {
+      setAbsoluteValue();
+      count = 0;
+    }
+  }
+
   public String getName(){
     return m_name;
   }
+
+  public void updateOffsets(double offsetDegrees){
+    m_encoder.configMagnetOffset(offsetDegrees);
+  }
+
+  
 }
