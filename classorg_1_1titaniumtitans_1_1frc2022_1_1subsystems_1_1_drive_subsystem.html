@@ -86,7 +86,6 @@ $(document).ready(function(){initNavTree('classorg_1_1titaniumtitans_1_1frc2022_
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -124,6 +123,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>periodic</b> ()</td><
 <tr class="memitem:a3494466660f8c01ea24525782ef28b99"><td class="memItemLeft" align="right" valign="top"><a id="a3494466660f8c01ea24525782ef28b99"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>changeDriveMode</b> ()</td></tr>
 <tr class="separator:a3494466660f8c01ea24525782ef28b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b389503d5edb6424119f1ff70d5cd5"><td class="memItemLeft" align="right" valign="top"><a id="a23b389503d5edb6424119f1ff70d5cd5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setTestState</b> (double angle)</td></tr>
+<tr class="separator:a23b389503d5edb6424119f1ff70d5cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c7c4d6e564e8a4f03e6ab041c5d6e1"><td class="memItemLeft" align="right" valign="top"><a id="ac2c7c4d6e564e8a4f03e6ab041c5d6e1"></a>
+SwerveModuleState&#160;</td><td class="memItemRight" valign="bottom"><b>createTestState</b> (double angle)</td></tr>
+<tr class="separator:ac2c7c4d6e564e8a4f03e6ab041c5d6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81753656dd68bac740215440a1ce24e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a81753656dd68bac740215440a1ce24e0">updateEncoderOffset</a> (double[] angles)</td></tr>
+<tr class="separator:a81753656dd68bac740215440a1ce24e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae7dbc747486a8d1689d652b56370016a"></a>
@@ -282,6 +289,31 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>changeDriveMode</b> (
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pose</td><td>The pose to which to set the odometry. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a81753656dd68bac740215440a1ce24e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81753656dd68bac740215440a1ce24e0">&#9670;&nbsp;</a></span>updateEncoderOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void org.titaniumtitans.frc2022.subsystems.DriveSubsystem.updateEncoderOffset </td>
+          <td>(</td>
+          <td class="paramtype">double[]&#160;</td>
+          <td class="paramname"><em>angles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates the magnetic offset of the the absolute encoder</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angles</td><td>The angle offset in degrees of the encoder </td></tr>
   </table>
   </dd>
 </dl>

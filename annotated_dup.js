@@ -25,7 +25,8 @@ var annotated_dup =
               [ "ModulesTo180Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to180_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to180_degrees" ],
               [ "ModulesTo270Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to270_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to270_degrees" ],
               [ "ModulesTo360Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to360_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to360_degrees" ],
-              [ "ModulesTo90Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees" ]
+              [ "ModulesTo90Degrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1_modules_to90_degrees" ],
+              [ "modulesToDegrees", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1modules_to_degrees.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1test__commands_1_1modules_to_degrees" ]
             ] ],
             [ "CargoShoot", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_cargo_shoot.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_cargo_shoot" ],
             [ "ChangeFieldOriented", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_change_field_oriented.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_change_field_oriented" ],
