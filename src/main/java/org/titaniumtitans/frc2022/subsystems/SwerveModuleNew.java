@@ -128,6 +128,7 @@ public void setModuleState(SwerveModuleState state) {
         getAzimuthAngle());
   }
 
+  /**Resets the angle of azimuth motors encoders */
   public void resetEncoders() {
     m_encoder.setPosition(0, 0);
     m_azimuth.setSelectedSensorPosition(0);
@@ -149,6 +150,10 @@ public void setModuleState(SwerveModuleState state) {
 
   public String getName(){
     return m_name;
+  }
+
+  public void updateOffsets(double offsetDegrees){
+    m_encoder.configMagnetOffset(offsetDegrees);
   }
 
   

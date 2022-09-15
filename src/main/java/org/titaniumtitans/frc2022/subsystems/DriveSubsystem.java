@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
+
     // Robot swerve modules
     private final SwerveModuleNew m_frontLeft = new SwerveModuleNew(
             DriveConstants.kFrontLeftDriveMotorPort,
@@ -217,4 +218,17 @@ public class DriveSubsystem extends SubsystemBase {
     public SwerveModuleState createTestState(double angle){
         return new SwerveModuleState(0, Rotation2d.fromDegrees(angle));
     }
+
+    /**Updates the magnetic offset of the the absolute encoder
+     * 
+     * @param angles The angle offset in degrees of the encoder 
+     */
+    public void updateEncoderOffset(double[] angles){
+        int i = 0;
+        for(SwerveModuleNew module: m_modules){
+            module.updateOffsets(angles[i]);
+            i++;
+        }
+    }
+
 }
