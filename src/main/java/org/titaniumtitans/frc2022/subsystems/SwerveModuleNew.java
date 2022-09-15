@@ -121,7 +121,10 @@ public void setModuleState(SwerveModuleState state) {
   }
 }
 
-  /**Gets the current state of the module */
+  /**Gets the current state of the module 
+   * 
+   * @return The current state of the module
+  */
   public SwerveModuleState getState() {
     return new SwerveModuleState(
         m_drive.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
