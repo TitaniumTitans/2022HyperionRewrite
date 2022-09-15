@@ -121,7 +121,7 @@ public void setModuleState(SwerveModuleState state) {
   }
 }
 
-  // Gets the current state of the module
+  /**Gets the current state of the module */
   public SwerveModuleState getState() {
     return new SwerveModuleState(
         m_drive.getSelectedSensorVelocity() * ModuleConstants.kDriveEncoderDistancePerPulse * 10,
@@ -141,6 +141,7 @@ public void setModuleState(SwerveModuleState state) {
     m_azimuth.setSelectedSensorPosition(absolutePosition);
   }
 
+  /**Count for updating the value of the azimuth encoder*/
   public void updateAbsoluteValue() {
     if (count <= 300) {
       setAbsoluteValue();
