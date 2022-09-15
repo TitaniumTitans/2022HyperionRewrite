@@ -87,13 +87,13 @@ public final class Constants {
         public static final double kRadPerSecondToRawPer100_4096CPR = ((1 / (20 * Math.PI)) * 4096) / 100;
 
 
-        public static final double kPModuleTurningController = 0.125;
+        public static final double kPModuleTurningController = 0.16;
         public static final double kIModuleTurningController = 0.00;
-        public static final double kDModuleTurningController = 2;
+        public static final double kDModuleTurningController = 3;
         public static final double kIZoneModuleTurningController = 0;
 
-        public static final double kCruiseVelocity = 5000.0;
-        public static final double kMaxAcceleration = 5000.0;
+        public static final double kCruiseVelocity = 4000.0;
+        public static final double kMaxAcceleration = 4000.0;
     }
 
     public static final class OIConstants {

@@ -74,13 +74,15 @@ public class DriveSubsystem extends SubsystemBase {
 
     /** Creates a new DriveSubsystem. */
     public DriveSubsystem() {
+        /*
         ShuffleboardTab debugTab = Shuffleboard.getTab("Drivetrain");
         debugTab.add("SwerveState", new SwerveModuleSendable());
         for(SwerveModuleNew module : m_modules) {
             //debugTab.add(module.getName() + " Module", module);
         }
+        */
     }
-
+/*
     private final class SwerveModuleSendable implements Sendable {
 
         @Override
@@ -98,6 +100,7 @@ public class DriveSubsystem extends SubsystemBase {
             }
         }
     }
+    */
 
     @Override
     public void periodic() {
