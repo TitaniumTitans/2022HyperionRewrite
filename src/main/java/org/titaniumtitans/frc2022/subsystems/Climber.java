@@ -58,6 +58,8 @@ public class Climber extends SubsystemBase {
       m_direction = true;
       
     SmartDashboard.putNumber("Climber Speed", 0.0);
+
+    //TODO Implement the climber brakes
     
       
   }

@@ -78,6 +78,7 @@ public class Indexer extends SubsystemBase {
         m_kicker.set(ControlMode.PercentOutput, power);
     }
 
+    //TODO update to a single method with one parameter
     public void extendIntake(){
         m_solenoids.set(Value.kForward);
     }

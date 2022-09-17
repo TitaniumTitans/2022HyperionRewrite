@@ -32,8 +32,12 @@ public class SwerveModuleNew extends SubsystemBase {
 
   private SwerveModuleState m_desiredState;
 
+  //TODO this class needs a lot of documentation
+
   /** Creates a new SwerveModuleNew. */
   public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, double offsetDegrees, String name, boolean inverted) {
+
+    //TODO Implement David's TalonEnhanced classes to control CANBus overflow
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);
@@ -152,6 +156,7 @@ public void setModuleState(SwerveModuleState state) {
     return m_name;
   }
 
+  //TODO Create command to update the encoder offsets
   public void updateOffsets(double offsetDegrees){
     m_encoder.configMagnetOffset(offsetDegrees);
   }

@@ -6,9 +6,10 @@ package org.titaniumtitans.frc2022.commands;
 
 import org.titaniumtitans.frc2022.subsystems.Climber;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
+//TODO document logic for up/down
 
 public class ClimberManualJoystick extends CommandBase {
   Climber m_climber;

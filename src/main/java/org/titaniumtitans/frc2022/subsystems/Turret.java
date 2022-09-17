@@ -19,6 +19,8 @@ public class Turret extends ProfiledPIDSubsystem {
   private final TalonSRX m_turretMotor;
   private final ShooterLimelight m_limeLight;
 
+  //TODO recreate a similar class only using the built in PID loop on the falcons
+
   /** Creates a new Turret. */
   public Turret() {
     super(
@@ -31,6 +33,7 @@ public class Turret extends ProfiledPIDSubsystem {
     
   @Override
   protected void useOutput(double output, State setpoint) {
+  //TODO set limits on the position
   // Use the output here
   double falconAngle = Utils.degreesToFalcon(output, TurretConstants.kTurretGearRatio);
 

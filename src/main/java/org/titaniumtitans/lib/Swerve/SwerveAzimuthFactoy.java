@@ -10,6 +10,8 @@ import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 
 import org.titaniumtitans.frc2022.Constants.ModuleConstants;
 
+//TODO Implement David's TalonEnhanced classes
+
 public class SwerveAzimuthFactoy {
     static int kTimeoutMs = 100;
 
