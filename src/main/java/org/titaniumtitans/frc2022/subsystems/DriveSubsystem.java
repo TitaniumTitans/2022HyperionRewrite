@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
+    //TODO Store all sweve encoder offsets in Preferences
 
     // Robot swerve modules
     private final SwerveModuleNew m_frontLeft = new SwerveModuleNew(
@@ -192,6 +193,7 @@ public class DriveSubsystem extends SubsystemBase {
         fieldRelative = !fieldRelative;
     }
 
+    //TODO Remove
     /*
     public void setModuleAngle(double angle){
         for(SwerveModuleNew module: m_modules){
@@ -217,11 +219,13 @@ public class DriveSubsystem extends SubsystemBase {
      * @param angles The angle offset in degrees of the encoder 
      */
     public void updateEncoderOffset(double[] angles){
+        //TODO Grab offsets from Preferences rather than angle array
         int i = 0;
         for(SwerveModuleNew module: m_modules){
             module.updateOffsets(angles[i]);
             i++;
         }
     }
+
 
 }

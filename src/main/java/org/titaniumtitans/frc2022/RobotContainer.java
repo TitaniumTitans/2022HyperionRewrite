@@ -54,6 +54,8 @@ public class RobotContainer {
         // Configure the button bindings
         configureButtonBindings();
 
+        //TODO finish setting up dashboard with limelight stream
+
         ShuffleboardTab testCommands = Shuffleboard.getTab("Test Commands");
         ShuffleboardTab utilityCommands = Shuffleboard.getTab("UtilityCommands");
 
@@ -83,6 +85,7 @@ public class RobotContainer {
      * {@link JoystickButton}.
      */
     private void configureButtonBindings() {
+        //TODO ask PJ about lambda for multiple button bindings
         JoystickButton activateIntake = new JoystickButton(m_driverController, XboxController.Button.kX.value);
         JoystickButton shooterActivate = new JoystickButton(m_driverController, XboxController.Button.kY.value);
         JoystickButton resetSwerveEncoders = new JoystickButton(m_driverController, XboxController.Button.kStart.value);
@@ -105,6 +108,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
+        //TODO grab constants from LABView for autonomous control
         return null;
         /*
          * // Create config for trajectory

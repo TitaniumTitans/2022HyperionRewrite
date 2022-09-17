@@ -26,6 +26,7 @@ import org.titaniumtitans.frc2022.Constants.ModuleConstants;
 import org.titaniumtitans.lib.Swerve.CTREModuleState;
 import org.titaniumtitans.lib.Utils;
 
+@Deprecated
 public class SwerveModule implements Sendable {
 
 

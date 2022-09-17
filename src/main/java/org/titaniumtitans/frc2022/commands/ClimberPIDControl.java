@@ -3,7 +3,6 @@ package org.titaniumtitans.frc2022.commands;
 import org.titaniumtitans.frc2022.subsystems.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimberPIDControl extends CommandBase {
     Climber m_climber;

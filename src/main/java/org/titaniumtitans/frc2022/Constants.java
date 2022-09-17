@@ -21,6 +21,9 @@ import edu.wpi.first.math.util.Units;
  * wherever the
  * constants are needed, to reduce verbosity.
  */
+
+ //TODO Make sure that there are no magic numbers in the code, all numbers are constants or variables
+
 public final class Constants {
     public static final class DriveConstants {
         public static final int kFrontLeftDriveMotorPort = 3;
