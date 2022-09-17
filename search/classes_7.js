@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['resetdrivegyro_108',['ResetDriveGyro',['../classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro.html',1,'org::titaniumtitans::frc2022::commands']]],
-  ['robot_109',['Robot',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html',1,'org::titaniumtitans::frc2022']]],
-  ['robotcontainer_110',['RobotContainer',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html',1,'org::titaniumtitans::frc2022']]]
+  ['pidproperty_108',['PIDProperty',['../classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property.html',1,'org::gos::lib::properties']]],
+  ['propertymanager_109',['PropertyManager',['../classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager.html',1,'org::gos::lib::properties']]]
 ];

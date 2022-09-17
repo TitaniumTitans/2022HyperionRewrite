@@ -43,6 +43,7 @@ var annotated_dup =
             [ "Climber", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_climber.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_climber" ],
             [ "DriveSubsystem", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem" ],
             [ "Indexer", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_indexer" ],
+            [ "LimelightApril", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_limelight_april.html", null ],
             [ "Shooter", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter" ],
             [ "ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight" ],
             [ "SwerveModule", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module" ],

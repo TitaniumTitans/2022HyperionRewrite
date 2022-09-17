@@ -13,6 +13,7 @@ var hierarchy =
     ] ],
     [ "org.gos.lib.properties.PropertyManager.IProperty< TypeT >", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_property_manager_1_1_i_property.html", null ],
     [ "org.gos.lib.properties.PropertyManager.IProperty< Double >", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_property_manager_1_1_i_property.html", null ],
+    [ "org.titaniumtitans.frc2022.subsystems.LimelightApril", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_limelight_april.html", null ],
     [ "org.titaniumtitans.frc2022.Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
     [ "org.gos.lib.properties.PIDProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property.html", null ],
     [ "org.gos.lib.properties.PropertyManager", "classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager.html", null ],

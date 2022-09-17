@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a23d2df71aa4e002d7638e947815abe91":[10,0,1,1,1,0,1,22],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a24f27e4bc7139db88348d7f5a2e6093e":[10,0,1,1,1,0,1,39],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a28e8ece95a2deac4255c8beb8e2da490":[10,0,1,1,1,0,1,33],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a2ad961dc168afd1c6a529b9d8704577a":[10,0,1,1,1,0,1,4],
