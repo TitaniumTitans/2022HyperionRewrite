@@ -8,10 +8,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import org.gos.lib.properties.PIDProperty;
-import org.gos.lib.properties.PropertyManager;
-import org.gos.lib.properties.CTRE.CtrePidPropertyBuilder;
-import org.gos.lib.properties.PropertyManager.IProperty;
+import com.gos.lib.ctre.CtrePidPropertyBuilder;
+import com.gos.lib.properties.GosDoubleProperty;
+import com.gos.lib.properties.PidProperty;
 import org.titaniumtitans.frc2022.Constants.ClimberConstants;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,11 +20,11 @@ public class Climber extends SubsystemBase {
   private final TalonFX m_leftClimber;
   private final TalonFX m_rightClimber;
 
-  public final IProperty<Double> m_rightMaxHeight;
-  public final IProperty<Double> m_leftMaxHeight;
+  public final GosDoubleProperty m_rightMaxHeight;
+  public final GosDoubleProperty m_leftMaxHeight;
 
-  private final PIDProperty m_leftPidProperty;
-  private final PIDProperty m_rightPidProperty;
+  private final PidProperty m_leftPidProperty;
+  private final PidProperty m_rightPidProperty;
 
   private double m_lastPower;
   private boolean m_direction;
@@ -35,8 +34,8 @@ public class Climber extends SubsystemBase {
     m_leftClimber = new TalonFX(ClimberConstants.kLeftCimberPort);
     m_rightClimber = new TalonFX(ClimberConstants.kRightClimberPort);
 
-    m_rightMaxHeight = PropertyManager.createDoubleProperty(false, "Right Max Height", 0.0);
-    m_leftMaxHeight = PropertyManager.createDoubleProperty(false, "Left Max Height", 0.0);
+    m_rightMaxHeight = new GosDoubleProperty(false, "Right Max Height", 0.0);
+    m_leftMaxHeight = new GosDoubleProperty(false, "Left Max Height", 0.0);
 
     m_rightClimber.setInverted(InvertType.InvertMotorOutput);
 
