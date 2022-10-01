@@ -1,0 +1,29 @@
+
+repositories {
+    mavenLocal()
+    maven { url "https://raw.githubusercontent.com/snobotsim/maven_repo/master/release" }
+}
+
+configurations {
+    custom_widgets
+}
+
+dependencies {
+    // Helper for getting the coordinate gui from maven into the shuffleboard area
+    // custom_widgets 'org.snobot.coordinate_gui:CoordinateGuiShuffleboard2022:2022.1.0'
+    custom_widgets 'com.gos.lib.shuffleboard.swerve:SwerveShuffleboard:2022.09.24-19'
+}
+
+task deleteOldWidgets(type: Delete) {
+    delete fileTree("${System.getProperty("user.home")}/Shuffleboard/plugins") {
+        include '**/*.jar'
+    }
+    followSymlinks = true
+}
+
+task install_shuffleboard_plugins(type: Copy, dependsOn: deleteOldWidgets) {
+    group = "Custom Shuffleboard"
+    description = "Copies any customg widgets from maven into the shuffleboard area"
+    from configurations.custom_widgets
+    into("${System.getProperty("user.home")}/Shuffleboard/plugins")
+}

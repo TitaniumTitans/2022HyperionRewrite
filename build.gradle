@@ -112,3 +112,5 @@ wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
 
 //compileJava.dependsOn doxygen
+
+apply from: "install_shuffleboard_plugins.gradle"
