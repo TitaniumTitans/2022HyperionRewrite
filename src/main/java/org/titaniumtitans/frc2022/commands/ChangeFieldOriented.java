@@ -13,8 +13,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ChangeFieldOriented extends CommandBase {
   DriveSubsystem m_drive;
   /** Creates a new ChangeFieldOriented. */
-  public ChangeFieldOriented() {
+  public ChangeFieldOriented(DriveSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_drive = drive;
   }
 
   // Called when the command is initially scheduled.
@@ -23,7 +24,9 @@ public class ChangeFieldOriented extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_drive.fieldRelative = true;
+  }
 
   // Called once the command ends or is interrupted.
   @Override

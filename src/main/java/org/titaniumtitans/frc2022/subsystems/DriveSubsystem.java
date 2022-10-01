@@ -66,7 +66,7 @@ public class DriveSubsystem extends SubsystemBase {
     // Odometry class for tracking robot pose
     SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(DriveConstants.kDriveKinematics, m_gyro.getRotation2d());
 
-    private boolean fieldRelative = false;
+    public boolean fieldRelative = false;
 
     /** Creates a new DriveSubsystem. */
     public DriveSubsystem() {
@@ -133,6 +133,10 @@ public class DriveSubsystem extends SubsystemBase {
      */
     public void resetOdometry(Pose2d pose) {
         m_odometry.resetPosition(pose, m_gyro.getRotation2d());
+    }
+
+    public void resetGyro() {
+        m_gyro.reset();
     }
 
     /**
