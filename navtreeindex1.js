@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a4ef492cb69f2f36053543651d2dcca22":[10,0,1,0,1,0,1,76],
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a50e4007f30615b593602e3a0f9929e62":[10,0,1,0,1,0,1,30],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a5394534732c537c6a1596be180a9b4eb":[10,0,1,0,1,0,1,78],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a55a4f5650d83146459def5d7f00bb674":[10,0,1,0,1,0,1,9],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a577672558cb42d6c7b3e3dd488437529":[10,0,1,0,1,0,1,18],
@@ -78,8 +80,8 @@ var NAVTREEINDEX1 =
 "functions.html":[10,3,0],
 "functions_func.html":[10,3,1],
 "hierarchy.html":[10,2],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "interfaceorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util_1_1_config_call.html":[10,0,1,0,1,0,0,0],
 "interfaceorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_c_t_r_e_util_1_1_config_call.html#a26e6cafa4ddfd8f942169f7c773cf4ae":[10,0,1,0,1,0,0,0,0],
 "md__r_e_a_d_m_e.html":[5],

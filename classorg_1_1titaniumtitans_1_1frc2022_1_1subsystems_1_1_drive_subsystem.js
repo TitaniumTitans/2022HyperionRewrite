@@ -9,8 +9,10 @@ var classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem =
     [ "getTurnRate", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a5ed268f2b8aab9a11f3c8b8ad6b1a2ce", null ],
     [ "periodic", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#ade534f00612d6463848e29c5b3d450ef", null ],
     [ "resetEncoders", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a0bbf0f914c62df3745458c2b9a4678ea", null ],
+    [ "resetGyro", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#af5b7e20ad35a6ea17555c892f1cefedd", null ],
     [ "resetOdometry", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a7ed3a799506ea289dd4ea4841569ee65", null ],
     [ "setTestState", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a23b389503d5edb6424119f1ff70d5cd5", null ],
     [ "updateEncoderOffset", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a81753656dd68bac740215440a1ce24e0", null ],
-    [ "zeroHeading", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a92cfcb373ddbef3147396c085a22792b", null ]
+    [ "zeroHeading", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a92cfcb373ddbef3147396c085a22792b", null ],
+    [ "fieldRelative", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a9c2489af4ff0b0cbb01650b561daecb8", null ]
 ];
