@@ -17,6 +17,7 @@ import org.titaniumtitans.frc2022.commands.IntakeRetract;
 import org.titaniumtitans.frc2022.commands.ResetDriveGyro;
 import org.titaniumtitans.frc2022.commands.ShooterToRPM;
 import org.titaniumtitans.frc2022.commands.TeleopSwerveDrive;
+import org.titaniumtitans.frc2022.commands.ToggleFieldOrientation;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo180Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo270Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo360Degrees;
@@ -94,7 +95,7 @@ public class RobotContainer {
         //JoystickButton activateIntake = new JoystickButton(m_driverController, XboxController.Button.kX.value);
         //JoystickButton shooterActivate = new JoystickButton(m_driverController, XboxController.Button.kY.value);
         JoystickButton resetGyro = new JoystickButton(m_driverController, XboxController.Button.kStart.value);
-        Button toggleFieldOriented = new Button(() -> m_driverController.getS
+        Button toggleFieldOriented = new Button(() -> m_driverController.getRawButton(7));
         JoystickButton climberUp = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
         JoystickButton climberDown = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
         Button activateIntake = new Button(() -> m_driverController.getYButton() && !m_driverController.getXButton());
@@ -109,6 +110,7 @@ public class RobotContainer {
         climberDown.whenHeld(new ClimberPIDControl(m_climber, false));
 
         resetGyro.whenPressed(new ResetDriveGyro(m_robotDrive));
+        toggleFieldOriented.whenPressed(new ToggleFieldOrientation(m_robotDrive));
 
     }
 
