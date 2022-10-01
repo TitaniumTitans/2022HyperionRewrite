@@ -31,6 +31,18 @@ public class Utils {
     }
 
     /***
+     * Converts from degrees to Falcon encoder position with 4096 ticks
+     * @param degrees
+     * @param gearRatio
+     * @return
+     */
+
+     public static double degreesToFalcon4096(double degrees, double gearRatio) {
+         double ticks = degrees / (360.0 / (gearRatio * 4096));
+         return ticks;
+     }
+
+    /***
      * Converts RPM to Falcon Encoder Counts per 100 ms.
      * 
      * @param RPM Input RPM 
