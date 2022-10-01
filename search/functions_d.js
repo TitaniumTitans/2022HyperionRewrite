@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updateencoderoffset_171',['updateEncoderOffset',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a81753656dd68bac740215440a1ce24e0',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]]
+  ['virtualfunc_154',['virtualfunc',['../class_my_library_1_1_subclass_example.html#a6c1b7e5c6e56d31a169ddd42e8992300',1,'MyLibrary::SubclassExample']]]
 ];

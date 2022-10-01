@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['resetdrivegyro_152',['ResetDriveGyro',['../classorg_1_1titaniumtitans_1_1frc2022_1_1commands_1_1_reset_drive_gyro.html#a644c39cf1716f16dafcc82be184432bd',1,'org::titaniumtitans::frc2022::commands::ResetDriveGyro']]],
-  ['resetencoders_153',['resetEncoders',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a0bbf0f914c62df3745458c2b9a4678ea',1,'org.titaniumtitans.frc2022.subsystems.DriveSubsystem.resetEncoders()'],['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#aee56a8b0f322f47c36e9b17b1678b35e',1,'org.titaniumtitans.frc2022.subsystems.SwerveModule.resetEncoders()'],['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new.html#a5691c888b03bd8f34e5d3180fb62b80a',1,'org.titaniumtitans.frc2022.subsystems.SwerveModuleNew.resetEncoders()']]],
-  ['resetodometry_154',['resetOdometry',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a7ed3a799506ea289dd4ea4841569ee65',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
-  ['robotcontainer_155',['RobotContainer',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html#acbcb165ffb73b95793e2191a800e00b1',1,'org::titaniumtitans::frc2022::RobotContainer']]],
-  ['robotinit_156',['robotInit',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html#af78609d4d3c8f1db1a2657e94e234c99',1,'org::titaniumtitans::frc2022::Robot']]],
-  ['robotperiodic_157',['robotPeriodic',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html#a2dc11dd8bf4029e56df9337a4a0b94c2',1,'org::titaniumtitans::frc2022::Robot']]]
+  ['set_141',['set',['../classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#ac305da7eba03137c9a62735b07a9c3ef',1,'org.titaniumtitans.lib.drivers.TalonEnhanced.set(ControlMode controlMode, double demand0)'],['../classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a73d4797eddf6e83278c52a645516ea6e',1,'org.titaniumtitans.lib.drivers.TalonEnhanced.set(ControlMode controlMode, double demand0, DemandType demandType, double demand1)']]],
+  ['setdesiredstate_142',['setDesiredState',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#ab14f43765642f8359d01a2798e1f1630',1,'org::titaniumtitans::frc2022::subsystems::SwerveModule']]],
+  ['simulationinit_143',['simulationInit',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html#af342b3cd319be5bd62cf85ed078bb83f',1,'org::titaniumtitans::frc2022::Robot']]],
+  ['simulationperiodic_144',['simulationPeriodic',['../classorg_1_1titaniumtitans_1_1frc2022_1_1_robot.html#ab9a4d6525397f362be1cb78e50ce4067',1,'org::titaniumtitans::frc2022::Robot']]],
+  ['swervemodule_145',['SwerveModule',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#af3d8788e80a17cef42e629aeb8ccac52',1,'org::titaniumtitans::frc2022::subsystems::SwerveModule']]],
+  ['swervemodulenew_146',['SwerveModuleNew',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module_new.html#a1f1145dce7b816e7e09b26fe98fbaa0e',1,'org::titaniumtitans::frc2022::subsystems::SwerveModuleNew']]]
 ];

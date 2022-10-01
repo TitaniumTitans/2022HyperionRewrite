@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['virtualfunc_79',['virtualfunc',['../class_my_library_1_1_subclass_example.html#a6c1b7e5c6e56d31a169ddd42e8992300',1,'MyLibrary::SubclassExample']]]
+  ['zeroheading_72',['zeroHeading',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a92cfcb373ddbef3147396c085a22792b',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]]
 ];

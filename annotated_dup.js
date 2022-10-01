@@ -5,19 +5,6 @@ var annotated_dup =
       [ "SubclassExample", "class_my_library_1_1_subclass_example.html", "class_my_library_1_1_subclass_example" ]
     ] ],
     [ "org", null, [
-      [ "gos", null, [
-        [ "lib", null, [
-          [ "properties", null, [
-            [ "CTRE", null, [
-              [ "CtrePidPropertyBuilder", "classorg_1_1gos_1_1lib_1_1properties_1_1_c_t_r_e_1_1_ctre_pid_property_builder.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_c_t_r_e_1_1_ctre_pid_property_builder" ]
-            ] ],
-            [ "HeavyDoubleProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_heavy_double_property.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_heavy_double_property" ],
-            [ "IPidPropertyBuilder", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_i_pid_property_builder.html", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_i_pid_property_builder" ],
-            [ "PIDProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property" ],
-            [ "PropertyManager", "classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager.html", "classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager" ]
-          ] ]
-        ] ]
-      ] ],
       [ "titaniumtitans", null, [
         [ "frc2022", null, [
           [ "commands", null, [

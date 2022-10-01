@@ -7,16 +7,8 @@ var hierarchy =
     [ "MyLibrary::Example", "class_my_library_1_1_example.html", [
       [ "MyLibrary::SubclassExample", "class_my_library_1_1_subclass_example.html", null ]
     ] ],
-    [ "org.gos.lib.properties.HeavyDoubleProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_heavy_double_property.html", null ],
-    [ "org.gos.lib.properties.IPidPropertyBuilder", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_i_pid_property_builder.html", [
-      [ "org.gos.lib.properties.CTRE.CtrePidPropertyBuilder", "classorg_1_1gos_1_1lib_1_1properties_1_1_c_t_r_e_1_1_ctre_pid_property_builder.html", null ]
-    ] ],
-    [ "org.gos.lib.properties.PropertyManager.IProperty< TypeT >", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_property_manager_1_1_i_property.html", null ],
-    [ "org.gos.lib.properties.PropertyManager.IProperty< Double >", "interfaceorg_1_1gos_1_1lib_1_1properties_1_1_property_manager_1_1_i_property.html", null ],
     [ "org.titaniumtitans.frc2022.subsystems.LimelightApril", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_limelight_april.html", null ],
     [ "org.titaniumtitans.frc2022.Main", "classorg_1_1titaniumtitans_1_1frc2022_1_1_main.html", null ],
-    [ "org.gos.lib.properties.PIDProperty", "classorg_1_1gos_1_1lib_1_1properties_1_1_p_i_d_property.html", null ],
-    [ "org.gos.lib.properties.PropertyManager", "classorg_1_1gos_1_1lib_1_1properties_1_1_property_manager.html", null ],
     [ "org.titaniumtitans.frc2022.RobotContainer", "classorg_1_1titaniumtitans_1_1frc2022_1_1_robot_container.html", null ],
     [ "org.titaniumtitans.frc2022.subsystems.ShooterLimelight", "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html", null ],
     [ "org.titaniumtitans.lib.Swerve.SwerveAzimuthFactoy", "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_swerve_azimuth_factoy.html", null ],
