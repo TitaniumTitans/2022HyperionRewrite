@@ -4,13 +4,11 @@
 
 package org.titaniumtitans.frc2022;
 
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 import org.titaniumtitans.frc2022.commands.CargoShoot;
-import org.titaniumtitans.frc2022.commands.ClimberManualJoystick;
 import org.titaniumtitans.frc2022.commands.ClimberPIDControl;
 import org.titaniumtitans.frc2022.commands.IntakeExtend;
 import org.titaniumtitans.frc2022.commands.IntakeRetract;
@@ -22,8 +20,6 @@ import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo180Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo270Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo360Degrees;
 import org.titaniumtitans.frc2022.commands.test_commands.ModulesTo90Degrees;
-
-import javax.swing.UIDefaults.ActiveValue;
 
 import org.titaniumtitans.frc2022.Constants.OIConstants;
 import org.titaniumtitans.frc2022.subsystems.Climber;
@@ -91,7 +87,6 @@ public class RobotContainer {
      * {@link JoystickButton}.
      */
     private void configureButtonBindings() {
-        //TODO ask PJ about lambda for multiple button bindings
         //JoystickButton activateIntake = new JoystickButton(m_driverController, XboxController.Button.kX.value);
         //JoystickButton shooterActivate = new JoystickButton(m_driverController, XboxController.Button.kY.value);
         JoystickButton resetGyro = new JoystickButton(m_driverController, XboxController.Button.kStart.value);

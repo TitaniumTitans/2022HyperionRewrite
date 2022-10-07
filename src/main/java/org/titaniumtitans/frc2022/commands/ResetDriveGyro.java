@@ -8,8 +8,6 @@ import org.titaniumtitans.frc2022.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-//TODO bind to "start" button
-
 public class ResetDriveGyro extends CommandBase {
   DriveSubsystem m_drive;
   /** Creates a new ResetDriveGyro. */

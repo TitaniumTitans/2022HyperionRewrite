@@ -35,7 +35,6 @@ public class Turret extends ProfiledPIDSubsystem {
     
   @Override
   protected void useOutput(double output, State setpoint) {
-  //TODO set limits on the position
   // Use the output here
   double falconAngle = Utils.degreesToFalcon(output, TurretConstants.kTurretGearRatio);
 

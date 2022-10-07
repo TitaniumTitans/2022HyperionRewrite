@@ -26,7 +26,7 @@ public class SwerveModuleNew extends SubsystemBase {
   private final TalonFX m_drive;
   private final CANCoder m_encoder;
   private String m_name;
-  private double m_lastAngle = 0;
+  //private double m_lastAngle = 0;
 
   private int count = 0;
 
@@ -37,7 +37,6 @@ public class SwerveModuleNew extends SubsystemBase {
   /** Creates a new SwerveModuleNew. */
   public SwerveModuleNew(int drivePort, int azimuthPort, int encoderPort, double offsetDegrees, String name, boolean inverted) {
 
-    //TODO Implement David's TalonEnhanced classes to control CANBus overflow
     m_azimuth = SwerveAzimuthFactoy.createAzimuthTalon(azimuthPort);
     m_drive = new TalonFX(drivePort);
     m_encoder = new CANCoder(encoderPort);

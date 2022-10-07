@@ -18,8 +18,15 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.gos.lib.properties.GosDoubleProperty;
+
 public class DriveSubsystem extends SubsystemBase {
     //TODO Store all sweve encoder offsets in Preferences
+
+    GosDoubleProperty flOffset = new GosDoubleProperty(false, "flOffset", 181);
+    GosDoubleProperty frOffset = new GosDoubleProperty(false, "frOffset", 170);
+    GosDoubleProperty blOffset = new GosDoubleProperty(false, "blOffset", 225);
+    GosDoubleProperty brOffset = new GosDoubleProperty(false, "brOffset", 71);
 
     // Robot swerve modules
     private final SwerveModuleNew m_frontLeft = new SwerveModuleNew(
@@ -27,7 +34,7 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
             //360 - 45.35,
-            181,
+            flOffset.getValue(),
             "FL",
             false);
 
@@ -35,7 +42,7 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            225,
+            brOffset.getValue(),
             //0,
             "RL",
             true);
@@ -44,7 +51,7 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            170,
+            frOffset.getValue(),
             //0,
             "FR",
             false);
@@ -53,7 +60,7 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            71,
+            brOffset.getValue(),
             //0,
             "RR",
             false);

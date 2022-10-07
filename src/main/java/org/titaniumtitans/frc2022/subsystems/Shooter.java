@@ -6,8 +6,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -19,11 +17,9 @@ public class Shooter extends SubsystemBase{
     private static ShooterLimelight m_limelight;
 
     private static SimpleMotorFeedforward m_shooterController;
-    private static ShuffleboardTab m_shooterTab;
     private static double m_lastRPM;
 
     public Shooter(){
-        //TODO Implement TalonEnhanced classes
         //Config for shooter motors
         m_shooterR = new TalonFX(22);
         m_shooterR.setNeutralMode(NeutralMode.Coast);
@@ -46,12 +42,17 @@ public class Shooter extends SubsystemBase{
     }
 
     public void shootAtVelocity(double velocity){
-        //TODO when velocity is 0, motors should coast instead of trying to keep velocity at 0
         m_lastRPM = velocity;
         velocity = velocity / 60.0;
-        m_shooterR.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
-        m_shooterL.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
+        if(velocity <= 100.0){
+            m_shooterR.set(ControlMode.PercentOutput, 0.0);
+            m_shooterL.set(ControlMode.PercentOutput, 0.0);
+        }else{
+            m_shooterR.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
+            m_shooterL.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
+        }
     }
+
 
     public boolean atRPM(double velocity){
         return velocity <= (m_shooterR.getSelectedSensorVelocity() + m_shooterL.getSelectedSensorVelocity() / 2);
