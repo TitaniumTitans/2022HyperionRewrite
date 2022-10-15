@@ -29,6 +29,7 @@ import org.titaniumtitans.frc2022.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -97,9 +98,12 @@ public class RobotContainer {
         Button activateShooter = new Button(() -> m_driverController.getXButton() && !m_driverController.getYButton());
         Button shooterRun = new Button(() -> m_driverController.getXButton() && m_driverController.getYButton());
 
-        activateIntake.whenActive(new IntakeExtend(m_indexer)).whenInactive(new IntakeRetract(m_indexer));
-        activateShooter.whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
-        shooterRun.whenActive(new CargoShoot(m_shooter, m_indexer, 1500));
+        //activateIntake.whenHeld(new IntakeExtend(m_indexer)).whenInactive(new IntakeRetract(m_indexer));
+        activateIntake.whenHeld(new PrintCommand("Intake Activated").alongWith(new IntakeExtend(m_indexer)));
+        //activateShooter.whenActive(new ShooterToRPM(m_shooter, 1500)).whenInactive(new ShooterToRPM(m_shooter, 0));
+        activateShooter.whenHeld(new PrintCommand("Shooter Activated").alongWith(new ShooterToRPM(m_shooter, 1500)));
+        //shooterRun.whenActive(new CargoShoot(m_shooter, m_indexer, 1500));
+        shooterRun.whenHeld(new PrintCommand("Both Held").alongWith(new CargoShoot(m_shooter, m_indexer, 1500)));
 
         climberUp.whenHeld(new ClimberPIDControl(m_climber, true));
         climberDown.whenHeld(new ClimberPIDControl(m_climber, false));

@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShooterToRPM extends CommandBase{
     private final Shooter m_shooter;
-    private final double rpm;
+    private final double m_rpm;
 
     public ShooterToRPM(Shooter shooter, double rpm){
         m_shooter = shooter;
-        this.rpm = rpm;
+        m_rpm = rpm;
     }
 
     @Override
@@ -18,15 +18,17 @@ public class ShooterToRPM extends CommandBase{
 
     @Override
     public void execute(){
-        m_shooter.shootAtVelocity(rpm);
+        m_shooter.shootAtVelocity(m_rpm);
     }
 
     @Override
-    public void end(boolean interrupted){}
+    public void end(boolean interrupted){
+        m_shooter.shootAtVelocity(0.0);
+    }
 
     @Override
     public boolean isFinished(){
-        return m_shooter.atRPM(rpm);
+        return false;
     }
     
 }

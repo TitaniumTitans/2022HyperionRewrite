@@ -17,8 +17,8 @@ import org.titaniumtitans.frc2022.Constants.IndexerConstants;
 
 public class Indexer extends SubsystemBase {
 
-    public static final double intakeSpeed = 0.5;
-    public static final double magazineSpeed = 0.75;
+    public static final double intakeSpeed = 0.8;
+    public static final double magazineSpeed = 0.8;
     public static final double kickerReverseSpeed = -0.5;
 
     //Drive motors for magazine and intake
@@ -49,6 +49,10 @@ public class Indexer extends SubsystemBase {
 
         m_lowIR = new DigitalInput(IndexerConstants.lowSensorDIOPort);
         m_highIR = new DigitalInput(IndexerConstants.highSensorDIOPort);
+
+        m_intake.setInverted(true);
+
+        m_kicker.setInverted(true);
 
         //m_compressor = new Compressor(1, PneumaticsModuleType.REVPH);
 

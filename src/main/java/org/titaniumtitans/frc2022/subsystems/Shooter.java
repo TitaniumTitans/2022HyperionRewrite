@@ -5,8 +5,12 @@ import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import org.titaniumtitans.lib.Utils;
+
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase{
@@ -32,6 +36,9 @@ public class Shooter extends SubsystemBase{
         m_shooterL.configVoltageCompSaturation(10);
         m_shooterL.enableVoltageCompensation(true);
 
+        m_shooterR.config_kP(0, 0.0002974);
+        m_shooterL.config_kP(0, 0.0002974);
+
         m_shooterController = new SimpleMotorFeedforward(0.1309, 0.114, 0);
         m_lastRPM = 0.0;
     }
@@ -43,13 +50,19 @@ public class Shooter extends SubsystemBase{
 
     public void shootAtVelocity(double velocity){
         m_lastRPM = velocity;
-        velocity = velocity / 60.0;
+        //velocity = velocity / 60.0;
+        double falconVelocity = Utils.RPMToFalcon(velocity, 1.0);
+
         if(velocity <= 100.0){
+            System.out.println(velocity);
             m_shooterR.set(ControlMode.PercentOutput, 0.0);
             m_shooterL.set(ControlMode.PercentOutput, 0.0);
+
         }else{
-            m_shooterR.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
-            m_shooterL.set(ControlMode.Velocity, velocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity) / 10.0);
+            System.out.println(velocity);
+            System.out.println(m_shooterR.getSelectedSensorVelocity());
+            m_shooterR.set(ControlMode.Velocity, falconVelocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity / 60.0) / 10.0);
+            m_shooterL.set(ControlMode.Velocity, falconVelocity, DemandType.ArbitraryFeedForward, m_shooterController.calculate(velocity / 60.0) / 10.0);
         }
     }
 
