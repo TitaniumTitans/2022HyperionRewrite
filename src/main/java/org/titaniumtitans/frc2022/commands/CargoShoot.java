@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class CargoShoot extends CommandBase{
     private final Shooter m_shooter;
     private final Indexer m_indexer;
-    private final double rpm;
+    private double rpm;
 
     public CargoShoot(Shooter shooter, Indexer indexer, double rpm){
         m_shooter = shooter;
         m_indexer = indexer;
-        this.rpm = rpm;
+        //this.rpm = rpm;
+        this.rpm = m_shooter.getRPMForDistance();
         addRequirements(shooter, indexer);
     }
 
@@ -25,6 +26,7 @@ public class CargoShoot extends CommandBase{
         m_shooter.shootAtVelocity(rpm);
         m_indexer.driveKicker(0.75);
         m_indexer.driveMagazine(0.75);
+        rpm = m_shooter.getRPMForDistance();
     }
 
     @Override

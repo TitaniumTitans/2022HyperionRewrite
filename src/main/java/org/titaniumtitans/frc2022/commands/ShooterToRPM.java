@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ShooterToRPM extends CommandBase{
     private final Shooter m_shooter;
-    private final double m_rpm;
+    private double m_rpm;
 
     public ShooterToRPM(Shooter shooter, double rpm){
         m_shooter = shooter;
-        m_rpm = rpm;
+        m_rpm = m_shooter.getRPMForDistance();
     }
 
     @Override
@@ -19,6 +19,7 @@ public class ShooterToRPM extends CommandBase{
     @Override
     public void execute(){
         m_shooter.shootAtVelocity(m_rpm);
+        m_rpm = m_shooter.getRPMForDistance();
     }
 
     @Override

@@ -41,6 +41,8 @@ public class Shooter extends SubsystemBase{
 
         m_shooterController = new SimpleMotorFeedforward(0.1309, 0.114, 0);
         m_lastRPM = 0.0;
+
+        m_limelight = new ShooterLimelight();
     }
 
     @Override
@@ -54,7 +56,8 @@ public class Shooter extends SubsystemBase{
         double falconVelocity = Utils.RPMToFalcon(velocity, 1.0);
 
         if(velocity <= 100.0){
-            System.out.println(velocity);
+            //System.out.println(velocity);
+            //System.out.println("No output");
             m_shooterR.set(ControlMode.PercentOutput, 0.0);
             m_shooterL.set(ControlMode.PercentOutput, 0.0);
 
