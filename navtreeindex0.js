@@ -177,10 +177,12 @@ var NAVTREEINDEX0 =
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html#a85df1aa5ffd287a6f5c09415df5b5f4a":[10,0,1,0,0,1,4,3],
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter.html#ae93351b350090f7a057ba6ad649e7ed2":[10,0,1,0,0,1,4,1],
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html":[10,0,1,0,0,1,5],
-"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#a4f68cbc14b83b5ff5a3f55817e12115a":[10,0,1,0,0,1,5,2],
-"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#ab3ec520434830640930208495e7a5c2d":[10,0,1,0,0,1,5,1],
-"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#ab63c5924b006c07a4e34212b8086e30d":[10,0,1,0,0,1,5,3],
-"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#ac452848750af39d1a5e248adac9e60d9":[10,0,1,0,0,1,5,0],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#a295c357070360e59b2a2f2148f81995b":[10,0,1,0,0,1,5,3],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#a4f68cbc14b83b5ff5a3f55817e12115a":[10,0,1,0,0,1,5,4],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#aaee4e4ec643636c43abc0d9316c6b837":[10,0,1,0,0,1,5,0],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#ab3ec520434830640930208495e7a5c2d":[10,0,1,0,0,1,5,2],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#ab63c5924b006c07a4e34212b8086e30d":[10,0,1,0,0,1,5,5],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_shooter_limelight.html#ac452848750af39d1a5e248adac9e60d9":[10,0,1,0,0,1,5,1],
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html":[10,0,1,0,0,1,6],
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#a0672464227889af34e8aae060f98ad4f":[10,0,1,0,0,1,6,10],
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_swerve_module.html#a233120181b66037f38046c00e2926e47":[10,0,1,0,0,1,6,4],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a31c8666c12774a998974f64c0295bfbe":[10,0,1,0,1,0,1,66],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a32c44c269b8014ae8d667d115a96135a":[10,0,1,0,1,0,1,24],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a367b2b3bde1fb8fd43da61c55ffe1a59":[10,0,1,0,1,0,1,31],
-"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a38227b517960815b82cebccbda0374c4":[10,0,1,0,1,0,1,62],
-"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a3ce5bb772774478d43c852db46d4b5c7":[10,0,1,0,1,0,1,14],
-"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a406f07c8cabd2b181f76db4f6fda5c12":[10,0,1,0,1,0,1,2]
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a38227b517960815b82cebccbda0374c4":[10,0,1,0,1,0,1,62]
 };
