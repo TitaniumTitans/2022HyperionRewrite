@@ -39,8 +39,9 @@ public class CTREUtil {
                     // Some tools recommended against this, but because we are dealing with hardware, this should be sufficient.
                     Thread.sleep(RETRY_DELAY_MS);
                 } catch (InterruptedException ignored) {
-                    // The thread's sleep was interrupted for some reason...
-                    // Continue even if it hasn't been a full RETRY_DELAY_MS period. No need to do anything.
+                    // For some reason, the thread was intentionally interrupted
+                    // Follow through with the interrupt
+                    Thread.currentThread().interrupt();
                 }
             } else {
                 break;
