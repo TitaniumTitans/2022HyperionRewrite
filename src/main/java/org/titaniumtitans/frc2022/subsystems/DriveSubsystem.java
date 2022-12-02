@@ -23,10 +23,10 @@ import com.gos.lib.properties.GosDoubleProperty;
 public class DriveSubsystem extends SubsystemBase {
     //TODO Store all sweve encoder offsets in Preferences
 
-    GosDoubleProperty flOffset = new GosDoubleProperty(false, "flOffset", 181);
-    GosDoubleProperty frOffset = new GosDoubleProperty(false, "frOffset", 170);
-    GosDoubleProperty blOffset = new GosDoubleProperty(false, "blOffset", 225);
-    GosDoubleProperty brOffset = new GosDoubleProperty(false, "brOffset", 71);
+    //GosDoubleProperty flOffset = new GosDoubleProperty(false, "flOffset", 181);
+    //GosDoubleProperty frOffset = new GosDoubleProperty(false, "frOffset", 170);
+    //GosDoubleProperty blOffset = new GosDoubleProperty(false, "blOffset", 225);
+    //GosDoubleProperty brOffset = new GosDoubleProperty(false, "brOffset", 71);
 
     // Robot swerve modules
     private final SwerveModuleNew m_frontLeft = new SwerveModuleNew(
@@ -34,7 +34,8 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontLeftTurningMotorPort,
             DriveConstants.kFrontLeftTurningEncoderPorts,
             //360 - 45.35,
-            flOffset.getValue(),
+            //flOffset.getValue(),
+            360 - 244.033,
             "FL",
             false);
 
@@ -42,8 +43,8 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kRearLeftDriveMotorPort,
             DriveConstants.kRearLeftTurningMotorPort,
             DriveConstants.kRearLeftTurningEncoderPorts,
-            brOffset.getValue(),
-            //0,
+            //brOffset.getValue(),
+            360 - 74.09,
             "RL",
             true);
 
@@ -51,8 +52,8 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kFrontRightDriveMotorPort,
             DriveConstants.kFrontRightTurningMotorPort,
             DriveConstants.kFrontRightTurningEncoderPorts,
-            frOffset.getValue(),
-            //0,
+            //frOffset.getValue(),
+            359.297,
             "FR",
             false);
 
@@ -60,8 +61,8 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kRearRightDriveMotorPort,
             DriveConstants.kRearRightTurningMotorPort,
             DriveConstants.kRearRightTurningEncoderPorts,
-            brOffset.getValue(),
-            //0,
+            //brOffset.getValue(),
+            360 - 1.40,
             "RR",
             false);
 

@@ -118,10 +118,10 @@ public void setModuleState(SwerveModuleState state) {
     updateAbsoluteValue();
   }
   
-  if (m_desiredState.speedMetersPerSecond >= 0.1) {
-    m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
+  if (m_desiredState.speedMetersPerSecond != 0.0) {
     m_azimuth.set(ControlMode.Position, turningOutput);
   }
+  m_drive.set(ControlMode.PercentOutput, m_desiredState.speedMetersPerSecond);
 }
 
   // Gets the current state of the module
