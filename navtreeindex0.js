@@ -1,17 +1,7 @@
 var NAVTREEINDEX0 =
 {
-".html":[10,0,0],
-".html":[10,0,1],
-".html":[10,0,1,0],
-".html":[10,0,1,0,1,1],
-".html":[10,0,1,0,0],
-".html":[10,0,1,0,0,0],
-".html":[10,0,1,0,0,0,0],
-".html":[10,0,1,0,0,1],
-".html":[10,0,1,0,1],
-".html":[10,0,1,0,1,0],
 "annotated.html":[10,0],
-"bug.html":[9],
+"bug.html":[7],
 "class_my_library_1_1_example.html":[10,0,0,0],
 "class_my_library_1_1_example.html#a1c0046b0674eb4cad09c5d3e943912b8":[10,0,0,0,0],
 "class_my_library_1_1_example.html#a8431ef1c10c4e2a36302b8e8556514f6":[10,0,0,0,1],
@@ -219,6 +209,12 @@ var NAVTREEINDEX0 =
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret.html#a500dce11b345a72ec214052885da83d7":[10,0,1,0,0,1,8,0],
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret.html#ae94e02fe3ed83b7f5fbcebf569923d88":[10,0,1,0,0,1,8,2],
 "classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret.html#afae66029821fadb71f17141b970aa469":[10,0,1,0,0,1,8,4],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret_onboard.html":[10,0,1,0,0,1,9],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret_onboard.html#a1765c76b252d519af73875a2eb90b424":[10,0,1,0,0,1,9,0],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret_onboard.html#a2f9bb35f5e303935ef46345727c49066":[10,0,1,0,0,1,9,3],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret_onboard.html#a95782c43075988ad59339d5e6843ae8e":[10,0,1,0,0,1,9,4],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret_onboard.html#ac98b837e1c70299e6a56ac4aea345b5e":[10,0,1,0,0,1,9,1],
+"classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_turret_onboard.html#ad58274d367461ca4961c6e39c320ea6b":[10,0,1,0,0,1,9,2],
 "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_c_t_r_e_module_state.html":[10,0,1,0,1,1,0],
 "classorg_1_1titaniumtitans_1_1lib_1_1_swerve_1_1_swerve_azimuth_factoy.html":[10,0,1,0,1,1,1],
 "classorg_1_1titaniumtitans_1_1lib_1_1_utils.html":[10,0,1,0,1,2],
@@ -249,5 +245,9 @@ var NAVTREEINDEX0 =
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a31c8666c12774a998974f64c0295bfbe":[10,0,1,0,1,0,1,66],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a32c44c269b8014ae8d667d115a96135a":[10,0,1,0,1,0,1,24],
 "classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a367b2b3bde1fb8fd43da61c55ffe1a59":[10,0,1,0,1,0,1,31],
-"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a38227b517960815b82cebccbda0374c4":[10,0,1,0,1,0,1,62]
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a38227b517960815b82cebccbda0374c4":[10,0,1,0,1,0,1,62],
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a3ce5bb772774478d43c852db46d4b5c7":[10,0,1,0,1,0,1,14],
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a406f07c8cabd2b181f76db4f6fda5c12":[10,0,1,0,1,0,1,2],
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a428fc8517bba73aca4db460af0ddf849":[10,0,1,0,1,0,1,27],
+"classorg_1_1titaniumtitans_1_1lib_1_1drivers_1_1_talon_enhanced.html#a4532430c7b20b1a3e24227764a04a0f4":[10,0,1,0,1,0,1,95]
 };

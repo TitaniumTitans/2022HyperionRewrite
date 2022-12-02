@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['updateencoderoffset_69',['updateEncoderOffset',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a81753656dd68bac740215440a1ce24e0',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
-  ['utils_70',['Utils',['../classorg_1_1titaniumtitans_1_1lib_1_1_utils.html',1,'org::titaniumtitans::lib']]]
+  ['updateencoderoffset_71',['updateEncoderOffset',['../classorg_1_1titaniumtitans_1_1frc2022_1_1subsystems_1_1_drive_subsystem.html#a81753656dd68bac740215440a1ce24e0',1,'org::titaniumtitans::frc2022::subsystems::DriveSubsystem']]],
+  ['utils_72',['Utils',['../classorg_1_1titaniumtitans_1_1lib_1_1_utils.html',1,'org::titaniumtitans::lib']]]
 ];
